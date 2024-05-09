@@ -1,0 +1,120 @@
+
+.container {
+    display: flex; 
+    height: 100vh; 
+}
+.div-right{
+    width: 60%;
+    background-color: white; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.div-left {
+    width: 45%;
+    background-image: url(../../assets/img/background-login-blue.png);
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed;
+    position: relative;
+}
+
+.div-left img {
+    position: absolute; 
+    bottom: -50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    animation: slideUp 1s ease forwards;
+}
+
+@keyframes slideUp {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+    100% {
+        bottom: 5%;
+        opacity: 1;
+    }
+}
+.login-form {
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -100%;
+    opacity: 0;
+    animation: slideDown 1s ease forwards;
+}
+
+@keyframes slideDown {
+    0% {
+        top: -100%;
+        opacity: 0;
+    }
+    100% {
+        top: 0%;
+        opacity: 1;
+    }
+}
+.login-form h1 {
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    display: flex; 
+    text-align: center;
+    color: #002E3C;
+}
+
+.login-form label {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px; 
+    color: lightgray;
+    text-align: left;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    width: 35%;
+    padding: 10px;
+    background-color: #FF6D43;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #c35003;
+}
+
+.login-img {
+    width: 80px; 
+    margin-right: 210px; 
+    margin-bottom: -70px;
+}
+
+@media only screen and (max-width: 500px) {
+    .login-img {
+       display: none;
+    }
+  }
