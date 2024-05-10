@@ -8,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class AsideComponent implements OnInit {
   name:string = "Sergio Ramos";
   email:string = "sergio.ramos.external@eviden.com";
-  rol:string = "pm";
+  profile_pic="../../assets/img/user.png"
+  rol:string = "developer";
+
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

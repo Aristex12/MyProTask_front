@@ -9,11 +9,14 @@
             <div class="login-form">
                 <img class="login-img" src="../../assets/img/login_usericon.png" alt="">
                 <h1>Log in</h1>
-                <label for="user">Email</label>
-                <input type="text" name="user">
-                <label for="password">Password</label>
-                <input type="password" name="password">
-                <button>Login</button>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <label for="user">Email</label>
+                    <input formControlName="email" type="text" name="user">
+                    <label for="password">Password</label>
+                    <input formControlName="password" type="password" name="password">
+                    <button type="submit">Login</button>
+                </form>
+                
             </div>
         </div>
         

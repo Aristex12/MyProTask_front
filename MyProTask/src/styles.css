@@ -4,19 +4,13 @@
 body{
     height: 100vh;
     width: 100vw;
-    background-color: lightgray;
+    background-color: #002E3C;
     margin: 0;
     padding: 0;
     overflow: hidden;
-
 }
-body{
-    width: 100;
-    height: 100vh;
-    background-color: lightgray;
-    margin: 0;
-    padding: 0;
-
+app-root{
+    background-color: #a3a3a3;
 }
 app-header{
     grid-area: zheader;
@@ -27,7 +21,6 @@ app-header{
     align-items: center;
     justify-content: center;
     background-color: white;
-    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,7 +40,7 @@ app-aside{
 }
 section{
     grid-area: zrouter;
-    background-color: #F5F5F5;
+    background-color: #ffffff;
     margin-top: 5%;
     margin-bottom: 2.5%;
     margin-left: 20px;
@@ -59,7 +52,7 @@ app-home{
     height: 100%;
     display: grid;
     grid-template-columns: 20% 1fr;
-    grid-template-rows: 15% 1fr;
+    grid-template-rows: 12% 1fr;
     grid-template-areas: 
     "zheader zheader"
     "zaside zrouter";
@@ -69,7 +62,7 @@ app-projects{
     height: 100%;
     display: grid;
     grid-template-columns: 20% 1fr;
-    grid-template-rows: 15% 1fr;
+    grid-template-rows: 12% 1fr;
     grid-template-areas: 
     "zheader zheader"
     "zaside zrouter";
