@@ -1,0 +1,43 @@
+#profile-pic{
+    background-color: white;
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    border: 2px solid #002E3C;
+    position: relative;
+    bottom: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#profile-pic img{
+    height: 80px;
+    width: 80px;
+}
+#user-info{
+    margin-top: -40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#mail{
+    margin-top: -10px;
+    font-size: 10px;
+}
+.buttons{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+.buttons a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    gap: 10px;
+}
+.buttons a:hover{
+    color: #FF6D43;
+}

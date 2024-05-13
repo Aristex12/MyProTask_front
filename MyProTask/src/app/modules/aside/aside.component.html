@@ -1,0 +1,30 @@
+<div id="profile-pic">
+    <img src="{{profile_pic}}" alt="">
+</div>
+<div id="user-info">
+    <p>{{name}}</p>
+    <p id="mail">{{email}}</p>
+    <div class="buttons" *ngIf="rol=='developer'">
+        <a routerLink="/home"><i class="bi bi-house-fill"></i> Home</a>
+        <a routerLink="/projects"><i class="bi bi-grid-1x2-fill"></i> Projects</a>
+        <a routerLink="/projects"><i class="bi bi-journal-check"></i> My Tasks</a>
+        <a routerLink="/projects"><i class="bi bi-calendar-day"></i> Calendar</a>   
+        <a routerLink="/history"><i class="bi bi-clock-history"></i> History</a>   
+ 
+        <a routerLink="/projects"><i class="bi bi-box-arrow-in-left"></i> Log out</a>    
+
+    </div>
+    <div class="buttons" *ngIf="rol=='project_manager'">
+        <a routerLink="/home"><i class="bi bi-house-fill"></i> Home</a>
+        <a routerLink="/projects"><i class="bi bi-grid-1x2-fill"></i> My Projects</a>
+        <a routerLink="/projects"><i class="bi bi-grid-1x2-fill"></i> Users</a>
+        <a routerLink="/projects"><i class="bi bi-calendar-day"></i> Calendar</a> 
+        <a routerLink="/history"><i class="bi bi-clock-history"></i> History</a>   
+  
+        <a routerLink="/logout"><i class="bi bi-box-arrow-in-left"></i> Log out</a> 
+ 
+    </div>
+
+</div>
+
+
