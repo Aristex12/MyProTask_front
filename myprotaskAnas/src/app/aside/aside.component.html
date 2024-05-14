@@ -1,0 +1,22 @@
+<div id="profile-pic"></div>
+<div id="user-info">
+    <p>{{name}}</p>
+    <p id="mail">{{email}}</p>
+    <div id="buttons" *ngIf="rol=='developer'">
+        <p><i class="bi bi-grid-1x2-fill"></i> Home</p>
+        <p><i class="bi bi-grid-1x2-fill"></i> My </p>
+        <p><i class="bi bi-grid-1x2-fill"></i> Home</p>
+        <p><i class="bi bi-grid-1x2-fill"></i> Home</p>
+        <p><i class="bi bi-grid-1x2-fill"></i> Home</p>    
+    </div>
+    <div id="buttons" *ngIf="rol=='project_manager'">
+        <p><i class="bi bi-grid-1x2-fill"></i> Home</p>
+        <p><i class="bi bi-grid-1x2-fill"></i> My </p>
+        <p><i class="bi bi-grid-1x2-fill"></i> Home</p>
+        <p><i class="bi bi-grid-1x2-fill"></i> Home</p>
+        <p><i class="bi bi-grid-1x2-fill"></i> Home</p>    
+    </div>
+
+</div>
+
+

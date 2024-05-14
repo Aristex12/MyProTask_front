@@ -1,39 +1,26 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './modules/header/header.component';
-import { AsideComponent } from './modules/aside/aside.component';
-import { LoginComponent } from './modules/login/login.component';
-import { HomeComponent } from './modules/home/home.component';
-import { ProjectsComponent } from './modules/projects/projects.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { AuthService } from './servicios/auth/auth.service';
-import { Observable } from 'rxjs';
-import { EditprofileComponent } from './modules/editprofile/editprofile.component';
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
 
-
-
-
+const routes:Routes=[
+  {path:'',component: LoginComponent},
+  {path:'home',component: HeaderComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    AsideComponent,
     LoginComponent,
-    HomeComponent,
-    ProjectsComponent,
-    EditprofileComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    FormsModule, RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
