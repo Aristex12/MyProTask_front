@@ -1,4 +1,4 @@
-<div id="profile-pic">
+<div id="profile-pic" routerLink="/edituser">
     <img src="{{profile_pic}}" alt="">
 </div>
 <div id="user-info">
@@ -6,25 +6,29 @@
     <p id="mail">{{email}}</p>
     <div class="buttons" *ngIf="rol=='developer'">
         <a routerLink="/home"><i class="bi bi-house-fill"></i> Home</a>
-        <a routerLink="/projects"><i class="bi bi-grid-1x2-fill"></i> Projects</a>
         <a routerLink="/projects"><i class="bi bi-journal-check"></i> My Tasks</a>
-        <a routerLink="/projects"><i class="bi bi-calendar-day"></i> Calendar</a>   
-        <a routerLink="/history"><i class="bi bi-clock-history"></i> History</a>   
- 
-        <a routerLink="/projects"><i class="bi bi-box-arrow-in-left"></i> Log out</a>    
+        <a routerLink="/calendar"><i class="bi bi-calendar-day"></i> Calendar</a>
+        <a routerLink="/history"><i class="bi bi-clock-history"></i> History</a>
+        <a routerLink="/users"><i class="bi bi-person"></i>Users</a>
+        <button class="circular-button" routerLink="/projects">
+            <span class="icon"><i class="bi bi-plus"></i></span>
+            <span class="text">View new projects</span>
+        </button>
+        <a (click)="borrarSessionStorage()" routerLink=""><i class="bi bi-box-arrow-in-left"></i> Log out</a>
 
     </div>
     <div class="buttons" *ngIf="rol=='project_manager'">
         <a routerLink="/home"><i class="bi bi-house-fill"></i> Home</a>
-        <a routerLink="/projects"><i class="bi bi-grid-1x2-fill"></i> My Projects</a>
         <a routerLink="/projects"><i class="bi bi-grid-1x2-fill"></i> Users</a>
-        <a routerLink="/projects"><i class="bi bi-calendar-day"></i> Calendar</a> 
-        <a routerLink="/history"><i class="bi bi-clock-history"></i> History</a>   
-  
-        <a routerLink="/logout"><i class="bi bi-box-arrow-in-left"></i> Log out</a> 
- 
+        <a routerLink="/projects"><i class="bi bi-calendar-day"></i> Calendar</a>
+        <a routerLink="/history"><i class="bi bi-clock-history"></i> History</a>
+        <a routerLink="/users"><i class="bi bi-person"></i>Users</a>
+        <button class="circular-button" routerLink="/projects">
+            <span class="icon"><i class="bi bi-plus"></i></span>
+            <span class="text">View new projects</span>
+        </button>
+        <a routerLink="/logout"><i class="bi bi-box-arrow-in-left"></i> Log out</a>
+
     </div>
 
 </div>
-
-
