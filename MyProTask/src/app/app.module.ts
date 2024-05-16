@@ -8,18 +8,13 @@ import { AsideComponent } from './modules/aside/aside.component';
 import { LoginComponent } from './modules/login/login.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ProjectsComponent } from './modules/projects/projects.component';
-import { HttpClientModule } from '@angular/common/http';
-import { CalendarComponent } from './modules/calendar/calendar.component';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import { EditprofileComponent } from './modules/editprofile/editprofile.component';
-import { UsersComponent } from './modules/users/users.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { AuthService } from './servicios/auth/auth.service';
+import { Observable } from 'rxjs';
+import { ProjectsServiceService } from './servicios/ViewProjects/projects-service.service';
 import { TasksComponent } from './modules/tasks/tasks.component';
-import { HistoryComponent } from './modules/history/history.component';
-import { UserComponent } from './modules/user/user.component';
-import { NewUserComponent } from './modules/new-user/new-user.component';
-import { HomePmComponent } from './modules/home-pm/home-pm.component';
-import { RouterEvent, RouterModule, Routes } from '@angular/router';
-import { ProjectUsersPmComponent } from './project-users-pm/project-users-pm.component';
 
 
 
@@ -32,26 +27,16 @@ import { ProjectUsersPmComponent } from './project-users-pm/project-users-pm.com
     LoginComponent,
     HomeComponent,
     ProjectsComponent,
-    CalendarComponent,
-    EditprofileComponent,
-    UsersComponent,
-    TasksComponent,
-    HistoryComponent,
-    UserComponent,
-    NewUserComponent,
-    HomePmComponent,
-    ProjectUsersPmComponent
+    TasksComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    FullCalendarModule,
-    RouterModule
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ProjectsServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
