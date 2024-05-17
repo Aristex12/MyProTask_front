@@ -201,3 +201,23 @@ app-users{
     "zheader zheader"
     "zaside zrouter";
 }
+app-tasks{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 12% 1fr;
+  grid-template-areas: 
+  "zheader zheader"
+  "zaside zrouter";
+}
+app-history{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 12% 1fr;
+  grid-template-areas: 
+  "zheader zheader"
+  "zaside zrouter";
+}

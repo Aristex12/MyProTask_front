@@ -13,6 +13,8 @@ import { CalendarComponent } from './modules/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { EditprofileComponent } from './modules/editprofile/editprofile.component';
 import { UsersComponent } from './modules/users/users.component';
+import { TasksComponent } from './modules/tasks/tasks.component';
+import { HistoryComponent } from './modules/history/history.component';
 
 
 
@@ -26,7 +28,9 @@ import { UsersComponent } from './modules/users/users.component';
     ProjectsComponent,
     CalendarComponent,
     EditprofileComponent,
-    UsersComponent
+    UsersComponent,
+    TasksComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

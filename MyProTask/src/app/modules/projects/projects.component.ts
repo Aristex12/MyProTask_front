@@ -10,6 +10,8 @@ import { ProjectService } from 'src/app/servicios/project/project.service';
 export class ProjectsComponent {
   terminoBusqueda: string = " ";
   projects: Project[] = [];
+  projectsBackup: Project[] = [];
+
   filters:any = [
     {filter: "Python"},
     {filter: "Java"},
@@ -27,22 +29,23 @@ export class ProjectsComponent {
   ngOnInit(): void {
     this.getData();
   }
+  
   getData() {
-    this.miservicio.getData().subscribe((data: Project[]) => { // Define el tipo de datos como Project[]
-      this.projects = data; // Asigna los datos al arreglo projects
+    this.miservicio.getData().subscribe((data: Project[]) => {
+      this.projects = data;
+      this.projectsBackup = [...data];
     });
   }
-  
+
   search(): void {
-    // Si no hay término de búsqueda, mostrar todos los proyectos
-    if (!this.terminoBusqueda.trim()) {
-      this.getData();
+    const searchTerm = this.terminoBusqueda.trim().toLowerCase();
+
+    if (!searchTerm) {
+      this.projects = [...this.projectsBackup];
       return;
-    }
-    this.projects = this.projects.filter(project =>
-      project.name.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+    }   
+    this.projects = this.projectsBackup.filter(project =>
+      project.name.toLowerCase().includes(searchTerm)
     );
   }
-  
-  
 }

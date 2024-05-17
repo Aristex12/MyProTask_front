@@ -10,11 +10,11 @@ import { LoginRequest } from './loginRequest';
 export class AuthService {
   private userId: any;
   isLoggedIn: boolean = false;
-
+  urlBase = "http://localhost:8080/api/user/"
   constructor(private http: HttpClient) { }
 
   login(credentials: LoginRequest): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/user/searchUserByEmailPassword?email=${credentials.email}&password=${credentials.password}`)
+    return this.http.get(`${this.urlBase}searchUserByEmailPassword?email=${credentials.email}&password=${credentials.password}`)
       .pipe(
         map((user: any) => {
           if (user != null) {

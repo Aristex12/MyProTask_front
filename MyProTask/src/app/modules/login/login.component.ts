@@ -28,6 +28,7 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (user:any) => {
           if(user != null){
+            localStorage.setItem('loginToken', user);
             this.router.navigateByUrl("/home")
           }else{
             console.log("Error de login")
