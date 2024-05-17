@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Project } from 'src/app/models/project';
+import { Tasks } from 'src/app/models/tasks';
 import { ProjectService } from 'src/app/servicios/project/project.service';
+import { TasksService } from 'src/app/servicios/task/tasks.service';
 
 @Component({
   selector: 'app-home',
@@ -9,33 +11,33 @@ import { ProjectService } from 'src/app/servicios/project/project.service';
 })
 export class HomeComponent {
 
-  projects:Project[] = [];
+  projects: Project[] = [];
+  tasksList: Tasks[] = [];
 
-  dailies = [
-    {name:"Make Login", status:"in progress"},
-    {name:"Change header color", status:"finished"},
-    {name:"Add new button to aside", status:"in progress"},
-    {name:"Delete * from users", status:"created"},
-  ]
 
-  tasks = [
-    {name:"Make Login",project: "Alsa bus", end_date:6},
-    {name:"Change header color",project: "Airbus plane", end_date:3},
-    {name:"Add new button to aside",project: "BBVA Bank", end_date:15},
-    {name:"Delete * from users",project: "MyProTask", end_date:8},
-  ]
-
-  constructor(private projectService:ProjectService) { }
+  constructor(private projectService: ProjectService, private tasksService: TasksService) { }
 
   ngOnInit(): void {
-    this.projectService.getData().subscribe({
-      next: (projects:any) => {
+    this.projectService.getProjectsByUserId().subscribe({
+      next: (projects: any) => {
         this.projects = projects;
       },
-      error: (error:any) =>{
+      error: (error: any) => {
         console.error(error);
       }
     });
+    this.getUserTasks();
+  }
 
+
+  getUserTasks() {
+    this.tasksService.getTaskByUserId().subscribe({
+      next: (tasks) => {
+        this.tasksList = tasks;
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
+    });
   }
 }

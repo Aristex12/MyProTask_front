@@ -6,8 +6,9 @@
 
 .container {
     display: flex;
-    margin-top: 20px;
+    padding: 20px;
     align-items: flex-start; /* Alinea los elementos al principio del eje transversal */
+    gap: 20px;
   }
 
   .head {
@@ -41,6 +42,7 @@
     border-radius: 10px;
     margin: 20px;
     padding: 15px;
+    cursor: pointer;
   }
 
   .task_containers:hover{

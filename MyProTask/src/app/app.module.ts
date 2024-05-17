@@ -37,7 +37,8 @@ import { HistoryComponent } from './modules/history/history.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,FullCalendarModule
+    HttpClientModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
