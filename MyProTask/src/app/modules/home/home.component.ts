@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Project } from 'src/app/models/project';
+import { ProjectService } from 'src/app/servicios/project/project.service';
 
 @Component({
   selector: 'app-home',
@@ -7,30 +9,33 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  projects = [
-    {name:"BBVA Bank App", description:"An app of BBVA", end_date:"19/07/2024", tasks:6},
-    {name:"Santander Bank App", description:"An app of Santander", end_date:"22/05/2024", tasks:3},
-    {name:"Eviden MyProTask", description:"An app of Grupo 2", end_date:"01/06/2024", tasks:15},
-    {name:"Atos Bussines Management", description:"An app of Atos", end_date:"02/08/2024", tasks:8},
-  ]
+  projects:Project[] = [];
 
   dailies = [
-    {name:"Make Login", status:"In progress"},
-    {name:"Change header color", status:"Finished"},
-    {name:"Add new button to aside", status:"In progress"},
-    {name:"Delete * from users", status:"In progress"},
+    {name:"Make Login", status:"in progress"},
+    {name:"Change header color", status:"finished"},
+    {name:"Add new button to aside", status:"in progress"},
+    {name:"Delete * from users", status:"created"},
   ]
 
   tasks = [
-    {name:"Make Login", end_date:6},
-    {name:"Change header color", end_date:3},
-    {name:"Add new button to aside", end_date:15},
-    {name:"Delete * from users", end_date:8},
+    {name:"Make Login",project: "Alsa bus", end_date:6},
+    {name:"Change header color",project: "Airbus plane", end_date:3},
+    {name:"Add new button to aside",project: "BBVA Bank", end_date:15},
+    {name:"Delete * from users",project: "MyProTask", end_date:8},
   ]
 
-  constructor() { }
+  constructor(private projectService:ProjectService) { }
 
   ngOnInit(): void {
+    this.projectService.getData().subscribe({
+      next: (projects:any) => {
+        this.projects = projects;
+      },
+      error: (error:any) =>{
+        console.error(error);
+      }
+    });
 
   }
 }
