@@ -21,8 +21,8 @@
     width: 80px;
 }
 .overflow {
-  overflow: auto; /* Usar "auto" para mostrar el scroll solo cuando sea necesario */
-  height: 550px; /* Definir una altura para el div */
+  overflow: auto; 
+  height: 550px; 
   padding: 20px;
 }
 .user-div {
@@ -31,5 +31,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px; /* Agrega espacio entre cada user-div */
+  margin: 10px; 
 }

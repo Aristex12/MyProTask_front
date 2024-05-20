@@ -15,6 +15,7 @@ import { EditprofileComponent } from './modules/editprofile/editprofile.componen
 import { UsersComponent } from './modules/users/users.component';
 import { TasksComponent } from './modules/tasks/tasks.component';
 import { HistoryComponent } from './modules/history/history.component';
+import { UserComponent } from './modules/user/user.component';
 
 
 
@@ -30,7 +31,8 @@ import { HistoryComponent } from './modules/history/history.component';
     EditprofileComponent,
     UsersComponent,
     TasksComponent,
-    HistoryComponent
+    HistoryComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
