@@ -18,7 +18,7 @@ export class AuthService {
       .pipe(
         map((user: any) => {
           if (user != null) {
-            sessionStorage.setItem('userId', JSON.stringify(user));
+            localStorage.setItem('idUser', JSON.stringify(user));
             this.isLoggedIn = true;
           } else {
             console.log("Error de login");

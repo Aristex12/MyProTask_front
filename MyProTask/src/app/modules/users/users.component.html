@@ -1,142 +1,22 @@
 <app-aside></app-aside>
 <app-header></app-header>
 
-<section>
-  <div class="overflow">
-    <h1>NProjecto 1</h1>
-    <div class="plantilla four">
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-    </div>
+<section class="overflow">
+  <div *ngFor="let project of projects" class="project-container">
+    <h1>{{project.name}}</h1>
 
-    <h1>Nombre Proyecto</h1>
     <div class="plantilla four">
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
+      <ng-container  *ngFor="let user of users" >
+        <div class="user-div" *ngIf="user.project.idProject== project.idProject">
+          <div id="profile-pic">
+            <img src="../../../assets/img/{{user.user.profilePic}}" alt="" />
+          </div>
+          <p>{{user.user.name}}</p>
+          <p>{{user.user.email}}</p>
+          <p>{{user.user.das}}</p>
         </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
-      <div class="user-div">
-        <div id="profile-pic">
-          <img src="{{ profile_pic }}" alt="" />
-        </div>
-        <p>{{ name }}</p>
-        <p>{{ rol }}</p>
-        <p>{{ email }}</p>
-      </div>
+        
+      </ng-container>
     </div>
   </div>
 </section>
