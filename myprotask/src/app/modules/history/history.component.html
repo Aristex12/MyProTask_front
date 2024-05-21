@@ -1,0 +1,21 @@
+<app-aside></app-aside>
+<app-header></app-header>
+<section class="overflow">
+    <div id="projects">
+        <table>
+          <tr>
+            <th class="border-left">Projects</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th class="border-right">Role</th>
+          </tr>
+          <tr class="grey" *ngFor="let project of projects">
+            <td class="border-left">{{ project.name }}</td>
+            <td>{{ project.description }}</td>
+            <td>{{ project.startDate + ' - ' + project.finishDate }}</td>
+            <td class="border-right">{{ project.rol }}</td>
+          </tr>
+        </table>
+      </div>
+      
+</section>
