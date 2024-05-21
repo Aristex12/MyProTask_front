@@ -9,7 +9,7 @@ export interface UserView {
         startDate: Date,
         finishDate: Date,
         vacancies: number,
-        status: string,
+        status?: string,
     }
     User: {
         idUser:number,
