@@ -1,0 +1,91 @@
+<app-aside></app-aside>
+<app-header></app-header>
+<section>
+  <div class="template eight">
+    <div>
+      <div class="white">
+        <div class="white">
+          <div class="template seven">
+          
+            <div class="user-div">
+              <div id="profile-pic">
+                <img src="{{ profile_pic }}" alt="" />
+              </div>
+              <p>{{ name }}</p>
+             
+              <p>{{ email }}</p>
+              <p><a href="">Descargar CV</a></p>
+              <h2>Historial</h2>
+              <div id="projects"class="overflow">
+                <table>
+                  
+                  <tr class="grey" *ngFor="let project of projects">
+                    <td class="border-left">{{ project.name }}</td>
+                    <td>{{ project.description }}</td>
+                    <td>{{ project.startDate + ' - ' + project.finishDate }}</td>
+                    <td class="border-right">{{ project.rol }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="white">
+      <div class="white">
+        <div class="div-characteristics">
+          <div class="characteristics">
+            <h3>Characteristics</h3>
+            <label>
+              <input class="checkbox" type="checkbox" name="characteristic" />
+              Fecha
+            </label>
+            <label>
+              <input type="checkbox" name="characteristic" />
+              Relevancia
+            </label>
+            <label>
+                <input type="checkbox" name="characteristic" />
+                Relevancia
+              </label>
+              <label>
+                <input type="checkbox" name="characteristic" />
+                Relevancia
+              </label>
+              <label>
+                <input type="checkbox" name="characteristic" />
+                Relevancia
+              </label>
+              <label>
+                <input type="checkbox" name="characteristic" />
+                Relevancia
+              </label>
+              <label>
+                <input type="checkbox" name="characteristic" />
+                Relevancia
+              </label>
+              <label>
+                <input type="checkbox" name="characteristic" />
+                Relevancia
+              </label>
+              <label>
+                <input type="checkbox" name="characteristic" />
+                Relevancia
+              </label>
+              <label>
+                <input type="checkbox" name="characteristic" />
+                Relevancia
+              </label>
+              <label>
+                <input type="checkbox" name="characteristic" />
+                Relevancia
+              </label>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

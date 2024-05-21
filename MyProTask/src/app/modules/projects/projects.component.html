@@ -1,15 +1,7 @@
 <app-aside></app-aside>
 <app-header></app-header>
 <section>
-  <div id="searchbar">
-    <input
-      type="text"
-      [(ngModel)]="terminoBusqueda"
-      placeholder="Buscar..."
-      (input)="search()"
-    />
-    <button class="search-button" (click)="search()">Buscar</button>
-  </div>
+  
 
   <div class="template eight">
     <div class="white overflow">
@@ -23,38 +15,39 @@
             </label>
             <label>
               <input type="checkbox" name="characteristic" />
-              Relevancia 
+              Relevancia
             </label>
           </div>
-          <br>
-        <div class="characteristics">
-          <h3>Lenguaje</h3>
-          <label *ngFor="let filter of filters">
-            <input class="checkbox" type="checkbox" name="characteristic" />
-            {{filter.filter}}
-          </label>
+          <br />
+          <div class="characteristics">
+            <h3>Lenguaje</h3>
+            <label *ngFor="let filter of filters">
+              <input class="checkbox" type="checkbox" name="characteristic" />
+              {{ filter.filter }}
+            </label>
+          </div>
         </div>
-        
-      </div>
       </div>
     </div>
+   
     <div>
-      <div class="white overflow" *ngIf="projects">
+       <div id="searchbar">
+      <input
+        type="text"
+        [(ngModel)]="terminoBusqueda"
+        placeholder="Search for the project by name"
+        (input)="search()"
+      />
+      <span class="input-group-text"><i class="fas fa-search"></i></span>
+    </div>
+      <div class="white overflow top" *ngIf="projects">
         <div class="white">
           <!-- Utilizamos un bucle *ngFor para generar un div por cada proyecto -->
           <div *ngFor="let project of projects" class="template seven">
             <div>
               <h1>{{ project.name }}</h1>
-              <h2>{{ project.description }}</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consectetur consequatur quisquam totam unde, doloremque,
-                voluptate quae illum quibusdam quasi vel quis aliquam quo.
-                Laboriosam rerum iure quod, sit tempore asperiores! Lorem ipsum
-                dolor sit amet consectetur, adipisicing elit. Omnis odio at
-                accusamus laborum perspiciatis! Corrupti sequi fugiat, fuga
-                repellat tempore rem maiores nam explicabo! Cupiditate
-                architecto dolorem quidem minus amet.
+                {{ project.description }}
               </p>
             </div>
             <div class="info-project">

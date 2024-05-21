@@ -5,6 +5,6 @@ export interface Project {
       startDate: Date,
       finishDate: Date,
       vacancies: number,
-      status: string,
+      active: string,
       //public manager_id: number
   }
