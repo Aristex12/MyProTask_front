@@ -1,5 +1,5 @@
 export interface Project {
-    idProject: number,
+      id_project: number,
       name: string,
       description: string,
       startDate: Date,
