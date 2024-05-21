@@ -1,0 +1,148 @@
+section {
+    background-color: #F5F5F5;
+  }
+    
+  .eight {
+    grid-template-columns:80% 20% ;
+  
+  }
+  
+  h2 {
+    color: #FF6D43;
+  }
+  
+  .white {
+    background-color: #F5F5F5;
+    border-radius: 20px;
+    margin: 10px;
+  }
+  
+  
+  .seven {
+  
+    border-radius: 10px;
+    
+    margin-bottom: 20px;
+    
+    padding: 15px;
+    background-color: rgb(255, 255, 255);
+    
+    text-align: center;
+  
+  }
+  .info-project{
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  
+  }
+  
+  
+  .template {
+    display: grid;
+  }
+  
+  .div-characteristics {
+    /* Dividimos en dos columnas */
+    /* Agrega un borde alrededor de cada div */
+    border-radius: 10px;
+    /* Ajusta el radio del borde para que sea más suave */
+    margin-bottom: 20px;
+    /* Agrega un margen inferior para separar los divs */
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .characteristics{
+    display: flex;
+    flex-direction: column;
+ 
+  }
+  
+  label{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+  .user-div {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  #profile-pic{
+    background-color: white;
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    border: 2px solid #002E3C;
+    position: relative;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#profile-pic img{
+    height: 80px;
+    width: 80px;
+}  
+#projects table {
+    width: 90%; /* O establece un ancho fijo, por ejemplo: width: 600px; */
+    height: 100%;
+    border-collapse: separate; 
+    border-spacing: 0px 20px;
+    border-radius: 20px;
+    margin: 0 auto;
+    
+}
+.grey{
+    background-color: #F5F5F5;
+    border-radius: 20px;
+    padding: 5px;
+}
+th{
+    text-align: center;
+
+}
+td{
+    text-align: center;
+}
+.border-left{
+    border-top-left-radius:  10px;
+    border-bottom-left-radius:  10px;
+
+}
+.border-right{
+    border-top-right-radius:  10px;
+    border-bottom-right-radius:  10px;
+}
+.overflow {
+    overflow: scroll;
+    height:280px;
+    overflow-x: hidden;
+    
+  }.overflow::-webkit-scrollbar {
+    width: 9px;
+    
+  }
+  
+  .overflow::-webkit-scrollbar-track {
+    background: #ffffff;
+    
+  }
+  
+  .overflow::-webkit-scrollbar-thumb {
+    background: #555;
+    
+    border-radius: 6px;
+    
+  }
+  
+  .overflow::-webkit-scrollbar-thumb:hover {
+    background: #002E3C;
+    
+  }

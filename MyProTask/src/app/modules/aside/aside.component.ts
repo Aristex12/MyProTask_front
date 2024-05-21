@@ -17,5 +17,8 @@ export class AsideComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+   borrarSessionStorage() {
+    
+    sessionStorage.clear();
+}
 }

@@ -12,33 +12,41 @@
                 <tr class="grey"  *ngFor="let project of projects">
                     <td class="border-left">{{project.name}}</td>
                     <td>{{project.description}}</td>
-                    <td>{{project.end_date}}</td>
-                    <td style="color: #FF6D43;" class="border-right">{{project.tasks}} tasks</td>
+                    <td>{{project.finishDate}}</td>
+                    <td style="color: #FF6D43;" class="border-right">{{project.vacancies}} tasks</td>
                 </tr>
 
           </table>
     </div>
     <div id="dailies">
         <table >
+            <thead>
                 <tr>
                     <th class="border-left">Daily Tasks <i class="bi bi-caret-down-fill"></i></th>
                     <th class="border-right">Status <i class="bi bi-caret-down-fill"></i></th>
                 </tr>
-                <tr class="grey" *ngFor="let daily of dailies">
-                    <td class="border-left">{{daily.name}}</td>
-                    <td style="color: #FF6D43;" class="border-right">{{daily.status}} days</td>
+            </thead>
+            <tbody>
+                <tr class="grey" *ngFor="let task of tasksList | slice:0:4; let i = index">
+                    <td class="border-left">{{task.name}}</td>
+                    <td *ngIf="task.active==false" class="border-right"><a class="finished">FINISHED</a></td>
+                    <td *ngIf="task.active==true" class="border-right"><a class="in_progress">IN PROGRESS</a></td>
                 </tr>
+            </tbody>
+
           </table>
     </div>
     <div id="timer">
         <table >
             <tr>
                 <th>Up to end tasks <i class="bi bi-caret-down-fill"></i></th>
+                <th>Project Name <i class="bi bi-caret-down-fill"></i></th>
                 <th>Days left <i class="bi bi-caret-down-fill"></i></th>
             </tr>
-            <tr class="grey" *ngFor="let task of tasks">
+            <tr class="grey" *ngFor="let task of tasksList | slice:0:4; let i = index">
                 <td class="border-left">{{task.name}}</td>
-                <td style="color: #FF6D43;" class="border-right">{{task.end_date}} days</td>
+                <td>{{task.project.name}} days</td>
+                <td style="color: #FF6D43;" class="border-right">{{task.finishDate}} days</td>
             </tr>
         </table>
     </div>

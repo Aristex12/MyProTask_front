@@ -28,6 +28,7 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (user:any) => {
           if(user != null){
+            localStorage.setItem('idUser', user);
             this.router.navigateByUrl("/home")
           }else{
             console.log("Error de login")
@@ -40,7 +41,6 @@ export class LoginComponent {
           console.info("Inicio de sesión completado")
         }
       });
-      this.loginForm.reset();
     }else{
       this.loginForm.markAllAsTouched();
     }

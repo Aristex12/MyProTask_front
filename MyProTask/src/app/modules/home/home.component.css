@@ -21,6 +21,8 @@ section{
     background-color: white;
     border-radius: 20px;
     padding: 20px;
+    overflow: auto; 
+    max-height: 500px; 
 }
 #timer{
     grid-area: ztimer;
@@ -34,6 +36,8 @@ section{
     border-collapse: separate; /* Asegura que las celdas de la tabla estén separadas */
     border-spacing: 0px 10px;
     border-radius: 20px;
+    overflow: auto; 
+    max-height: 500px; 
 }
 #dailies table{
     width: 100%;
@@ -41,6 +45,8 @@ section{
     border-collapse: separate; /* Asegura que las celdas de la tabla estén separadas */
     border-spacing: 0px 10px;
     border-radius: 20px;
+
+
 }
 #timer table{
     width: 100%;
@@ -54,12 +60,14 @@ section{
     border-radius: 20px;
     padding: 5px;
 }
+
 th{
     text-align: center;
-
 }
 td{
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 .border-left{
     border-top-left-radius:  10px;
@@ -68,4 +76,36 @@ td{
 .border-right{
     border-top-right-radius:  10px;
     border-bottom-right-radius:  10px;
+
+}
+.finished{
+    background-color: #FF6D43;
+    color: rgb(0, 0, 0);
+    padding: 7px 15px;
+    border-radius: 20px;
+    width: 150px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.in_progress{
+    background-color: #8EDBFC;
+    color: rgb(0, 0, 0);
+    padding: 7px 15px;
+    border-radius: 20px;
+    width: 150px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+
+}
+.created{
+    background-color: #FFD45A;
+    color: rgb(0, 0, 0);
+    padding: 7px 15px;
+    border-radius: 20px;
+    width: 150px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
 }
