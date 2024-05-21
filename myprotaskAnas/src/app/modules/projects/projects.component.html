@@ -1,0 +1,61 @@
+<app-aside></app-aside>
+<app-header></app-header>
+<section>
+  <div id="searchbar">
+    <input (click)="deselectAllCheckboxes()"
+      type="text"
+      [(ngModel)]="terminoBusqueda"
+      placeholder="Buscar..."
+      (click)="search()"
+      (input)="search()"
+    />
+    <button (click)="deselectAllCheckboxes()" class="search-button" (click)="search()">Buscar</button>
+  </div>
+
+  <div class="template eight">
+    <div class="white overflow">
+      <div class="white">
+        <div class="div-characteristics">
+          <div class="characteristics">
+            <button (click)="deselectAllCheckboxes()"  (click)="search()">Reset All</button>
+            <h3>Ordenar por</h3>
+            <label>
+              <input class="checkbox" type="checkbox" name="characteristic" />
+              Fecha
+            </label>
+            <label>
+              <input type="checkbox" name="characteristic" />
+              Relevancia 
+            </label>
+          </div>
+          <br>
+          <div class="characteristics">
+       
+            <h3>Lenguaje</h3>
+            <label *ngFor="let filter of filters">
+              <input #checkbox  class="checkbox" type="checkbox" [value]="filter.id" name="characteristic" 
+                     (change)="onChangeCharacteristic(filter.id, $event); applySelectedCharacteristics()" />
+              {{filter.name}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="white overflow" *ngIf="projects">
+        <div class="white">
+          <div *ngFor="let project of projects" class="template seven">
+            <div>
+              <h1>{{ project.name }}</h1>
+              <p>{{ project.description }}</p>
+            </div>
+            <div class="info-project">
+              <p>Hace dos semanas</p>
+              <button class="request-button">Solicitar Proyecto</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
