@@ -13,6 +13,7 @@ export class HistoryComponent {
   users: User[] = [];
   projects: Project[] = [];
   history: History[]=[];
+  rol:string = "developer";
 
   constructor(private miservicio:HistoryService){   
   }
