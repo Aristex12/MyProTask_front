@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Project } from 'src/app/models/project';
+import { User } from 'src/app/models/user';
+import { History } from 'src/app/models/history';
+import { HistoryService } from 'src/app/servicios/history/history.service';
 
 @Component({
   selector: 'app-history',
@@ -6,17 +10,42 @@ import { Component } from '@angular/core';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent {
-  projects = [
-    {name:"BBVA Bank App", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"19/07/2024", finishDate:"22/05/2024", rol:"Proyect Manager"},
-    {name:"Santander Bank App", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"22/05/2024", finishDate:"01/06/2024", rol:"Developer"},
-    {name:"Eviden MyProTask", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"01/06/2024", finishDate:"02/08/2024", rol:"Developer"},
-    {name:"Eviden MyProTask", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"01/06/2024", finishDate:"02/08/2024", rol:"Developer"},
-    {name:"Eviden MyProTask", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"01/06/2024", finishDate:"02/08/2024", rol:"Developer"},
-    {name:"Eviden MyProTask", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"01/06/2024", finishDate:"02/08/2024", rol:"Developer"},
-    {name:"Eviden MyProTask", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"01/06/2024", finishDate:"02/08/2024", rol:"Developer"},
-    {name:"Eviden MyProTask", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"01/06/2024", finishDate:"02/08/2024", rol:"Developer"},
-    {name:"Eviden MyProTask", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"01/06/2024", finishDate:"02/08/2024", rol:"Developer"},
-    {name:"Eviden MyProTask", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"01/06/2024", finishDate:"02/08/2024", rol:"Developer"},
-    {name:"Atos Bussines Management", description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo sapiente enim dignissimos ipsa repellendus qui saepe, sequi voluptas reprehenderit animi amet ratione necessitatibus! Nam, eos autem. Esse, a quod.", startDate:"02/08/2024", finishDate:"30/07/2024", rol:"Proyect Manager"},
-  ]
+  users: User[] = [];
+  projects: Project[] = [];
+  history: History[]=[];
+  rol:string = "developer";
+
+  constructor(private miservicio:HistoryService){   
+  }
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    this.miservicio.getData().subscribe(
+      (data: any[]) => {
+        if (data && data.length > 0) {
+          
+          data.forEach((item: any) => {
+            const user = item.user;
+            this.users.push(user);
+            const project = item.project;
+            this.projects.push(project);
+            // Crear un objeto History con user y project
+            const history: History = {
+              Project: project,
+              User: user
+            };
+            this.history.push(history);
+          });
+        } else {
+          console.log('No se encontraron usuarios.');
+        }
+      },
+      error => {
+        console.error('Error al cargar usuarios:', error);
+      }
+    );
+  }
 }
+

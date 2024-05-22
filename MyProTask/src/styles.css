@@ -49,8 +49,8 @@ color: #002E3C;
     border: none;
   }
 .fc-event-title{
-    color: white;
-    background-color: #002E3C;
+    color: black;
+    background-color: rgba(255, 136, 0, 0.871);
     opacity: 0.;
    
 }
@@ -146,6 +146,7 @@ section{
     margin-right: 20px;
     border-radius: 20px;
 }
+
 @media screen and (max-width: 768px) {
     section {
         width: 32%;
@@ -220,4 +221,14 @@ app-history{
   grid-template-areas: 
   "zheader zheader"
   "zaside zrouter";
+}
+app-user{
+  width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    grid-template-rows: 12% 1fr;
+    grid-template-areas: 
+    "zheader zheader"
+    "zaside zrouter";
 }
