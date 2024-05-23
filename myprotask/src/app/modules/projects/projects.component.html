@@ -6,31 +6,17 @@
       type="text"
       [(ngModel)]="terminoBusqueda"
       placeholder="Buscar..."
-      (click)="search()"
+      (click)="search(); deselectAllCheckboxes()"
       (input)="search()"
-    />
-    <button (click)="deselectAllCheckboxes()" class="search-button" (click)="search()">Buscar</button>
+    />  
   </div>
  
-  <div class="template eight">
+  <div class="template-eight">
     <div class="white overflow">
       <div class="white">
         <div class="div-characteristics">
-          <div class="characteristics">
             <button (click)="deselectAllCheckboxes()"  (click)="search()">Reset All</button>
-            <h3>Ordenar por</h3>
-            <label>
-              <input class="checkbox" type="checkbox" name="characteristic" />
-              Fecha
-            </label>
-            <label>
-              <input type="checkbox" name="characteristic" />
-              Relevancia
-            </label>
-          </div>
-          <br>
           <div class="characteristics">
-       
             <h3>Lenguaje</h3>
             <label *ngFor="let filter of filters">
               <input #checkbox  class="checkbox" type="checkbox" [value]="filter.id" name="characteristic"
