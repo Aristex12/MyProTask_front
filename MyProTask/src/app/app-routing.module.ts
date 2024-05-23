@@ -20,7 +20,7 @@ const routes: Routes = [
   {path:"calendar", component:CalendarComponent},
   {path:"users", component:UsersComponent},
   {path:"tasks", component:TasksComponent},
-  {path:"history", component:HistoryComponent} 
+  {path:"history", component:HistoryComponent}
 
 
 
