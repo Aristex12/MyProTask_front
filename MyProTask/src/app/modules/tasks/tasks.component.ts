@@ -15,7 +15,8 @@ export class TasksComponent implements OnInit {
 
   selectedTask: any;
   tasksList: Tasks[] = [];
-
+  rol:string = "developer";
+  
   selectTask(task: any) {
     this.selectedTask = task;
 
