@@ -8,32 +8,23 @@ import { AuthService } from 'src/app/servicios/auth/auth.service';
   styleUrls: ['./aside.component.css']
 })
 export class AsideComponent implements OnInit {
-  name:string = "";
-  email:string = ""
+  name:string = "Sergio Ramos";
+  email:string = "sergio.ramos.external@eviden.com";
   profile_pic="../../assets/img/user.png"
-  role:string = "";
+  rol:string = "developer";
 
 
-  constructor(private authService: AuthService, private router:Router) {
-    this.name = this.authService.getUserName();
-    this.email = this.authService.getUserEmail();
-    this.role = this.authService.getUserRole();
-   }
+  constructor(private authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
-    this.authService.getUserRole().subscribe({
-      next: (role: any) => {
-        this.role = role.name;
-      },
-      error: (error: any) => {
-        console.error(error);
-      }
-    });
-    console.log(this.role);
+
   }
    borrarSessionStorage() {
-    localStorage.clear();
+
+    sessionStorage.clear();
+
   }
+
   public closeSession(){
     this.authService.logout();
   }

@@ -9,10 +9,8 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Añadir el encabezado de autorización con el token JWT si está disponible
-    const currentUser = this.authService.isLoggedIn;
     const token = localStorage.getItem('loginToken');
-    if (currentUser && token) {
-      console.log('Adding JWT to request:', token);
+    if (this.authService.isLoggedIn && token) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
