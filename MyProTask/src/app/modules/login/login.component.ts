@@ -1,48 +1,53 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { LoginRequest } from 'src/app/servicios/auth/loginRequest';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  loginForm=this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]], 
-    password:['']
-  })
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
 
-  constructor(private formBuilder:FormBuilder, private router:Router, private authService:AuthService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
 
   ngOnInit(): void {
     this.authService.isLoggedIn = false;
   }
 
-  login(){
-    if(this.loginForm.valid){
-      this.authService.login(this.loginForm.value as LoginRequest).subscribe({
-        next: (user:any) => {
-          if(user != null){
-            localStorage.setItem('loginToken', user);
-            this.router.navigateByUrl("/home")
-          }else{
-            console.log("Error de login")
+  login() {
+    if (this.loginForm.valid) {
+      const loginRequest: LoginRequest = this.loginForm.value as LoginRequest;
+      this.authService.login(loginRequest).subscribe({
+        next: (response: any) => {
+          if (response && response.jwt) {
+            localStorage.setItem('loginToken', response.jwt);
+            this.router.navigateByUrl('/home');
+          } else {
+            console.log('Error de login');
           }
         },
-        error: (error:any) =>{
+        error: (error: any) => {
           console.error(error);
         },
         complete: () => {
-          console.info("Inicio de sesión completado")
+          console.info('Inicio de sesión completado');
         }
       });
       this.loginForm.reset();
-    }else{
+    } else {
       this.loginForm.markAllAsTouched();
     }
   }
