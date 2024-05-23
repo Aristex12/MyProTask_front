@@ -24,12 +24,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if(this.authService.isLoggedIn){
-    //   this.router.navigateByUrl('/home');
-    // } else {
-    //   this.authService.isLoggedIn = false;
-    // }
-    this.authService.isLoggedIn = false;
+    if(this.authService.isLoggedIn){
+      this.router.navigateByUrl('/home');
+    } else {
+      this.authService.isLoggedIn = false;
+    }
+    // this.authService.isLoggedIn = false;
   }
 
   login() {

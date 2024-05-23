@@ -63,12 +63,11 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
-  logout(): void {
-    console.log('Removing token from localStorage...');
+  public logout(): void {
     localStorage.removeItem(this.tokenKey);
     sessionStorage.clear();
     this.isLoggedIn = false;
     this.userData = null;
-    console.log('Token removed. Current token:', localStorage.getItem(this.tokenKey));
   }
+
 }

@@ -27,5 +27,6 @@ export class AsideComponent implements OnInit {
 
   public closeSession(){
     this.authService.logout();
+    this.router.navigate(['']);
   }
 }
