@@ -1,38 +1,38 @@
 <app-aside></app-aside>
 <app-header></app-header>
 <section >   
-      <div class="container" *ngIf="rol=='developer'">
+      <div class="container">
         <div class="left ">
             <div class="head">      
-                <h5>My Tasks:</h5>   
+                <h5>MyTasks:</h5>   
                 <label for="priority"> &nbsp; &nbsp;</label>
                 <select name="priority" id="pr" [(ngModel)]="selectedPriority">
                 <option value=".">All</option>
-                <option value="HIGH">High</option>
-                <option value="MID">Mid</option>
-                <option value="LOW">Low</option>
+                <option value="High">High</option>
+                <option value="Moderated">Moderated</option>
+                <option value="Low">Low</option>
                 </select>
             </div>
             <!--Tasks views-->
             <div class="overflow">
-            <div *ngFor="let task of tasksList" class="task_containers " (click)="selectTask(task)" [style.border-color]="getColorByPriorityBorder(task.priority)" [ngStyle]="{ display: task.priority === selectedPriority || selectedPriority === '.' ? 'block' : 'none' }" >
+            <div *ngFor="let task of tasks" class="task_containers " (click)="selectTask(task)" [style.border-color]="getColorByPriorityBorder(task.priority)" [ngStyle]="{ display: task.priority === selectedPriority || selectedPriority === '.' ? 'block' : 'none' }" >
                 <div  class="template_tasks">
                     <div class="task_icon" [style.color]="getColorByPriority(task.priority)">
                     <i class="bi bi-circle"></i>
                     </div>
-                    <h6 style="margin: 5px;">{{task.project.name}}</h6> 
+                    <h6 style="margin: 5px;">{{task.title}}</h6> 
                 </div> 
                 <div class="template_tasks">
                 <p>{{task.description}}</p> 
-                <img src="{{task.taskPic}}" alt="" style="width: 150px; border-radius: 20px;">
+                <img src="{{task.imageRoute}}" alt="" style="width: 150px; border-radius: 20px;">
                 </div> 
                 <div class="template_tasks">
-                    <strong>Project name:</strong>{{task.name}}        
+                    <strong>Project name:</strong>{{task.projectName}}        
                 </div>
                 <div class="template_tasks">
-                    <p>Priority: </p> <p [style.color]="getColorByPriority(task.priority)"> {{task.priority}}</p>
-                    <p>Status: {{task.active}}</p> 
-                    <p>Date: {{task.finishDate}}</p>    
+                    <strong>Priority:</strong> <strong [style.color]="getColorByPriority(task.priority)">{{task.priority}}</strong> &nbsp; &nbsp; &nbsp;
+                    <strong>Status:</strong>{{task.status}} &nbsp; &nbsp; &nbsp;
+                    <strong>Date:</strong>{{task.FinishDate}}      
                 </div>            
             </div>  
         </div>         
@@ -40,83 +40,23 @@
         <!--Rigth hand(All information)-->
         <div class="right">
             <div class="container" *ngIf="selectedTask">
-              <img src="" alt="Ejemplo" style="width: 220px; border-radius: 20px;">
+              <img src="{{ selectedTask.imageRoute }}" alt="Ejemplo" style="width: 220px; border-radius: 20px;">
               <div class="text">
-                <h3>{{selectedTask?.name }}</h3>
-                <p><strong>Priority:</strong> {{ selectedTask?.priority }}</p>
-                <p><strong>Status:</strong> {{ selectedTask?.active }}</p>
+                <h3>{{ selectedTask.title }}</h3>
+                <p><strong>Priority:</strong> {{ selectedTask.priority }}</p>
+                <p><strong>Status:</strong> {{ selectedTask.status }}</p>
               </div>
             </div>
-            <div class="text">
-              <strong>Project name:</strong> {{ selectedTask?.project.name }}<br>
-              <strong>Objective:</strong> {{ selectedTask?.description }}<br>
-              <strong>Date:</strong> {{ selectedTask?.finishDate }}<br>
+            <div class="text" *ngIf="selectedTask">
+              <strong>Project name:</strong> {{ selectedTask.projectName }}<br>
+              <strong>Objective:</strong> {{ selectedTask.description }}<br>
+              <strong>Date:</strong> {{ selectedTask.FinishDate }}<br>
               
               <!--Iconos para Manager
               <i class="bi bi-trash"></i>&nbsp;
               <i class="bi bi-trash-fill"></i>
               <i class="bi bi-pencil-square"></i>
               -->
-            </div>
-            
-          </div>
-          
-      </div>
-      <!--ROL PM-->
-      <div class="container" *ngIf="rol=='manager'">
-        <div class="left ">
-            <div class="head">      
-                <h5>My Tasks:</h5>   
-                <label for="priority"> &nbsp; &nbsp;</label>
-                <select name="priority" id="pr" [(ngModel)]="selectedPriority">
-                <option value=".">All</option>
-                <option value="HIGH">High</option>
-                <option value="MID">Mid</option>
-                <option value="LOW">Low</option>
-                </select>
-            </div>
-            <!--Tasks views-->
-            <div class="overflow">
-            <div *ngFor="let task of tasksList" class="task_containers " (click)="selectTask(task)" [style.border-color]="getColorByPriorityBorder(task.priority)" [ngStyle]="{ display: task.priority === selectedPriority || selectedPriority === '.' ? 'block' : 'none' }" >
-                <div  class="template_tasks">
-                    <div class="task_icon" [style.color]="getColorByPriority(task.priority)">
-                    <i class="bi bi-circle"></i>
-                    </div>
-                    <h6 style="margin: 5px;">{{task.project.name}}</h6> 
-                </div> 
-                <div class="template_tasks">
-                <p>{{task.description}}</p> 
-                <img src="{{task.taskPic}}" alt="" style="width: 150px; border-radius: 20px;">
-                </div> 
-                <div class="template_tasks">
-                    <strong>Project name:</strong>{{task.name}}        
-                </div>
-                <div class="template_tasks">
-                    <strong>Priority:</strong> <strong [style.color]="getColorByPriority(task.priority)">{{task.priority}}</strong> &nbsp; &nbsp; &nbsp;
-                    <strong>Status:</strong>{{task.active}} &nbsp; &nbsp; &nbsp;
-                    <strong>Date:</strong>{{task.finishDate}}      
-                </div>            
-            </div>  
-        </div>         
-        </div>
-        <!--Rigth hand(All information)-->
-        <div class="right">
-            <div class="container" *ngIf="selectedTask">
-              <img src="" alt="Ejemplo" style="width: 220px; border-radius: 20px;">
-              <div class="text">
-                <h3>{{selectedTask?.name }}</h3>
-                <p><strong>Priority:</strong> {{ selectedTask?.priority }}</p>
-                <p><strong>Status:</strong> {{ selectedTask?.active }}</p>
-              </div>
-            </div>
-            <div class="text">
-              <strong>Project name:</strong> {{ selectedTask?.project.name }}<br>
-              <strong>Objective:</strong> {{ selectedTask?.description }}<br>
-              <strong>Date:</strong> {{ selectedTask?.finishDate }}<br>
-                           
-              <i class="bi bi-trash icon-style"></i>&nbsp;
-              <i class="bi bi-pencil-square icon-style"></i>
-
             </div>
             
           </div>

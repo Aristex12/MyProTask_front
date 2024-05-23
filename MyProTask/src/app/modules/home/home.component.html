@@ -27,10 +27,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="grey" *ngFor="let task of tasksList | slice:0:4; let i = index">
-                    <td class="border-left">{{task.name}}</td>
-                    <td *ngIf="task.active==false" class="border-right"><a class="finished">FINISHED</a></td>
-                    <td *ngIf="task.active==true" class="border-right"><a class="in_progress">IN PROGRESS</a></td>
+                <tr class="grey" *ngFor="let daily of dailies">
+                    <td class="border-left">{{daily.name}}</td>
+                    <td *ngIf="daily.status=='finished'" class="border-right"><a class="finished">{{daily.status}}</a></td>
+                    <td *ngIf="daily.status=='in progress'" class="border-right"><a class="in_progress">{{daily.status}}</a></td>
+                    <td *ngIf="daily.status=='created'" class="border-right"><a class="created">{{daily.status}}</a></td>
+
                 </tr>
             </tbody>
 
@@ -43,10 +45,10 @@
                 <th>Project Name <i class="bi bi-caret-down-fill"></i></th>
                 <th>Days left <i class="bi bi-caret-down-fill"></i></th>
             </tr>
-            <tr class="grey" *ngFor="let task of tasksList | slice:0:4; let i = index">
+            <tr class="grey" *ngFor="let task of tasks">
                 <td class="border-left">{{task.name}}</td>
-                <td>{{task.project.name}} days</td>
-                <td style="color: #FF6D43;" class="border-right">{{task.finishDate}} days</td>
+                <td>{{task.project}} days</td>
+                <td style="color: #FF6D43;" class="border-right">{{task.end_date}} days</td>
             </tr>
         </table>
     </div>

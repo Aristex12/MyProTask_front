@@ -1,10 +1,10 @@
 export interface Project {
-    idProject: number,
+      id_project: number,
       name: string,
       description: string,
       startDate: Date,
       finishDate: Date,
       vacancies: number,
-      active: string,
+      status: string,
       //public manager_id: number
   }
