@@ -2,63 +2,41 @@
 <app-header></app-header>
 <section>
   <div id="searchbar">
-    <input
+    <input (click)="deselectAllCheckboxes()"
       type="text"
       [(ngModel)]="terminoBusqueda"
       placeholder="Buscar..."
+      (click)="search(); deselectAllCheckboxes()"
       (input)="search()"
     />
-    <button class="search-button" (click)="search()">Buscar</button>
   </div>
 
-  <div class="template eight">
+  <div class="template-eight">
     <div class="white overflow">
       <div class="white">
         <div class="div-characteristics">
+            <button (click)="deselectAllCheckboxes()"  (click)="search()">Reset All</button>
           <div class="characteristics">
-            <h3>Ordenar por</h3>
-            <label>
-              <input class="checkbox" type="checkbox" name="characteristic" />
-              Fecha
-            </label>
-            <label>
-              <input type="checkbox" name="characteristic" />
-              Relevancia 
+            <h3>Lenguaje</h3>
+            <label *ngFor="let filter of filters">
+              <input #checkbox  class="checkbox" type="checkbox" [value]="filter.id" name="characteristic"
+                     (change)="onChangeCharacteristic(filter.id, $event); applySelectedCharacteristics()" />
+              {{filter.name}}
             </label>
           </div>
-          <br>
-        <div class="characteristics">
-          <h3>Lenguaje</h3>
-          <label *ngFor="let filter of filters">
-            <input class="checkbox" type="checkbox" name="characteristic" />
-            {{filter.filter}}
-          </label>
         </div>
-        
-      </div>
       </div>
     </div>
     <div>
       <div class="white overflow" *ngIf="projects">
         <div class="white">
-          <!-- Utilizamos un bucle *ngFor para generar un div por cada proyecto -->
           <div *ngFor="let project of projects" class="template seven">
             <div>
               <h1>{{ project.name }}</h1>
-              <h2>{{ project.description }}</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consectetur consequatur quisquam totam unde, doloremque,
-                voluptate quae illum quibusdam quasi vel quis aliquam quo.
-                Laboriosam rerum iure quod, sit tempore asperiores! Lorem ipsum
-                dolor sit amet consectetur, adipisicing elit. Omnis odio at
-                accusamus laborum perspiciatis! Corrupti sequi fugiat, fuga
-                repellat tempore rem maiores nam explicabo! Cupiditate
-                architecto dolorem quidem minus amet.
-              </p>
+              <p>{{ project.description }}</p>
             </div>
             <div class="info-project">
-              <p>Hace dos semans</p>
+              <p>Hace dos semanas</p>
               <button class="request-button">Solicitar Proyecto</button>
             </div>
           </div>
