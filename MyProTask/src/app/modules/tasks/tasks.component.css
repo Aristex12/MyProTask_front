@@ -56,6 +56,16 @@
   .task_icon {
     margin-right: 10px; 
   }
+  /* users.component.css u otro archivo de estilo de tu componente */
+.icon-style {
+  font-size: 20px;
+  background-color: #FF6D43;
+  color: aliceblue;
+  padding: 2px;
+  border-radius: 5px;
+  text-align: right;
+}
+
   
   
   

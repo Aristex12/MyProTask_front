@@ -10,8 +10,8 @@ import { UserView } from 'src/app/models/userView';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-    users: any = [];
-    projects: Project[] = [];
+  users: any = [];
+  projects: Project[] = [];
   userView: UserView[] = [];
 
   constructor(private userService: UsersService) { }
@@ -41,13 +41,7 @@ export class UsersComponent implements OnInit {
               idUserProject: item.idUserProject,
               Project: project,
               User: user,
-              // Declarar como opcional o asignar un valor válido
-              joinDate: undefined, 
-              exitDate: undefined, 
-              role: undefined,
-              active:true
             };
-            
             this.userView.push(users_view);
           });
           console.log('Usuarios:', this.users); 
@@ -64,15 +58,5 @@ export class UsersComponent implements OnInit {
       }
     );
 }
-
-getUserBorderStyle(name: string): string {
-  switch (name.toUpperCase()) {
-    case 'MANAGER':
-      return '2px solid #FF6D43'; 
-    default:
-      return 'none'; 
-  }
-}
-
 
 }

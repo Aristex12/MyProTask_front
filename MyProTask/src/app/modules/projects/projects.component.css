@@ -3,9 +3,6 @@ section {
   gap: 60px;
 }
 
-.div-container{
-  width: 100%;
-}
 .template-eight{
   display: flex;
   gap: 30px;
@@ -159,19 +156,16 @@ h2 {
   margin-bottom: 20px;
   padding: 15px;
   background-color: rgb(255, 255, 255);
-
 }
 
 
 .div-characteristics button{
-  width: 140px;
-  margin-bottom: 10px;
-
+  width: 92%;
 }
 .characteristics{
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
 }
 
 label{
@@ -201,30 +195,3 @@ input[type="checkbox"]:checked {
   padding: 10px;
   border-radius: 2px;
 }
-
-.toggle{
-  color: #FF6D43;
-  cursor: pointer;
-  text-decoration: none;
-
-}
-/*Prueba para el popup*/
-.modal-content .btn {
-  background-color: #FF6D43;
-  border: none;
-  color: white; 
-  }
-  .btn-primary {
-  background-color: #FF6D43;
-  border: none;
-  color: white; 
-  width: 200px;
-  }
-  .modal-header{
-  background-color: #FF6D43;
-  color: white; 
-  }
-  .form-label{
-  font-weight: bold;
-  }
-  

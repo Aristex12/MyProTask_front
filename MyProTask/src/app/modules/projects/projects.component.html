@@ -1,108 +1,47 @@
 <app-aside></app-aside>
 <app-header></app-header>
-
-<section >
-<!-- Barra de búsqueda -->
-<!-- /**
-*! Funciona :)
-**/ -->
-
-<div>
-  <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Buscar..." (input)="search()">
-</div>
-
-<div *ngIf="projects">
-  <ul>
-    <li *ngFor="let project of projects">
-      <h3>{{ project.name }}</h3>
-      <p>{{ project.description }}</p>
-      <p>Finish Date: {{ project.finishDate | date }}</p>
-    </li>
-  </ul>
-</div>
-
-<!-- /**
-*TODO: hacer el bucle para mostrar los proyectos
-**/ -->
-    
-<div class="plantilla treinta-setenta">
-  <div class="white overflow">
-    <div class="caracteristica">
-      <h3>Lenguaje</h3>
-      <label>
-        <input type="checkbox" name="caracteristica2" />
-        Python
-      </label>
-    </div>
-    <div class="caracteristica">
-      <h3>Ordenar por</h3>
-      <label>
-        <input type="checkbox" name="caracteristica2" />
-        Fecha
-      </label>
-    <br>
-      <label>
-        <input type="checkbox" name="caracteristica2" />
-        Relevancia
-      </label>
-    </div>
+<section>
+  <div id="searchbar">
+    <input (click)="deselectAllCheckboxes()"
+      type="text"
+      [(ngModel)]="terminoBusqueda"
+      placeholder="Buscar..."
+      (click)="search(); deselectAllCheckboxes()"
+      (input)="search()"
+    />  
   </div>
-  <div>
-    
-  <div class="overflow">
-        <div class="white plantilla setenta-treinta">
-          <div>
-            <h1>BBVA</h1>
-            <h2>Gestión de Banca Digital</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,
-              nulla optio excepturi amet accusamus debitis vitae molestiae deleniti
-              autem dolorem nam fuga minus architecto modi ipsa ut esse totam
-              laborum?
-            </p>
-          </div>
-          <div>
-            <p>Hace dos semanas</p>
-            <p>Proyect manager: pepe</p>
-            <button>Solicitar Proyecto</button>
-          </div>
-        </div>
-        <div class="white plantilla setenta-treinta">
-          <div>
-            <h1>BBVA</h1>
-            <h2>Gestión de Banca Digital</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,
-              nulla optio excepturi amet accusamus debitis vitae molestiae deleniti
-              autem dolorem nam fuga minus architecto modi ipsa ut esse totam
-              laborum?
-            </p>
-          </div>
-          <div>
-            <p>Hace dos semanas</p>
-            <p>Proyect manager: pepe</p>
-            <button>Solicitar Proyecto</button>
-          </div>
-        </div>
-        <div class="white plantilla setenta-treinta">
-          <div>
-            <h1>BBVA</h1>
-            <h2>Gestión de Banca Digital</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,
-              nulla optio excepturi amet accusamus debitis vitae molestiae deleniti
-              autem dolorem nam fuga minus architecto modi ipsa ut esse totam
-              laborum?
-            </p>
-          </div>
-          <div>
-            <p>Hace dos semanas</p>
-            <p>Proyect manager: pepe</p>
-            <button>Solicitar Proyecto</button>
+ 
+  <div class="template-eight">
+    <div class="white overflow">
+      <div class="white">
+        <div class="div-characteristics">
+            <button (click)="deselectAllCheckboxes()"  (click)="search()">Reset All</button>
+          <div class="characteristics">
+            <h3>Lenguaje</h3>
+            <label *ngFor="let filter of filters">
+              <input #checkbox  class="checkbox" type="checkbox" [value]="filter.id" name="characteristic"
+                     (change)="onChangeCharacteristic(filter.id, $event); applySelectedCharacteristics()" />
+              {{filter.name}}
+            </label>
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <div class="white overflow" *ngIf="projects">
+        <div class="white">
+          <div *ngFor="let project of projects" class="template seven">
+            <div>
+              <h1>{{ project.name }}</h1>
+              <p>{{ project.description }}</p>
+            </div>
+            <div class="info-project">
+              <p>Hace dos semanas</p>
+              <button class="request-button">Solicitar Proyecto</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
- 
 </section>
