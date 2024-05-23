@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LoginRequest } from './loginRequest';
@@ -8,22 +8,26 @@ import { LoginRequest } from './loginRequest';
   providedIn: 'root'
 })
 export class AuthService {
-
   isLoggedIn: boolean = false;
-  urlBase = "http://localhost:8080/api/user/"
-  constructor(private http: HttpClient) { }
+  urlBase = "http://localhost:8080/auth/login"; // Asegúrate de que la ruta es "/auth/login"
 
-  login(credentials:LoginRequest):Observable<any> {
-    return this.http.get(`${this.urlBase}searchUserByEmailPassword?email=${credentials.email}&password=${credentials.password}`)
+  constructor(private http: HttpClient) {}
+
+  login(credentials: LoginRequest): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<any>(this.urlBase, credentials, { headers })
       .pipe(
-        map((user: any) => {
-          if (user != null) {
-            localStorage.setItem('idUser', JSON.stringify(user));
+        map((response: any) => {
+          if (response && response.jwt) {
+            localStorage.setItem('loginToken', response.jwt);
             this.isLoggedIn = true;
           } else {
             console.log("Error de login");
           }
-          return user;
+          return response;
         })
       );
   }
