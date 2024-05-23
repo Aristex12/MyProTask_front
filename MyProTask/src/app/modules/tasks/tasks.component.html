@@ -30,9 +30,9 @@
                     <strong>Project name:</strong>{{task.name}}        
                 </div>
                 <div class="template_tasks">
-                    <strong>Priority:</strong> <strong [style.color]="getColorByPriority(task.priority)">{{task.priority}}</strong> &nbsp; &nbsp; &nbsp;
-                    <strong>Status:</strong>{{task.active}} &nbsp; &nbsp; &nbsp;
-                    <strong>Date:</strong>{{task.finishDate}}      
+                    <p>Priority: </p> <p [style.color]="getColorByPriority(task.priority)"> {{task.priority}}</p>
+                    <p>Status: {{task.active}}</p> 
+                    <p>Date: {{task.finishDate}}</p>    
                 </div>            
             </div>  
         </div>         
