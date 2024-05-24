@@ -10,7 +10,7 @@
     --fc-neutral-bg-color: red;
     --fc-neutral-text-color: red;
     --fc-border-color: lightgray;
-  
+
     --fc-button-text-color: white;
     --fc-button-bg-color: #002E3C ;
     --fc-button-border-color: #2C3E50;
@@ -18,19 +18,19 @@
     --fc-button-hover-border-color: #1a252f;
     --fc-button-active-bg-color: #1a252f;
     --fc-button-active-border-color: #151e27;
-  
+
     --fc-event-bg-color: rgba(0, 0, 0, 0.434);
     --fc-event-border-color: lightgray;
     --fc-event-text-color: blue;
     --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25);
-  
+
     --fc-more-link-bg-color: black;
     --fc-more-link-text-color: inherit;
-  
+
     --fc-event-resizer-thickness: 8px;
     --fc-event-resizer-dot-total-width: 8px;
     --fc-event-resizer-dot-border-width: 1px;
-  
+
     --fc-non-business-color: gray;
     --fc-bg-event-color: gray;
     --fc-bg-event-opacity: 0.3;
@@ -52,9 +52,9 @@ color: #002E3C;
     color: black;
     background-color: rgba(255, 136, 0, 0.871);
     opacity: 0.;
-   
+
 }
-  
+
   .fc-scrollgrid-sync-inner a{
 color: black;
 text-decoration: none;
@@ -124,7 +124,7 @@ app-header{
     align-items: center;
 }
 app-aside{
-  
+
     grid-area: zaside;
     background-color: #002E3C;
     margin-top: 20%;
@@ -158,7 +158,7 @@ app-home{
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 12% 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "zheader zheader"
     "zaside zrouter";
 }
@@ -168,7 +168,7 @@ app-projects{
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 12% 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "zheader zheader"
     "zaside zrouter";
 }
@@ -178,7 +178,7 @@ app-editprofile{
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 12% 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "zheader zheader"
     "zaside zrouter";
 }
@@ -188,7 +188,7 @@ app-calendar{
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 12% 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "zheader zheader"
     "zaside zrouter";
 }
@@ -198,7 +198,7 @@ app-users{
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 12% 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "zheader zheader"
     "zaside zrouter";
 }
@@ -208,7 +208,7 @@ app-tasks{
   display: grid;
   grid-template-columns: 20% 1fr;
   grid-template-rows: 12% 1fr;
-  grid-template-areas: 
+  grid-template-areas:
   "zheader zheader"
   "zaside zrouter";
 }
@@ -218,7 +218,17 @@ app-history{
   display: grid;
   grid-template-columns: 20% 1fr;
   grid-template-rows: 12% 1fr;
-  grid-template-areas: 
+  grid-template-areas:
+  "zheader zheader"
+  "zaside zrouter";
+}
+app-user{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 12% 1fr;
+  grid-template-areas:
   "zheader zheader"
   "zaside zrouter";
 }
@@ -228,7 +238,7 @@ app-user{
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 12% 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "zheader zheader"
     "zaside zrouter";
 }
@@ -239,7 +249,7 @@ app-new-user{
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 12% 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "zheader zheader"
     "zaside zrouter";
 }
