@@ -11,10 +11,13 @@ export class TasksService {
   constructor(private http:HttpClient) { }
 
   getActiveTaskByUserId(): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/task/displayActiveTasksByUserId?idUser=${this.idUser}`)
+    return this.http.get(`http://localhost:8080/api/task/displayActiveTasksByIdUser?idUser=${this.idUser}`)
   }
-
+  /**
+   * 
+   * FIXME:
+   */
   getTaskByUserId(): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/task/displayActiveTasksByUserId?idUser=${this.idUser}`)
+    return this.http.get(`http://localhost:8080/api/task/displayActiveTasksByIdUser?idUser=${this.idUser}`)
   }
 }

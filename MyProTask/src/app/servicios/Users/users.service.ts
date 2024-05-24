@@ -11,7 +11,7 @@ export class UsersService {
   //URL de tu API backend
   private apiUrl = 'http://localhost:8080';
   getData() {
-    return this.http.get<any>(`${this.apiUrl}/api/userProject/displayUserProjectByActiveProjectByUserId?idUser=${this.idUser}`);
+    return this.http.get<any>(`${this.apiUrl}/api/userProject/displayUserProjectByActiveProjectByIdUser?idUser=${this.idUser}`);
   }
 
   getUserById(idUser: number) {
@@ -22,7 +22,7 @@ export class UsersService {
    * !Arreglado
    */
   getHistoryById(idUser: number) {
-    return this.http.get<any>(`${this.apiUrl}/api/userProject/displayUserProjectByUserId?idUser=${idUser}`);
+    return this.http.get<any>(`${this.apiUrl}/api/userProject/displayUserProjectByIdUser?idUser=${idUser}`);
   }
   
   
