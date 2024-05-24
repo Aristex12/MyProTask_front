@@ -2,7 +2,7 @@ section{
     display: grid;
     grid-template-rows: 50% 1fr;
     grid-template-columns: 50% 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "zprojects zprojects"
     "zdailies ztimer";
     gap: 20px;
@@ -21,8 +21,8 @@ section{
     background-color: white;
     border-radius: 20px;
     padding: 20px;
-    overflow: auto; 
-    max-height: 500px; 
+    overflow: auto;
+    max-height: 500px;
 }
 #timer{
     grid-area: ztimer;
@@ -36,8 +36,8 @@ section{
     border-collapse: separate; /* Asegura que las celdas de la tabla estén separadas */
     border-spacing: 0px 10px;
     border-radius: 20px;
-    overflow: auto; 
-    max-height: 500px; 
+    overflow: auto;
+    max-height: 500px;
 }
 #dailies table{
     width: 100%;
