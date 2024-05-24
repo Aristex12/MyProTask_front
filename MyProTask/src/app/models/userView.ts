@@ -42,5 +42,5 @@ export interface UserView {
         name:string
     },
     active:boolean
-    
+
 }

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UsersService {
-  
+
   private idUser:any=localStorage.getItem('idUser');
   constructor(private http:HttpClient) { }
   //URL de tu API backend
@@ -24,8 +24,8 @@ export class UsersService {
   getHistoryById(idUser: number) {
     return this.http.get<any>(`${this.apiUrl}/api/userProject/displayUserProjectByIdUser?idUser=${idUser}`);
   }
-  
-  
+
+
 
 }
 //${this.idUser}
