@@ -16,7 +16,7 @@ export class ProjectService {
   }
 
   getProjectsByUserId():Observable<any> {
-    return this.http.get(`http://localhost:8080/api/project/displayActiveProjectsByUserId?idUser=${this.idUser}`)
+    return this.http.get(`http://localhost:8080/api/project/displayActiveProjectsByIdUser?idUser=${this.idUser}`)
   }
 
   getProjectsByCharacteristics(characteristicsIds: number[]): Observable<any> {
@@ -25,4 +25,5 @@ export class ProjectService {
   getAllCharacteristics(): Observable<any> {
     return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristics`);
   }
+
 }

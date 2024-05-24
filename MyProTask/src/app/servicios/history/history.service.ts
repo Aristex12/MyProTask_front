@@ -10,6 +10,6 @@ export class HistoryService {
   //URL de tu API backend
   private apiUrl = 'http://localhost:8080';
   getData() {
-    return this.http.get<any>(`${this.apiUrl}/api/userProject/displayUserProjectByUserId?idUser=${this.idUser}`);
+    return this.http.get<any>(`${this.apiUrl}/api/userProject/displayUserProjectByIdUser?idUser=${this.idUser}`);
   }
 }
