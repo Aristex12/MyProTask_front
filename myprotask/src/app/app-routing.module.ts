@@ -10,6 +10,7 @@ import { UsersComponent } from './modules/users/users.component';
 import { TasksComponent } from './modules/tasks/tasks.component';
 import { HistoryComponent } from './modules/history/history.component';
 import { UserComponent } from './modules/user/user.component';
+import { NewUserComponent } from './modules/new-user/new-user.component';
 
 
 
@@ -23,12 +24,11 @@ const routes: Routes = [
   {path:"users", component:UsersComponent},
   {path:"tasks", component:TasksComponent},
   {path:"history", component:HistoryComponent},
-  {path:"user", component:UserComponent}  
-
-
+  {path:"user/:idUser", component:UserComponent},
+  {path:"newUser", component:NewUserComponent}  
 
 ];
-
+// user/:userId
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
