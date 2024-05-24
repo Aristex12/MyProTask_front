@@ -1,33 +1,24 @@
-<div class="container-login">
-  <div class="div-left">
-    <img src="../../assets/img/whitelogo.png" alt="">
-  </div>
-  <div class="div-right">
-    <div class="login-form">
-      <img class="login-img" src="../../assets/img/login_usericon.png" alt="">
-      <h1>Log in</h1>
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <label for="user">Email</label>
-        <input formControlName="email" type="text" name="user">
-        <div *ngIf="loginForm.controls['email']?.invalid && (loginForm.controls['email']?.dirty || loginForm.controls['email']?.touched)">
-          <div *ngIf="loginForm.controls['email']?.errors?.['required']">
-            Email is required.
-          </div>
-          <div *ngIf="loginForm.controls['email']?.errors?.['email']">
-            Invalid email address.
-          </div>
+
+    <div class="container-login">
+
+        <div class="div-left">
+            <img src="../../assets/img/whitelogo.png" alt="">
         </div>
 
-        <label for="password">Password</label>
-        <input formControlName="password" type="password" name="password">
-        <div *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password']?.dirty || loginForm.controls['password']?.touched)">
-          <div *ngIf="loginForm.controls['password']?.errors?.['required']">
-            Password is required.
-          </div>
+        <div class="div-right">
+            <div class="login-form">
+                <img class="login-img" src="../../assets/img/login_usericon.png" alt="">
+                <h1>Log in</h1>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <label for="user">Email</label>
+                    <input formControlName="email" type="text" name="user">
+                    <label for="password">Password</label>
+                    <input formControlName="password" type="password" name="password">
+                    <button type="submit">Login</button>
+                </form>
+                
+            </div>
         </div>
-
-        <button type="submit" [disabled]="loginForm.invalid">Login</button>
-      </form>
+        
     </div>
-  </div>
-</div>
+

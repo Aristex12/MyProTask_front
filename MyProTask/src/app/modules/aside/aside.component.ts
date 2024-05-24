@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/servicios/auth/auth.service';
 
 @Component({
   selector: 'app-aside',
@@ -14,18 +12,13 @@ export class AsideComponent implements OnInit {
   rol:string = "developer";
 
 
-  constructor(private authService: AuthService, private router:Router) { }
+  constructor() { }
 
   ngOnInit(): void {
 
   }
    borrarSessionStorage() {
-
+    
     sessionStorage.clear();
-
-  }
-
-  public closeSession(){
-    this.authService.logout();
-  }
+}
 }
