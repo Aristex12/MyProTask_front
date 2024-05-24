@@ -26,10 +26,4 @@ export class ProjectService {
     return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristics`);
   }
 
-  getProjectsByCharacteristics(characteristicsIds: number[]): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/project/searchProjectsByCharacteristics` ,characteristicsIds);
-  }
-  getAllCharacteristics(): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristics`);
-  }
 }
