@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './modules/login/login.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ProjectsComponent } from './modules/projects/projects.component';
@@ -9,6 +8,10 @@ import { CalendarComponent } from './modules/calendar/calendar.component';
 import { UsersComponent } from './modules/users/users.component';
 import { TasksComponent } from './modules/tasks/tasks.component';
 import { HistoryComponent } from './modules/history/history.component';
+import { UserComponent } from './modules/user/user.component';
+import { NewUserComponent } from './modules/new-user/new-user.component';
+import { RouterModule, Routes } from '@angular/router';
+
 
 
 
@@ -20,12 +23,12 @@ const routes: Routes = [
   {path:"calendar", component:CalendarComponent},
   {path:"users", component:UsersComponent},
   {path:"tasks", component:TasksComponent},
-  {path:"history", component:HistoryComponent}
-
-
+  {path:"history", component:HistoryComponent},
+  {path:"user/:idUser", component:UserComponent},
+  {path:"newUser", component:NewUserComponent}  
 
 ];
-
+// user/:userId
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
