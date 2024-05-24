@@ -1,12 +1,18 @@
 section {
   background-color: #F5F5F5;
+  gap: 60px;
 }
 
+.template-eight{
+  display: flex;
+  gap: 30px;
+}
 .overflow {
-  overflow: scroll;
-  height: 500px;
-  
-  overflow-x: hidden
+  overflow: auto;
+  height: 650px;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .overflow {
@@ -116,6 +122,7 @@ h2 {
   padding: 10px;
   background-color: #ffffff;
   border-radius: 10px;
+  margin-bottom: 30px;
 }
 
 #searchbar input[type="text"] {
@@ -144,15 +151,17 @@ h2 {
 
 
 .div-characteristics {
-  
+  width: 200px;
   border-radius: 10px;
- 
   margin-bottom: 20px;
-
   padding: 15px;
   background-color: rgb(255, 255, 255);
 }
 
+
+.div-characteristics button{
+  width: 92%;
+}
 .characteristics{
   display: flex;
   flex-direction: column;
