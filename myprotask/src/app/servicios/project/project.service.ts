@@ -25,5 +25,4 @@ export class ProjectService {
   getAllCharacteristics(): Observable<any> {
     return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristics`);
   }
-
 }

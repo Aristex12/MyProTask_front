@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:"tasks", component:TasksComponent},
   {path:"history", component:HistoryComponent},
   {path:"user/:idUser", component:UserComponent},
-  {path:"newUser", component:NewUserComponent}
+  {path:"newUser", component:NewUserComponent}  
 
 ];
 // user/:userId

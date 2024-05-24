@@ -14,9 +14,9 @@
             <td>{{ historyItem.Project.description }}</td>
             <td>{{ historyItem.Project.startDate + ' - ' + historyItem.Project.finishDate }}</td>
             <td class="border-right">{{ historyItem.User.role.name }}</td>
-          </tr>
+          </tr>          
         </table>
-
+        
     </div>
 
     <div id="projects" *ngIf="rol=='manager'" >
@@ -32,10 +32,10 @@
           <td>{{ historyItem.Project.description }}</td>
           <td>{{ historyItem.Project.startDate + ' - ' + historyItem.Project.finishDate }}</td>
           <td class="border-right">{{ historyItem.User.role.name }}</td>
-        </tr>
+        </tr>          
       </table>
   </div>
 
-
-
+    
+      
 </section>
