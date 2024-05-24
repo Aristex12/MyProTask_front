@@ -1,31 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
-import { UsersService } from 'src/app/servicios/Users/users.service';
+import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/models/project';
-import { UserView } from 'src/app/models/userView';
+import { User } from 'src/app/models/user';
+import { UserView } from 'src/app/models/userView'; // Importa el modelo UserView
+import { UsersService } from 'src/app/servicios/Users/users.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class UsersComponent implements OnInit {
-    users: any = [];
-    projects: Project[] = [];
-  userView: UserView[] = [];
+export class UserComponent implements OnInit {
+  user: User | undefined;
+  userView: UserView []=[]; 
+  users: any = [];
+  projects: Project[] = [];
 
-  constructor(private userService: UsersService) { }
+  constructor(private route: ActivatedRoute, private userService: UsersService) { }
 
   ngOnInit() {
-    this.getData();
+    this.route.params.subscribe(params => {
+      const idUser = params['idUser'];
+      this.loadUserData(idUser);
+      this.loadUserHistory(idUser); // Carga el historial al iniciar el componente
+    });    
   }
 
-  getData() {
-    this.userService.getData().subscribe(
-      (data: any[]) => {
-        console.log('Datos recibidos del servidor:', data);
-        
+  loadUserData(idUser: number) {
+    this.userService.getUserById(idUser).subscribe(
+      (data: User) => {
+        this.user = data;
+      },
+      error => {
+        console.error('Error al cargar el usuario:', error);
+      }
+    );
+  }
 
+  loadUserHistory(idUser: number) {
+    this.userService.getHistoryById(idUser).subscribe(
+      (data: any[]) => { // Espera un objeto de tipo UserView
         if (data && data.length > 0) {
           data.forEach((item: any) => {
             const user = item;
@@ -56,23 +70,11 @@ export class UsersComponent implements OnInit {
         } else {
           console.log('No se encontraron usuarios.');
         }
-
-
+        
       },
       error => {
-        console.error('Error al cargar usuarios:', error);
+        console.error('Error al cargar el historial del usuario:', error);
       }
     );
-}
-
-getUserBorderStyle(name: string): string {
-  switch (name.toUpperCase()) {
-    case 'MANAGER':
-      return '2px solid #FF6D43'; 
-    default:
-      return 'none'; 
   }
-}
-
-
 }

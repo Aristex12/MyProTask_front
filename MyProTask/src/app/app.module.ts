@@ -8,15 +8,15 @@ import { AsideComponent } from './modules/aside/aside.component';
 import { LoginComponent } from './modules/login/login.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ProjectsComponent } from './modules/projects/projects.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CalendarComponent } from './modules/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { EditprofileComponent } from './modules/editprofile/editprofile.component';
 import { UsersComponent } from './modules/users/users.component';
 import { TasksComponent } from './modules/tasks/tasks.component';
 import { HistoryComponent } from './modules/history/history.component';
-import { AuthService } from './servicios/auth/auth.service';
-import { JwtInterceptor } from './servicios/auth/jwt.interceptor';
+import { UserComponent } from './modules/user/user.component';
+import { NewUserComponent } from './modules/new-user/new-user.component';
 
 
 
@@ -32,19 +32,19 @@ import { JwtInterceptor } from './servicios/auth/jwt.interceptor';
     EditprofileComponent,
     UsersComponent,
     TasksComponent,
-    HistoryComponent
+    HistoryComponent,
+    UserComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,FullCalendarModule
+    HttpClientModule,
+    FullCalendarModule
   ],
-  providers: [
-    // AuthService,
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true}
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
