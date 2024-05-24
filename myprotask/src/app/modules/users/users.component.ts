@@ -24,7 +24,7 @@ export class UsersComponent implements OnInit {
     this.userService.getData().subscribe(
       (data: any[]) => {
         console.log('Datos recibidos del servidor:', data);
-
+        
 
         if (data && data.length > 0) {
           data.forEach((item: any) => {
@@ -42,17 +42,17 @@ export class UsersComponent implements OnInit {
               Project: project,
               User: user,
               // Declarar como opcional o asignar un valor válido
-              joinDate: undefined,
-              exitDate: undefined,
+              joinDate: undefined, 
+              exitDate: undefined, 
               role: undefined,
               active:true
             };
-
+            
             this.userView.push(users_view);
           });
-          console.log('Usuarios:', this.users);
-          console.log('Proyectos:', this.projects);
-          console.log('Vista de usuarios:', this.userView);
+          console.log('Usuarios:', this.users); 
+          console.log('Proyectos:', this.projects); 
+          console.log('Vista de usuarios:', this.userView); 
         } else {
           console.log('No se encontraron usuarios.');
         }
@@ -68,9 +68,9 @@ export class UsersComponent implements OnInit {
 getUserBorderStyle(name: string): string {
   switch (name.toUpperCase()) {
     case 'MANAGER':
-      return '2px solid #FF6D43';
+      return '2px solid #FF6D43'; 
     default:
-      return 'none';
+      return 'none'; 
   }
 }
 
