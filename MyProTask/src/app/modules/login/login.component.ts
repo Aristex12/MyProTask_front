@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         next: (response: any) => {
           if (response && response.jwt) {
             
+            
             this.router.navigateByUrl('/home');
           } else {
             console.log('Error de login');

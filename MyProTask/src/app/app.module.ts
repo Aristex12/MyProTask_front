@@ -17,6 +17,7 @@ import { TasksComponent } from './modules/tasks/tasks.component';
 import { HistoryComponent } from './modules/history/history.component';
 import { UserComponent } from './modules/user/user.component';
 import { NewUserComponent } from './modules/new-user/new-user.component';
+import { ProjectUsersPmComponent } from './modules/project-users-pm/project-users-pm.component';
 
 
 
@@ -34,7 +35,8 @@ import { NewUserComponent } from './modules/new-user/new-user.component';
     TasksComponent,
     HistoryComponent,
     UserComponent,
-    NewUserComponent
+    NewUserComponent,
+    ProjectUsersPmComponent
   ],
   imports: [
     BrowserModule,
