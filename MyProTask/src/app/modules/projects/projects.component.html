@@ -1,7 +1,7 @@
 <app-aside></app-aside>
 <app-header></app-header>
 <section>
-  <div id="searchbar">
+  <!-- <div id="searchbar">
     <input (click)="deselectAllCheckboxes()"
       type="text"
       [(ngModel)]="terminoBusqueda"
@@ -9,35 +9,31 @@
       (click)="search(); deselectAllCheckboxes()"
       (input)="search()"
     />
-  </div>
+  </div> -->
 
   <div class="template-eight">
     <div class="white overflow">
       <div class="white">
         <div class="div-characteristics">
-            <button (click)="deselectAllCheckboxes()"  (click)="search()">Reset All</button>
+          <button (click)="deselectAllCheckboxes()" (click)="search()">Reset All</button>
           <div class="characteristics">
             <h3>Lenguaje</h3>
             <label *ngFor="let filter of filters">
-              <input #checkbox  class="checkbox" type="checkbox" [value]="filter.id" name="characteristic"
-                     (change)="onChangeCharacteristic(filter.id, $event); applySelectedCharacteristics()" />
+              <input #checkbox class="checkbox" type="checkbox" [value]="filter.id" name="characteristic"
+                (change)="onChangeCharacteristic(filter.id, $event); applySelectedCharacteristics()" />
               {{filter.name}}
             </label>
           </div>
         </div>
       </div>
     </div>
-   
-    <div>
-       <div id="searchbar">
-      <input
-        type="text"
-        [(ngModel)]="terminoBusqueda"
-        placeholder="Search for the project by name"
-        (input)="search()"
-      />
-      <span class="input-group-text"><i class="fas fa-search"></i></span>
-    </div>
+
+    <div class="div-container">
+      <div id="searchbar">
+        <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Search for the project by name" (input)="search()"
+          (click)="search(); deselectAllCheckboxes()" />
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+      </div>
       <div class="white overflow top" *ngIf="projects">
         <div class="white">
           <div *ngFor="let project of projects" class="template seven">
