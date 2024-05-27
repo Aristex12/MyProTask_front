@@ -74,6 +74,11 @@ export class TasksComponent implements OnInit {
       }
     });
   }
+
+  //Insert TASK
+  InsertTask(task: any) {
+    //Nada por ahora
+  }
   //EDIT TASK
   updateTask(task: any) {
     //Nada por ahora

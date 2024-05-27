@@ -163,7 +163,7 @@
                                                   
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Done</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="InsertTask(selectedTask)">Done</button>
                   </div>
                 </div>
               </div>
@@ -252,7 +252,7 @@
                                                   
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" (click)="updateTask(selectedTask)" >Done</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateTask(selectedTask)" >Done</button>
                   </div>
                 </div>
               </div>
