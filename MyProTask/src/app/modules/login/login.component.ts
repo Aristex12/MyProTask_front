@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginRequest).subscribe({
         next: (response: any) => {
           if (response && response.jwt) {
-            localStorage.setItem('loginToken', response.jwt);
+            
             this.router.navigateByUrl('/home');
           } else {
             console.log('Error de login');
