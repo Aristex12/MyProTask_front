@@ -11,6 +11,7 @@ import { HistoryComponent } from './modules/history/history.component';
 import { UserComponent } from './modules/user/user.component';
 import { NewUserComponent } from './modules/new-user/new-user.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePmComponent } from './modules/home-pm/home-pm.component';
 
 
 
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path:"tasks", component:TasksComponent, canActivate:[AuthGuard]},
   {path:"history", component:HistoryComponent, canActivate:[AuthGuard]},
   {path:"user/:idUser", component:UserComponent, canActivate:[AuthGuard]},
-  {path:"newUser", component:NewUserComponent, canActivate:[AuthGuard]}  
+  {path:"newUser", component:NewUserComponent, canActivate:[AuthGuard]},
+  {path:"home-pm", component:HomePmComponent, canActivate:[AuthGuard]}  
 
 ];
 // user/:userId

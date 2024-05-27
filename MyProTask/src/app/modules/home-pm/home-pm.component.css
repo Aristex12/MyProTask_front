@@ -1,0 +1,70 @@
+.template {
+  display: grid;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+  height: 100%;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(50% - 10px), 1fr));
+  gap: 20px;
+}
+
+.two div {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.two div:nth-child(2n-1) {
+  margin-right: 20px;
+}
+
+.project-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto; /* El margen superior ahora se ajusta automáticamente */
+    border: none;
+    flex-wrap: wrap;
+    margin-bottom: 20px; /* Agregamos un margen inferior */
+  }
+
+.project-info h3 {
+  margin-bottom: 10px; /* Agregamos un margen inferior al nombre del proyecto */
+}
+
+.project-details {
+  width: 100%; /* Aseguramos que ocupe todo el ancho disponible */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-info p {
+  color: #ff6d43;
+  font-size: 20px;
+}
+
+.project-info button {
+  background-color: #ff6d43;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 10px; /* Agregamos margen a todos los lados */
+}
+
+.project-info button:hover {
+  background-color: #e65c36;
+}
