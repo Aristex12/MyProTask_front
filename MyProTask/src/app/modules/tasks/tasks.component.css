@@ -25,6 +25,10 @@
   .left {
     flex-shrink: 0;
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
   .right {
@@ -57,15 +61,64 @@
   .task_icon {
     margin-right: 10px; 
   }
-  /* users.component.css u otro archivo de estilo de tu componente */
+  .icons-container {
+    display: flex;
+    margin-right: 50px;
+    justify-content: flex-end;
+}
+
 .icon-style {
   font-size: 20px;
   background-color: #FF6D43;
   color: aliceblue;
-  padding: 2px;
+  padding: 2px 4px; 
   border-radius: 5px;
   text-align: right;
+  cursor: pointer;
 }
+
+.custom-button {
+  background-color: #FF6D43;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  font-size: 16px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+  border-radius: 4px;
+}
+/*Prueba para el popup*/
+.modal-content .btn {
+  background-color: #FF6D43;
+  border: none;
+  color: white; 
+}
+.btn-primary {
+  background-color: #FF6D43;
+  border: none;
+  color: white; 
+}
+.modal-header{
+  background-color: #FF6D43;
+  color: white; 
+}
+.form-label{
+  font-weight: bold;
+}
+
+/* .icon-style2 {
+  font-size: 1.5em; 
+  display: inline-flex; 
+  align-items: center; 
+} */
+
+
+
+
+
+
+
 
   
   

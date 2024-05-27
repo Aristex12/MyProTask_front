@@ -11,7 +11,7 @@ import {jwtDecode} from 'jwt-decode';
 export class AuthService {
   isLoggedIn: boolean = false;
   urlBase = "http://localhost:8080/auth/login";
-  private tokenKey = 'loginToken';
+  private tokenKey = 'token';
   public userData: any;
 
   constructor(private http: HttpClient) {
@@ -50,13 +50,21 @@ export class AuthService {
     }
   }
 
-  private decodeToken(token: string): void {
+  decodeToken(token: string): void {
     try {
       this.userData = jwtDecode(token);
-      console.log(this.userData); // Puedes eliminar este console.log después de verificar que funciona correctamente
+      console.log(this.userData);
     } catch (error) {
       console.error('Error decoding token', error);
     }
+  }
+
+  getUserId(): number | null {
+    return this.userData?.userId || null;
+  }
+
+  getUserData(): any {
+    return this.userData;
   }
 
   getToken(): string | null {

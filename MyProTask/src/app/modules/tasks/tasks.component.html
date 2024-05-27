@@ -96,8 +96,80 @@
                     <strong>Status:</strong>{{task.active}} &nbsp; &nbsp; &nbsp;
                     <strong>Date:</strong>{{task.finishDate}}      
                 </div>            
-            </div>  
-        </div>         
+            </div>          
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewTask">
+              <i class="bi bi-plus bi-lg"></i> Task
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="NewTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add new Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">                 
+                    <!-- Formulario -->
+                    <form>
+                      <!-- Título -->
+                      <div class="mb-3 text-start">
+                        <label for="title" class="form-label ">Título:</label>
+                        <input type="text" class="form-control" id="title">
+                      </div>
+                  
+                      <!-- Fecha final -->
+                      <div class="mb-3 text-start">
+                        <label for="finalDate" class="form-label ">Fecha final:</label>
+                        <input type="date" class="form-control" id="finalDate">
+                      </div>
+                      <!-- Prioridad -->
+                      <div class="mb-3 text-start">
+                          <label class="form-label">Prioridad:</label><br>
+                          <div class="form-check form-check-inline align-items-center">
+                              <div class="d-flex align-items-center">
+                                  <label class="form-check-label" for="priorityHigh">
+                                      <i class="bi bi-dot text-danger icon-style2"></i> Alta
+                                  </label>
+                                  <input class="form-check-input ms-2" type="checkbox" id="priorityHigh">
+                              </div>
+                          </div>
+                          <div class="form-check form-check-inline align-items-center">
+                              <div class="d-flex align-items-center">
+                                  <label class="form-check-label" for="priorityMid">
+                                      <i class="bi bi-dot text-primary icon-style2"></i> Media
+                                  </label>
+                                  <input class="form-check-input ms-2" type="checkbox" id="priorityMid">
+                              </div>
+                          </div>
+                          <div class="form-check form-check-inline align-items-center">
+                              <div class="d-flex align-items-center">
+                                  <label class="form-check-label" for="priorityLow">
+                                      <i class="bi bi-dot text-warning icon-style2"></i> Baja
+                                  </label>
+                                  <input class="form-check-input ms-2" type="checkbox" id="priorityLow">
+                              </div>
+                          </div>
+                      </div>
+                                                                             
+                    <!-- Descripción de la tarea -->
+                     <div class="mb-3 text-start">
+                       <label for="taskDescription" class="form-label ">Descripción de la tarea:</label>
+                      <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                     </div>
+
+                    </form>
+                  </div>
+                                                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+                       
+          </div>         
         </div>
         <!--Rigth hand(All information)-->
         <div class="right">
@@ -113,10 +185,79 @@
               <strong>Project name:</strong> {{ selectedTask?.project.name }}<br>
               <strong>Objective:</strong> {{ selectedTask?.description }}<br>
               <strong>Date:</strong> {{ selectedTask?.finishDate }}<br>
-                           
-              <i class="bi bi-trash icon-style"></i>&nbsp;
-              <i class="bi bi-pencil-square icon-style"></i>
 
+              <div class="icons-container">             
+              <i class="bi bi-trash icon-style"  data-bs-toggle="modal" data-bs-target="#DeleteTask"></i>&nbsp;
+              <i class="bi bi-pencil-square icon-style" data-bs-toggle="modal" data-bs-target="#UpdateTask"></i>
+              <!--UPDATE TASK POPUP-->
+              <!-- Modal -->
+            <div class="modal fade" id="UpdateTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Update Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">                 
+                    <!-- Formulario -->
+                    <form>
+                      <!-- Título -->
+                      <div class="mb-3 text-start">
+                        <label for="title" class="form-label ">Título:</label>
+                        <input type="text" class="form-control" id="title" [value]="selectedTask?.name">
+                      </div>
+                  
+                      <!-- Fecha final -->
+                      <div class="mb-3 text-start">
+                        <label for="finalDate" class="form-label ">Fecha final:</label>
+                        <input type="date" class="form-control" id="finalDate" [value]="selectedTask?.finishDate">
+                      </div>
+                      <!-- Prioridad -->
+                      <div class="mb-3 text-start">
+                          <label class="form-label">Prioridad:</label><br>
+                          <div class="form-check form-check-inline align-items-center">
+                              <div class="d-flex align-items-center">
+                                  <label class="form-check-label" for="priorityHigh">
+                                      <i class="bi bi-dot text-danger icon-style2"></i> Alta
+                                  </label>
+                                  <input class="form-check-input ms-2" type="checkbox" id="priorityHigh" [checked]="selectedTask?.priority === 'HIGH'">
+                              </div>
+                          </div>
+                          <div class="form-check form-check-inline align-items-center">
+                              <div class="d-flex align-items-center">
+                                  <label class="form-check-label" for="priorityMid">
+                                      <i class="bi bi-dot text-primary icon-style2"></i> Media
+                                  </label>
+                                  <input class="form-check-input ms-2" type="checkbox" id="priorityMid" [checked]="selectedTask?.priority === 'MID'">
+                              </div>
+                          </div>
+                          <div class="form-check form-check-inline align-items-center">
+                              <div class="d-flex align-items-center">
+                                  <label class="form-check-label" for="priorityLow">
+                                      <i class="bi bi-dot text-warning icon-style2"></i> Baja
+                                  </label>
+                                  <input class="form-check-input ms-2" type="checkbox" id="priorityLow" [checked]="selectedTask?.priority === 'LOW'">
+                              </div>
+                          </div>
+                      </div>
+                                                                             
+                    <!-- Descripción de la tarea -->
+                     <div class="mb-3 text-start">
+                       <label for="taskDescription" class="form-label ">Descripción de la tarea:</label>
+                      <textarea class="form-control" id="taskDescription" rows="3">{{ selectedTask?.description }}</textarea>
+                     </div>
+
+                    </form>
+                  </div>
+                                                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="updateTask(selectedTask)" >Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+              </div>
             </div>
             
           </div>

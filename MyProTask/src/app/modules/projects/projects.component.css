@@ -3,6 +3,9 @@ section {
   gap: 60px;
 }
 
+.div-container{
+  width: 100%;
+}
 .template-eight{
   display: flex;
   gap: 30px;
@@ -160,7 +163,7 @@ h2 {
 
 
 .div-characteristics button{
-  width: 92%;
+  width: 140px;
 }
 .characteristics{
   display: flex;
