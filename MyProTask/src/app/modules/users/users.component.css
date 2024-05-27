@@ -14,6 +14,11 @@
   gap: 20px;
 }
 
+.plantilla :hover{
+  background-color: bisque;
+  cursor: pointer;
+}
+
 #profile-pic {
   background-color: white;
   height: 60px;

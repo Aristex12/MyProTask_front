@@ -20,11 +20,8 @@ export class AsideComponent implements OnInit {
 
   }
    borrarSessionStorage() {
-
-    sessionStorage.clear();
-
+    localStorage.clear();
   }
-
   public closeSession(){
     this.authService.logout();
   }

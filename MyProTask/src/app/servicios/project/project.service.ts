@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -7,22 +7,36 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class ProjectService {
-
-  private idUser = localStorage.getItem("idUser");
-  constructor(private http:HttpClient) { }
+  private idUser:any;
+  constructor(private http:HttpClient, private authService:AuthService) {
+    this.idUser = this.authService.getUserId();
+   }
 
   getData():Observable<any> {
-    return this.http.get(`http://localhost:8080/api/project/displayProjects`)
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get(`http://localhost:8080/api/project/displayProjects`, { headers })
   }
 
-  getProjectsByUserId():Observable<any> {
-    return this.http.get(`http://localhost:8080/api/project/displayActiveProjectsByUserId?idUser=${this.idUser}`)
+  getProjectsByUserId(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get(`http://localhost:8080/api/project/displayActiveProjectsByIdUser?idUser=${this.idUser}`, { headers });
   }
 
   getProjectsByCharacteristics(characteristicsIds: number[]): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/project/searchProjectsByCharacteristics` ,characteristicsIds);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.post(`http://localhost:8080/api/project/searchProjectsByCharacteristics` ,characteristicsIds, { headers });
   }
   getAllCharacteristics(): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristics`);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristics`, { headers });
   }
+
 }

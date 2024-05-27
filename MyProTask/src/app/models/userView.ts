@@ -34,6 +34,13 @@ export interface UserView {
             }
         ],
         active:boolean
-    }
-    
+    },
+    joinDate?: Date,
+    exitDate?: Date,
+    role?:{
+        idRole:number,
+        name:string
+    },
+    active:boolean
+
 }
