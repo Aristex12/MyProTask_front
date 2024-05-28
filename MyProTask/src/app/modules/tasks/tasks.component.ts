@@ -13,12 +13,10 @@ import { Tasks } from 'src/app/models/tasks';
 })
 export class TasksComponent implements OnInit {
 
-
-
   selectedTask: any;
   tasksList: Tasks[] = [];
-  rol:string = "manager";
-
+  rol:string = "developer";
+  
   selectTask(task: any) {
     this.selectedTask = task;
 
@@ -65,7 +63,7 @@ export class TasksComponent implements OnInit {
 
   getData() {
     this.tasksService.getActiveTaskByUserId().subscribe({
-      next: (tasks:any) => {
+      next: (tasks) => {
         this.tasksList = tasks;
         this.selectTask(this.tasksList[0]);
       },
@@ -74,15 +72,5 @@ export class TasksComponent implements OnInit {
       }
     });
   }
-
-  //Insert TASK
-  InsertTask(task: any) {
-    //Nada por ahora
-  }
-  //EDIT TASK
-  updateTask(task: any) {
-    //Nada por ahora
-  }
-
 
 }

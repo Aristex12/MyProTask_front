@@ -29,9 +29,9 @@ export class HeaderComponent {
     return days[day];
   }
 
+ 
 
 
 
-
-
+ 
 }

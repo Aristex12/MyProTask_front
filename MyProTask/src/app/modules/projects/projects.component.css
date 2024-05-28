@@ -26,7 +26,7 @@ section {
 
 .overflow::-webkit-scrollbar {
   width: 9px;
-
+  
 }
 .input-group-text {
   display: flex;
@@ -39,11 +39,11 @@ section {
 
 .input-group-text i {
   color: #FF6D43;
-  font-size: 16px;
+  font-size: 16px; 
 }
 
 .input-group-text {
-  width: 40px;
+  width: 40px; 
 }
 
 .overflow::-webkit-scrollbar-track {
@@ -53,14 +53,14 @@ section {
 
 .overflow::-webkit-scrollbar-thumb {
   background: #555;
-
+  
   border-radius: 6px;
-
+  
 }
 
 .overflow::-webkit-scrollbar-thumb:hover {
   background: #002E3C;
-
+  
 }
 
 
@@ -85,7 +85,7 @@ h2 {
 .white {
   background-color: #F5F5F5;
   border-radius: 20px;
-
+  
 }
 
 .top{
@@ -95,11 +95,11 @@ h2 {
 .seven {
 
   grid-template-columns: 70% 30%;
-
+  
   border-radius: 10px;
 
   margin-bottom: 20px;
-
+  
   padding: 15px;
   background-color: rgb(255, 255, 255);
 
@@ -132,14 +132,14 @@ h2 {
   flex: 1;
   height: 100%;
   padding: 1px;
-  border: none;
-  border-bottom:  2px solid #FF6D43 ;
+  border: none; 
+  border-bottom:  2px solid #FF6D43 ; 
   box-shadow: 0 3px rgba(0, 0, 0, 0.1);;
-  border-radius: 0;
+  border-radius: 0; 
   font-size: 16px;
 }
 #searchbar input[type="text"]:focus {
-  outline: none;
+  outline: none; 
 }
 #searchbar .input-group-text {
   position: absolute;
@@ -159,19 +159,16 @@ h2 {
   margin-bottom: 20px;
   padding: 15px;
   background-color: rgb(255, 255, 255);
-
 }
 
 
 .div-characteristics button{
   width: 140px;
-  margin-bottom: 10px;
-
 }
 .characteristics{
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
 }
 
 label{
@@ -187,7 +184,7 @@ input[type="checkbox"] {
   -o-appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid #FF6D43;
+  border: 2px solid #FF6D43; 
   margin: 0;
   padding: 0;
   cursor: pointer;
@@ -201,29 +198,3 @@ input[type="checkbox"]:checked {
   padding: 10px;
   border-radius: 2px;
 }
-
-.toggle{
-  color: #FF6D43;
-  cursor: pointer;
-  text-decoration: none;
-
-}
-/*Prueba para el popup*/
-.modal-content .btn {
-  background-color: #FF6D43;
-  border: none;
-  color: white;
-  }
-  .btn-primary {
-  background-color: #FF6D43;
-  border: none;
-  color: white;
-  width: 200px;
-  }
-  .modal-header{
-  background-color: #FF6D43;
-  color: white;
-  }
-  .form-label{
-  font-weight: bold;
-  }

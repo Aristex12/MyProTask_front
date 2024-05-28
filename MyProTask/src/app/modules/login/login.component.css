@@ -1,12 +1,12 @@
 
 .container-login {
-    display: flex;
+    display: flex; 
     height: 100%;
     width: 100%;
 }
 .div-right{
     width: 60%;
-    background-color: white;
+    background-color: white; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,15 +16,15 @@
     width: 45%;
     background-image: url(../../../assets/img/background-login-blue.png);
     background-size: cover;
-    background-position: center;
+    background-position: center; 
     background-attachment: fixed;
     position: relative;
 }
 
 .div-left img {
-    position: absolute;
+    position: absolute; 
     bottom: -50%;
-    left: 50%;
+    left: 50%; 
     transform: translate(-50%, -50%);
     width: 50%;
     height: 50%;
@@ -71,7 +71,7 @@
     margin-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
-    display: flex;
+    display: flex; 
     text-align: center;
     color: #002E3C;
 }
@@ -79,7 +79,7 @@
 .login-form label {
     display: flex;
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 5px; 
     color: lightgray;
     text-align: left;
 }
@@ -109,8 +109,8 @@
 }
 
 .login-img {
-    width: 80px;
-    margin-right: 240px;
+    width: 80px; 
+    margin-right: 240px; 
     margin-bottom: -55px;
 }
 

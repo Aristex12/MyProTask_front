@@ -3,16 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { LoginRequest } from 'src/app/servicios/auth/loginRequest';
-import { jwtDecode } from 'jwt-decode';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  token: any;
-  role: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -20,7 +19,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -28,29 +27,20 @@ export class LoginComponent implements OnInit {
     // if(this.authService.isLoggedIn){
     //   this.router.navigateByUrl('/home');
     // } else {
-    //   this.authService.isLoggedIn = false;s
+    //   this.authService.isLoggedIn = false;
     // }
     this.authService.isLoggedIn = false;
   }
-  getrole() {
-    this.token = this.authService.getToken();
-    this.token = jwtDecode(this.token);
-    this.role = this.token.role;
-  }
+
   login() {
     if (this.loginForm.valid) {
       const loginRequest: LoginRequest = this.loginForm.value as LoginRequest;
       this.authService.login(loginRequest).subscribe({
         next: (response: any) => {
-          this.getrole();
           if (response && response.jwt) {
-            if (this.role === 'admin') {
-              this.router.navigateByUrl('/allprojects');
-            } else if(this.role === 'employee') {
-              this.router.navigateByUrl('/home-pm');
-            }else{
-              this.router.navigateByUrl('/home');
-            }
+            
+            
+            this.router.navigateByUrl('/home');
           } else {
             console.log('Error de login');
           }
@@ -60,7 +50,7 @@ export class LoginComponent implements OnInit {
         },
         complete: () => {
           console.info('Inicio de sesión completado');
-        },
+        }
       });
       this.loginForm.reset();
     } else {

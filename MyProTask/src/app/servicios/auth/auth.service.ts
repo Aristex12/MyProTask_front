@@ -66,18 +66,6 @@ export class AuthService {
   getUserData(): any {
     return this.userData;
   }
-  getUserEmail(): any {
-    return this.userData.sub;
-  }
-  getUserName(): any {
-    return `${this.userData.firstName} ${this.userData.lastName}`;
-  }
-  getUserRole(): any {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.get(`http://localhost:8080/api/role/displayRoleUserProjectByIdUser?idUser=${this.userData.userId}`, { headers })
-  }
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);

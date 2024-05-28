@@ -182,26 +182,6 @@ app-editprofile{
     "zheader zheader"
     "zaside zrouter";
 }
-app-home-pm{
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 20% 1fr;
-  grid-template-rows: 12% 1fr;
-  grid-template-areas:
-  "zheader zheader"
-  "zaside zrouter";
-}
-app-project-users-pm{
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 20% 1fr;
-  grid-template-rows: 12% 1fr;
-  grid-template-areas:
-  "zheader zheader"
-  "zaside zrouter";
-}
 app-calendar{
     width: 100%;
     height: 100%;
@@ -248,7 +228,7 @@ app-user{
   display: grid;
   grid-template-columns: 20% 1fr;
   grid-template-rows: 12% 1fr;
-  grid-template-areas:
+  grid-template-areas: 
   "zheader zheader"
   "zaside zrouter";
 }
@@ -269,7 +249,17 @@ app-new-user{
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 12% 1fr;
-    grid-template-areas:
+    grid-template-areas: 
+    "zheader zheader"
+    "zaside zrouter";
+}
+app-project-users-pm{
+  width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    grid-template-rows: 12% 1fr;
+    grid-template-areas: 
     "zheader zheader"
     "zaside zrouter";
 }

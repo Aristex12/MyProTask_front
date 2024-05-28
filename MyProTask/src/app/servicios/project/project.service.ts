@@ -7,9 +7,7 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class ProjectService {
-
   private idUser:any;
-
   constructor(private http:HttpClient, private authService:AuthService) {
     this.idUser = this.authService.getUserId();
    }

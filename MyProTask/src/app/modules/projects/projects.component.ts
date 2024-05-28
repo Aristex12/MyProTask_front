@@ -1,26 +1,21 @@
-import { Component, OnInit, QueryList, ViewChildren, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/servicios/project/project.service';
 import { Characteristic } from 'src/app/models/characteristic';
-
+import {QueryList, ViewChildren } from '@angular/core';
+import { ElementRef } from '@angular/core';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent  {
   terminoBusqueda: string = "";
   projects: Project[] = [];
   projectsBackup: Project[] = [];
   characteristics: Characteristic[] = [];
+  filters: { id: number, name: string }[] = [];
   selectedCharacteristicIds: number[] = [];
-  expandedCategories: Set<number> = new Set<number>();
-
-  categories = [
-    { idCategory: 1, name: "Programming Language" },
-    { idCategory: 2, name: "Technologies" },
-    { idCategory: 3, name: "Languages" },
-  ]
 
   constructor(private projectService: ProjectService) { }
 
@@ -39,15 +34,8 @@ export class ProjectsComponent implements OnInit {
   getCharacteristics() {
     this.projectService.getAllCharacteristics().subscribe((data: Characteristic[]) => {
       this.characteristics = data;
+      this.createFilters();
     });
-  }
-
-  getFilteredCharacteristics(catId: number): Characteristic[] {
-    const filtered = this.characteristics.filter(c => c.category.idCategory === catId);
-    if (this.isCategoryExpanded(catId)) {
-      return filtered;
-    }
-    return filtered.slice(0, 3);
   }
 
   search(): void {
@@ -62,6 +50,13 @@ export class ProjectsComponent implements OnInit {
     this.projects = this.projectsBackup.filter(project =>
       project.name.toLowerCase().includes(searchTerm)
     );
+  }
+
+  createFilters() {
+    this.filters = this.characteristics.map(characteristic => ({
+      id: characteristic.idCharacteristic,
+      name: characteristic.name
+    }));
   }
 
   onChangeCharacteristic(characteristicId: number, event: any) {
@@ -86,25 +81,11 @@ export class ProjectsComponent implements OnInit {
     }
   }
 
-  isCategoryExpanded(categoryId: number): boolean {
-    return this.expandedCategories.has(categoryId);
-  }
-
-  toggleCategoryExpansion(categoryId: number): void {
-    if (this.expandedCategories.has(categoryId)) {
-      this.expandedCategories.delete(categoryId);
-    } else {
-      this.expandedCategories.add(categoryId);
-    }
-  }
-
   @ViewChildren('checkbox') checkboxes: QueryList<ElementRef> = new QueryList<ElementRef>();
 
   deselectAllCheckboxes() {
     this.checkboxes.forEach((checkbox) => {
       checkbox.nativeElement.checked = false;
     });
-    this.selectedCharacteristicIds = [];
-    this.applySelectedCharacteristics();
   }
 }
