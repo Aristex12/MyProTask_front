@@ -1,7 +1,7 @@
 <!--Home-->
 <div *ngIf="showLoader" class="loading-screen">
     <div class="spinner-container">
-        <i style="color: #FF6D43 ;" class="fas fa-spinner fa-spin"></i> 
+        <i style="color: #FF6D43 ;" class="fas fa-spinner fa-spin"></i>
     </div>
 </div>
 <!--Home-->
@@ -16,10 +16,6 @@
         </picture>
 
         <div class="menu-container">
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-            </label>
             <div class="date-container">
                 <p class="dayName">{{ dayName }}</p>
                 <p class="date">{{ dateToday | date:'dd/MM/yyyy' }}</p>

@@ -10,8 +10,9 @@ import { TasksComponent } from './modules/tasks/tasks.component';
 import { HistoryComponent } from './modules/history/history.component';
 import { UserComponent } from './modules/user/user.component';
 import { NewUserComponent } from './modules/new-user/new-user.component';
-import { ProjectUsersPmComponent } from './modules/project-users-pm/project-users-pm.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePmComponent } from './modules/home-pm/home-pm.component';
+import { ProjectUsersPmComponent } from './project-users-pm/project-users-pm.component';
 
 
 
@@ -19,6 +20,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {path:"", component:LoginComponent, },
   {path:"home", component:HomeComponent, canActivate:[AuthGuard]},
+  {path:"home-pm", component:HomePmComponent, canActivate:[AuthGuard]},
   {path:"projects", component:ProjectsComponent, canActivate:[AuthGuard]},
   {path:"edituser", component:EditprofileComponent, canActivate:[AuthGuard]},
   {path:"calendar", component:CalendarComponent, canActivate:[AuthGuard]},

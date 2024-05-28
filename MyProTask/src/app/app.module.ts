@@ -17,7 +17,10 @@ import { TasksComponent } from './modules/tasks/tasks.component';
 import { HistoryComponent } from './modules/history/history.component';
 import { UserComponent } from './modules/user/user.component';
 import { NewUserComponent } from './modules/new-user/new-user.component';
-import { ProjectUsersPmComponent } from './modules/project-users-pm/project-users-pm.component';
+import { HomePmComponent } from './modules/home-pm/home-pm.component';
+import { RouterEvent, RouterModule, Routes } from '@angular/router';
+import { ProjectUsersPmComponent } from './project-users-pm/project-users-pm.component';
+
 
 
 
@@ -36,6 +39,7 @@ import { ProjectUsersPmComponent } from './modules/project-users-pm/project-user
     HistoryComponent,
     UserComponent,
     NewUserComponent,
+    HomePmComponent,
     ProjectUsersPmComponent
   ],
   imports: [
@@ -44,7 +48,8 @@ import { ProjectUsersPmComponent } from './modules/project-users-pm/project-user
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FullCalendarModule
+    FullCalendarModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

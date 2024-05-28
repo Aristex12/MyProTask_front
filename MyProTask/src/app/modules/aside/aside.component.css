@@ -1,59 +1,58 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 #profile-pic {
-    background-color: white;
-    height: 80px;
-    width: 80px;
-    border-radius: 100%;
-    border: 2px solid #002E3C;
-    position: relative;
-    bottom: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
+  background-color: white;
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  border: 2px solid #002E3C;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  bottom: 50px;
 }
 
 #profile-pic img {
-    height: 80px;
-    width: 80px;
-    display: block;
-
+  height: 80px;
+  width: 80px;
+  display: block;
+  border-radius: 100%;
 }
 
 #profile-pic::before {
-    content: "";
-    border-radius: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  content: "";
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 #profile-pic:hover::before {
-    opacity: 1;
-
+  opacity: 1;
 }
-#profile-pic::after {
-    content: "\F4CA";
-    font-family: "Bootstrap Icons";
-    position: absolute; 
-    top: 50%;
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    color: white;
-    font-size: 24px; 
-    opacity: 0; 
-    transition: opacity 0.3s ease; 
-  }
-  
-  #profile-pic:hover::before,
-  #profile-pic:hover::after {
-    opacity: 1;
-  }
+
+.edit-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#profile-pic:hover .edit-icon {
+  opacity: 1;
+}
+
 
 #user-info{
     margin-top: -40px;
@@ -96,29 +95,29 @@
     outline: none;
     transition: background-color 0.3s ease;
   }
- 
+
   .circular-button:hover {
-    background-color: white; 
+    background-color: white;
     color: #FF6D43;
   }
- 
+
   .circular-button .icon {
     margin-right: 8px;
     background-color: white;
     padding-left: 5px;
     padding-right: 5px;
-    border-radius: 10px; 
+    border-radius: 10px;
   }
- 
+
   .circular-button .icon i {
     color: #FF6D43;
-    font-size: 20px; 
+    font-size: 20px;
   }
- 
+
   .circular-button .text {
     margin-left: 8px;
   }
- 
+
   /* Responsive */
   @media (max-width: 768px) {
     .circular-button {
@@ -126,4 +125,3 @@
       padding: 10px 14px;
     }
 }
-
