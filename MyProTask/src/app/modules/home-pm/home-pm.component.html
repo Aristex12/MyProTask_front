@@ -1,6 +1,6 @@
 <app-aside></app-aside>
 <app-header></app-header>
- 
+
 <section class="section">
   <div class="projects-wrapper">
     <button class="arrow arrow-left" (click)="scrollLeft()">&#8249;</button>
@@ -9,11 +9,15 @@
         <img src="../../../assets/img/logo-eviden.png" alt="" style="max-width: 250px; max-height: 250px;">
         <h3>{{project.name}}</h3>
         <div class="project-info">
-          <p>{{activeMembers}} / {{project.vacancies}} Members</p>
+          <ng-container *ngFor="let vacancies of vacanciesList">
+            <p *ngIf="project.idProject==vacancies.idProject" > {{vacancies.vacancies}} / {{project.vacancies}} Members</p>
+          </ng-container>
+          
+          
           <button [routerLink]="['/home-pm', 1]">Go to</button>
         </div>
       </div>
     </div>
-    <button class="arrow arrow-right" (click)="scrollRight()"  >&#8250;</button>
+    <button class="arrow arrow-right" (click)="scrollRight()">&#8250;</button>
   </div>
 </section>
