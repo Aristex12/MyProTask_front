@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/servicios/project/project.service';
 
@@ -8,21 +8,29 @@ import { ProjectService } from 'src/app/servicios/project/project.service';
   styleUrls: ['./home-pm.component.css']
 })
 export class HomePmComponent {
-
   activeMembers: number = 0;
-
   projects: Project[] = [];
+  
+  @ViewChild('projectsContainer', { static: true }) projectsContainer!: ElementRef;
 
-  constructor(private projectService: ProjectService){}
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
     this.projectService.getProjectsByUserId().subscribe({
-      next: (projects:any) => {
+      next: (projects: any) => {
         this.projects = projects;
       },
-      error: (error:any) => {
+      error: (error: any) => {
         console.error(error);
       }
     });
+  }
+
+  scrollLeft(): void {
+    this.projectsContainer.nativeElement.scrollBy({ left: -350, behavior: 'smooth' });
+  }
+
+  scrollRight(): void {
+    this.projectsContainer.nativeElement.scrollBy({ left: 350, behavior: 'smooth' });
   }
 }

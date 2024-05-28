@@ -1,20 +1,19 @@
 <app-aside></app-aside>
 <app-header></app-header>
 
-<section>
-  <div class="template two">
-    <div *ngFor="let project of projects">
+<section class="section">
+  <div class="projects-wrapper">
+    <button class="arrow arrow-left" (click)="scrollLeft()">&#8249;</button>
+    <div class="projects-container" #projectsContainer>
+      <div class="project" *ngFor="let project of projects">
         <img src="../../assets/img/logo-eviden.jpg" alt="" style="max-width: 250px; max-height: 250px;">
-        
-        <h3>
-            {{project.name}}
-        </h3>
+        <h3>{{project.name}}</h3>
         <div class="project-info">
-            <p>{{activeMembers}} / {{project.vacancies}} Members</p>
-            <button>
-                Go to
-            </button>
+          <p>{{activeMembers}} / {{project.vacancies}} Members</p>
+          <button>Go to</button>
         </div>
+      </div>
     </div>
+    <button class="arrow arrow-right" (click)="scrollRight()">&#8250;</button>
   </div>
 </section>
