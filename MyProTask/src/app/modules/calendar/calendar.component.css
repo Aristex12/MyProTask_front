@@ -1,0 +1,122 @@
+full-calendar{
+    width: 75%;
+    height: 570px;
+}
+
+.fc .fc-daygrid-day-number {
+    padding: 4px;
+    position: relative;
+    z-index: 4;
+    color: rgb(0, 0, 0);
+}
+
+.fc-event {
+    background-color: #ff0000 !important; 
+    border-color: #ff0000 !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    padding: 5px !important;
+  }
+  
+  .fc-event-title {
+    font-weight: bold !important; 
+  }
+
+  
+#section-calendar{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 30px;
+    gap: 30px;
+}
+#div-events{
+    width: 20%;
+    height: 570px;
+    background-color: #F5F5F5;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.orange-button{
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #FF6D43;
+    padding: 10px;
+    color: white;
+    border: 2px solid #FF6D43;
+}
+.more-button{
+    width: 50%;
+    border-radius: 10px;
+    border: none;
+    background-color: #FF6D43;
+    border: 2px solid #FF6D43;
+    padding: 5px;
+    color: white;
+}
+.orange-button:hover, .more-button:hover{
+    background-color: #F5F5F5;
+    border: 2px solid #FF6D43;
+    color: #FF6D43;
+}
+.grid-event {
+    display: flex;
+    cursor: pointer;
+    padding: 10px;
+}
+.grid-event:hover{
+    background-color: white;
+}
+
+#events{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#event-list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.event{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+
+}
+
+/*Prueba para el popup*/
+.modal-content .btn {
+    background-color: #FF6D43;
+    border: none;
+    color: white; 
+    }
+    .btn-primary {
+    background-color: #FF6D43;
+    border: none;
+    color: white; 
+    width: 200px;
+    }
+    .modal-header{
+    background-color: #FF6D43;
+    color: white; 
+    }
+    .form-label{
+    font-weight: bold;
+    }
+    
+    /* .icon-style2 {
+    font-size: 1.5em; 
+    display: inline-flex; 
+    align-items: center; 
+    } */
