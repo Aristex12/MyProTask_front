@@ -202,17 +202,9 @@
     .input-group-text {
       width: 40px;
     }
-    .two {
-     
-      grid-template-columns: repeat(2, 1fr);
-    }
+ 
    
-    .ico-photo {
-      display: flex;
-     
-      align-items:flex-start;
-    }
-   
+    
     #profile-pic {
       display: flex;
       justify-content: center;
@@ -220,4 +212,11 @@
     }
 
 
-    
+    .bi-trash {
+      position: relative;
+      left: 120px;
+      bottom: 60px;
+      cursor: pointer;
+      color: #FF6D43;
+      font-size: 20px;
+    }
