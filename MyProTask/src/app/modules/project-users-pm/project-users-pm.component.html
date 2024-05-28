@@ -8,11 +8,20 @@
       <ng-container *ngFor="let user of project.users">
         <div class="user-div">
           <a [routerLink]="['/user-profile', user.idUser]">
-            <div id="profile-pic">
-              <img
-                src="../../../assets/img/{{ user.profilePic }}"
-                alt="{{ user.name }}"
-              />
+            <div class="">
+              <div id="profile-pic">
+                <img src="../../assets/img/user.png" alt="" />
+              </div>
+              
+                <i class="bi bi-trash "  onclick="projectUsers.openModal2()"></i>
+                <div id="modal2" class="modal2">
+                <div class="modal-content2">
+                  <span class="close2" onclick="projectUsers.closeModal2()">&times;</span>
+                  <h1>Desea eliminar el usuario?</h1>
+                  <button>Eliminar</button>    
+                </div>
+              </div>
+            
             </div>
           </a>
           <p>{{ user.name }}</p>
@@ -47,18 +56,21 @@
         <div class="div-container">
           <div *ngFor="let project of projects" class="project-container">
             <div id="searchbar">
-            <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Search for the user by name" /> 
-            <span class="input-group-text"><i class="fas fa-search"></i></span>
+              <input
+                type="text"
+                [(ngModel)]="terminoBusqueda"
+                placeholder="Search for the user by name"
+              />
+              <span class="input-group-text"
+                ><i class="fas fa-search"></i
+              ></span>
             </div>
-            <div class="template three">
+            <div class="template three overflow">
               <ng-container *ngFor="let user of project.users">
                 <div class="user-div">
                   <a [routerLink]="['/user-profile', user.idUser]">
                     <div id="profile-pic">
-                      <img
-                        src="../../../assets/img/{{ user.profilePic }}"
-                        alt="{{ user.name }}"
-                      />
+                      <img src="../../assets/img/user.png" alt="" />
                     </div>
                   </a>
                   <p>{{ user.name }}</p>

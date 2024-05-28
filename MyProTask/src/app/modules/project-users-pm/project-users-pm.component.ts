@@ -20,6 +20,19 @@ export class ProjectUsersPmComponent {
       modal.style.display = "none";
     }
   }
+  openModal2() {
+    const modal = document.getElementById("modal2");
+    if (modal) {
+      modal.style.display = "block";
+    }
+  }
+
+  closeModal2() {
+    const modal = document.getElementById("modal2");
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
   projects = [
     {
       name: 'Project 1',

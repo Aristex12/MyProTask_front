@@ -28,8 +28,6 @@ const routes: Routes = [
   {path:"user/:idUser", component:UserComponent, canActivate:[AuthGuard]},
   {path:"newUser", component:NewUserComponent, canActivate:[AuthGuard]},
   {path:"home-pm/:idProject", component:ProjectUsersPmComponent, canActivate:[AuthGuard]}
-
-
 ];
 // user/:userId
 @NgModule({
