@@ -9,7 +9,7 @@
       <div class="modal-content3">
         <span class="close3" (click)="closeModal3()">&times;</span>
           <h1>¿Desea eliminar el Proyecto?</h1>
-        <button>Eliminar</button>    
+        <button (click)="updateActiveProjectById(project.id)" >Eliminar</button>    
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
       </div>
     </ng-container>
 
-    <div class="add-user" (click)="openModal()">
+    <div class="add-user" *ngIf="activeMembers < vacancy" (click)="openModal()">
       <div class="circle-icon">
         <p class="plus">+</p>
       </div>

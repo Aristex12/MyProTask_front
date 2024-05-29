@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/project';
 import { User } from 'src/app/models/user';
 import { ProjectService } from 'src/app/servicios/project/project.service';
@@ -21,7 +21,8 @@ export class ProjectUsersPmComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private userService: UsersService
+    private userService: UsersService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -66,6 +67,13 @@ export class ProjectUsersPmComponent implements OnInit {
       },
       
     });
+  }
+  /**
+   * !!! No hace el update 
+   */
+  updateActiveProjectById(idProject: number){
+    this.projectService.updateActiveProjectById(idProject);
+    this.router.navigate(['/home-pm']);
   }
   
   getUserBorderStyle(name: string): string {
