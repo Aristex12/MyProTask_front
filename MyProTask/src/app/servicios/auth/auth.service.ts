@@ -11,7 +11,7 @@ import {jwtDecode} from 'jwt-decode';
 export class AuthService {
   isLoggedIn: boolean = false;
   urlBase = "http://localhost:8080/auth/login";
-  private tokenKey = 'token';
+  private tokenKey = 'loginToken';
   public userData: any;
 
   constructor(private http: HttpClient) {
@@ -50,45 +50,24 @@ export class AuthService {
     }
   }
 
-  decodeToken(token: string): void {
+  private decodeToken(token: string): void {
     try {
       this.userData = jwtDecode(token);
-      console.log(this.userData);
+      console.log(this.userData); // Puedes eliminar este console.log después de verificar que funciona correctamente
     } catch (error) {
       console.error('Error decoding token', error);
     }
-  }
-
-  getUserId(): number | null {
-    return this.userData?.userId || null;
-  }
-
-  getUserData(): any {
-    return this.userData;
-  }
-  getUserEmail(): any {
-    return this.userData.sub;
-  }
-  getUserName(): any {
-    return `${this.userData.firstName} ${this.userData.lastName}`;
-  }
-  getUserRole(): any {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.get(`http://localhost:8080/api/role/displayRoleUserProjectByIdUser?idUser=${this.userData.userId}`, { headers })
   }
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 
-  logout(): void {
-    console.log('Removing token from localStorage...');
+  public logout(): void {
     localStorage.removeItem(this.tokenKey);
     sessionStorage.clear();
     this.isLoggedIn = false;
     this.userData = null;
-    console.log('Token removed. Current token:', localStorage.getItem(this.tokenKey));
   }
+
 }

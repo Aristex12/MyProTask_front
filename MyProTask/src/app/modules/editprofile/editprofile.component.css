@@ -1,9 +1,4 @@
 /* Estilos CSS */
-textarea {
-    width: 470px;
-    height: 150px;
-    resize: none; 
-}
 #profile-pic {
     background-color: white;
     height: 80px;
@@ -20,108 +15,11 @@ textarea {
     width: 80px;
 }
 
-.add-feature {
-    display: flex;
-    flex-direction: column;
-    margin-top: -30px;
-}
-
-.add-feature > div {
-    margin-bottom: 10px;
-    display: inline-flex; 
-    align-items: center; 
-}
-
-.add-feature select {
-    width: 40%;
-
-}
-
-.add-feature input{
-    width: 20%; 
-    margin-left: 5px; 
-    margin-right: 5px; 
-}
-
-.add-feature label {
-    display: block; 
-    margin-bottom: 5px; 
-}
-.bi.bi-trash{
-    color: #FF6D43;
-}
-.user-description{
- margin-bottom: 20px;
-   
-}
-.user-description button{
-
-    background-color: #FF6D43;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px;
-   }
-
-.add-feature .add-btn {
-    background-color: #FF6D43;
-    color: white;
-width: 20%;
-padding: 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.add-feature .add-btn:hover {
-    background-color: #691700;
-}
-
-.custom-file-input {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-.user-description{
-margin-top: -45px;
-}
-.custom-file-input input[type="file"] {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.custom-file-input input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.custom-file-input button {
-    background-color: #FF6D43;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.custom-file-input button:hover {
-    background-color: #691700;
-}
-
 .body {
-    height: 200px;
-    width: 100%;
-    max-width: 500px;
+   height: 200px;
+    margin-left: 100px;
+    width: 500px;
+    max-width: 90%; /* Usamos un porcentaje máximo en lugar de un valor fijo */
     font-family: Arial, sans-serif;
 }
 
@@ -145,8 +43,8 @@ margin-top: -45px;
 .info {
     display: flex;
     align-items: center;
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 500px; /* Limitamos el ancho máximo */
+    margin: 0 auto; /* Centramos horizontalmente */
 }
 
 .info img {
@@ -172,12 +70,16 @@ margin-top: -45px;
 }
 
 .input-container {
+   
     width: 100%;
     max-width: 500px;
+    margin-top: 200px; /* Ajuste el margen superior según sea necesario */
+    margin-left: -250px; /* Ajuste el margen izquierdo según sea necesario */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
 }
+
 
 .input-container input {
     margin-bottom: 10px;
@@ -197,14 +99,15 @@ margin-top: -45px;
 }
 
 .container {
-    margin-top: 50px;
+   margin-top: 50px;
     display: grid;
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: auto auto; 
-    gap: 20px; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
 }
 
 .features {
+
+    margin-top: 45px;
     order: 3;
 }
 
@@ -214,7 +117,7 @@ margin-top: -45px;
 }
 
 .features .custom-checkbox {
-    display: none;
+    display: none; /* Oculta el cuadro de verificación original */
 }
 
 .features .custom-checkbox + label {
@@ -230,12 +133,12 @@ margin-top: -45px;
     top: 0;
     width: 20px;
     height: 20px;
-    border: 2px solid #FF6D43;
-    background-color: transparent;
+    border: 2px solid #FF6D43; /* Cambia el color del borde del cuadro */
+    background-color: transparent; /* Fondo transparente para el cuadro */
 }
 
 .features .custom-checkbox:checked + label::before {
-    background-color: #FF6D43;
+    background-color: #FF6D43; /* Cambia el color del cuadro cuando está marcado */
 }
 
 .features .custom-checkbox + label::after {
@@ -248,14 +151,39 @@ margin-top: -45px;
     border-left: 2px solid transparent;
     border-bottom: 2px solid transparent;
     transform: rotate(-45deg);
-    opacity: 0;
+    opacity: 0; /* El marcador de verificación estará oculto inicialmente */
 }
 
 .features .custom-checkbox:checked + label::after {
-    opacity: 1;
+    opacity: 1; /* Mostrar el marcador de verificación cuando el checkbox está marcado */
 }
 
-.delete-icon {
+
+.add-feature {
+    margin-top: 500px; 
+    margin-left: -600px; 
+    display: flex;
+    align-items: center;
+}
+
+.add-feature select {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.add-feature .add-btn {
+    background-color: #FF6D43;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    margin-right: 5px;
+}
+
+.add-feature .add-btn:hover {
+    background-color: #691700;
+}
+
+#feature{
+   border-radius: 10px;
 }

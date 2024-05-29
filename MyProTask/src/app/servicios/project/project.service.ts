@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -8,44 +8,22 @@ import { AuthService } from '../auth/auth.service';
 })
 export class ProjectService {
 
-  private idUser:any;
-  
-  constructor(private http:HttpClient, private authService:AuthService) {
-    this.idUser = this.authService.getUserId();
-   }
+  private idUser = localStorage.getItem("idUser");
+  constructor(private http:HttpClient) { }
 
   getData():Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.get(`http://localhost:8080/api/project/displayProjects`, { headers })
+    return this.http.get(`http://localhost:8080/api/project/displayProjects`)
   }
 
-  getProjectsByUserId(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.get(`http://localhost:8080/api/project/displayActiveProjectsByIdUser?idUser=${this.idUser}`, { headers });
+  getProjectsByUserId():Observable<any> {
+    return this.http.get(`http://localhost:8080/api/project/displayActiveProjectsByIdUser?idUser=${this.idUser}`)
   }
 
   getProjectsByCharacteristics(characteristicsIds: number[]): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.post(`http://localhost:8080/api/project/searchProjectsByCharacteristics` ,characteristicsIds, { headers });
+    return this.http.post(`http://localhost:8080/api/project/searchProjectsByCharacteristics` ,characteristicsIds);
   }
   getAllCharacteristics(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristics`, { headers });
-  }
-
-  getVacanciesCount(idProject:number) {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.get(`http://localhost:8080/api/userProject/countUserProjectByIdProject?idProject=${idProject}`, { headers });
+    return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristics`);
   }
 
 }
