@@ -11,21 +11,25 @@ import { HistoryComponent } from './modules/history/history.component';
 import { UserComponent } from './modules/user/user.component';
 import { NewUserComponent } from './modules/new-user/new-user.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePmComponent } from './modules/home-pm/home-pm.component';
+import { ProjectUsersPmComponent } from './project-users-pm/project-users-pm.component';
 
 
 
 
 const routes: Routes = [
-  {path:"", component:LoginComponent},
-  {path:"home", component:HomeComponent},
-  {path:"projects", component:ProjectsComponent},
-  {path:"edituser", component:EditprofileComponent},
-  {path:"calendar", component:CalendarComponent},
-  {path:"users", component:UsersComponent},
-  {path:"tasks", component:TasksComponent},
-  {path:"history", component:HistoryComponent},
-  {path:"user/:idUser", component:UserComponent},
-  {path:"newUser", component:NewUserComponent}  
+  {path:"", component:LoginComponent, },
+  {path:"home", component:HomeComponent, canActivate:[AuthGuard]},
+  {path:"home-pm", component:HomePmComponent, canActivate:[AuthGuard]},
+  {path:"projects", component:ProjectsComponent, canActivate:[AuthGuard]},
+  {path:"edituser", component:EditprofileComponent, canActivate:[AuthGuard]},
+  {path:"calendar", component:CalendarComponent, canActivate:[AuthGuard]},
+  {path:"users", component:UsersComponent, canActivate:[AuthGuard]},
+  {path:"tasks", component:TasksComponent, canActivate:[AuthGuard]},
+  {path:"history", component:HistoryComponent, canActivate:[AuthGuard]},
+  {path:"user/:idUser", component:UserComponent, canActivate:[AuthGuard]},
+  {path:"newUser", component:NewUserComponent, canActivate:[AuthGuard]},
+  {path:"home-pm/:idProject", component:ProjectUsersPmComponent, canActivate:[AuthGuard]}
 
 ];
 // user/:userId

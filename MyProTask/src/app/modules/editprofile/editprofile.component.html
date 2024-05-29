@@ -1,53 +1,73 @@
 <app-aside></app-aside>
 <app-header></app-header>
 <section>
-    <div class="container">
-        <div class="body">
-            <h4>Account Information</h4>
-            <div class="info">
-                <img src="../../../assets/img/user.png" alt="">
-                <div>
-                    <p>Sergio Ramos</p>
-                    <p>sergio.evidenAgmail.com</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="input-container">
-            <label for="cv"> CV</label>
-            <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
-            <label for="profile-picture"> Profile Picture</label>
-            <input type="file" id="profile-picture" name="profile-picture" accept="image/*" required>
-          
-            <button class="submit-btn">Enviar</button>
-        </div>
-
-        <div class="add-feature">
-            <select name="feature" id="feature">
-                <option value="feature1">Característica 1</option>
-                <option value="feature2">Característica 2</option>
-            </select>
-            <button class="add-btn">Añadir</button>
-        </div>
-    
-        <div class="features">
-            <h4>My Characteristics</h4>
-            <div class="checkbox">
-                <input type="checkbox" id="feature1" name="feature1" class="custom-checkbox">
-                <label for="feature1">Característica 1</label><br>
-                <input type="checkbox" id="feature2" name="feature2" class="custom-checkbox">
-                <label for="feature2">Característica 2</label><br>
-                <input type="checkbox" id="feature3" name="feature3" class="custom-checkbox">
-                <label for="feature3">Característica 3</label><br>
-                <input type="checkbox" id="feature4" name="feature4" class="custom-checkbox">
-                <label for="feature4">Característica 4</label><br>
-                <input type="checkbox" id="feature5" name="feature5" class="custom-checkbox">
-                <label for="feature5">Característica 5</label><br>
-                <input type="checkbox" id="feature6" name="feature6" class="custom-checkbox">
-                <label for="feature6">Característica 6</label><br>
-            </div>
-        </div>
+  <div class="container">
+    <div class="user-description"> 
+      <h4>About me</h4>
+      <textarea name="" id=""></textarea><br>
+      <button>Actualizar</button>
     </div>
-    
-    
+   
+    <div class="input-container">
+      <label for="cv">CV</label>
+      <div class="custom-file-input">
+        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
+        <input type="text" id="cv-text" placeholder="No file chosen" readonly>
+      </div>
+
+      <label for="profile-picture">Profile Picture</label>
+      <div class="custom-file-input">
+        <input type="file" id="profile-picture" name="profile-picture" accept="image/*">
+        <input type="text" id="profile-picture-text" placeholder="No file chosen" readonly>
+      </div>
+    </div>
+
+    <div class="add-feature">
+      <label for="feature"> <h5>Tecnologias</h5></label>
+      <div>
+        <select name="feature" id="feature">
+          <option value="feature1">PHP</option>
+          <option value="feature2">JavaScript</option>
+        </select>
+        <input type="number" placeholder="Experiencia" name="" min="1" max="10" id="">
+        <button class="add-btn">Añadir</button>
+      </div>
+      
+      
+      <label for="feature1"><h5>Aptitudes</h5></label>
+      <div>
+        <select name="feature1" id="feature1">
+          <option value="feature1">Trabajo en equipo</option>
+          <option value="feature2">Liderazgo</option>
+        </select>
+        <input type="number" placeholder="Puntuacion" name="" min="1" max="10" id="">
+        <button class="add-btn">Añadir</button>
+      </div>
+
+      
+      <label for="feature2"><h5>Idiomas</h5></label>
+      <div>
+        <select name="feature2" id="feature2">
+          <option value="feature1">Español</option>
+          <option value="feature2">Ingles</option>
+        </select>
+        <input type="number" placeholder="Nivel" max="10" min="1" name="" id="">
+        <button class="add-btn">Añadir</button>
+      </div>
+
+    </div>
+
+    <div class="features">
+      <h4>My Characteristics</h4>
+      <div class="checkbox">
+        <label class="delete-icon" for="features1"><i class="bi bi-trash"></i>PHP</label><br>
+        <label class="delete-icon" for="features2"><i class="bi bi-trash"></i>Laravel</label><br>
+        <label class="delete-icon" for="feature3"><i class="bi bi-trash"></i>Spring</label><br>
+        <label class="delete-icon" for="feature4"><i class="bi bi-trash"></i>Java</label><br>
+        <label class="delete-icon" for="feature5"><i class="bi bi-trash"></i>Javascript</label><br>
+        <label class="delete-icon" for="feature6"><i class="bi bi-trash"></i>Python</label><br>
+        
+      </div>
+    </div>
+  </div>
 </section>

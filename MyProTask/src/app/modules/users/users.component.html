@@ -9,7 +9,7 @@
   *!Importante: Enlazar cada usuario mediante el id par su vista: [routerLink]="['/user-profile', user.user.idUser]"(EN proceso) 
   **/
 -->
-    <div class="plantilla four" >
+    <div class="plantilla-four" >
       <ng-container  *ngFor="let user of users"  >
         <div class="user-div" *ngIf="user.project.idProject== project.idProject" [style.border]="getUserBorderStyle(user.role.name)" [routerLink]="['/user', user.user.idUser]">
           <div id="profile-pic">

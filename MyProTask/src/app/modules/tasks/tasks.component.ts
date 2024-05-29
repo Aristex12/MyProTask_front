@@ -1,4 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TasksService } from 'src/app/servicios/task/tasks.service';
+import { Tasks } from 'src/app/models/tasks';
+
+
 
 @Component({
   selector: 'app-tasks',
@@ -7,87 +13,76 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TasksComponent implements OnInit {
 
-  selectedTask: any; 
+  
 
+  selectedTask: any;
+  tasksList: Tasks[] = [];
+  rol:string = "manager";
+  
   selectTask(task: any) {
     this.selectedTask = task;
+
   }
 
-  constructor() { }
+  constructor(private tasksService: TasksService) { }
 
   ngOnInit(): void {
-    this.selectedTask = this.tasks[0];
+    this.getData();
+
   }
 
-  tasks = [
-    {
-      title: "Submit Documents",
-      description: "Submit required documents for something important. Review the list of documents required for submission.",
-      imageRoute: "../../../assets/img/books.jpg",
-      projectName: "dfgdf",
-      priority: "High",
-      status: "In process",
-      FinishDate: "18/08/24"
-    },
-    {
-      title: "TASK_2",
-      description: "Submit required documents for something important. Review the list of documents required for submission.",
-      imageRoute: "../../../assets/img/books.jpg",
-      projectName: "JOFPOFI",
-      priority: "Moderated",
-      status: "In process",
-      FinishDate: "28/05/24"
-    },
-    {
-      title: "TASK_3",
-      description: "Submit required documents for something important. Review the list of documents required for submission.",
-      imageRoute: "../../../assets/img/books.jpg",
-      projectName: "PJFDUHFAI",
-      priority: "Low",
-      status: "In process",
-      FinishDate: "28/05/24"
-    },{
-      title: "Submit Documents2",
-      description: "Submit required documents for something important. Review the list of documents required for submission.",
-      imageRoute: "../../../assets/img/books.jpg",
-      projectName: "dfgdf",
-      priority: "High",
-      status: "In process",
-      FinishDate: "18/08/24"
-    },
-  
-  ]
-  
+
 
   getColorByPriority(priority: string): string {
-    switch(priority) {
-      case 'High':
+    switch (priority) {
+      case 'HIGH':
         return 'red';
-      case 'Moderated':
+      case 'MID':
         return 'blue';
-      case 'Low':
+      case 'LOW':
         return 'orange';
       default:
         return 'black';
     }
   }
   getColorByPriorityBorder(priority: string): string {
-    switch(priority) {
-      case 'High':
+    switch (priority) {
+      case 'HIGH':
         return '#F88379';
-      case 'Moderated':
+      case 'MID':
         return '#7BAFD4';
-      case 'Low':
+      case 'LOW':
         return '#FFDB58';
       default:
         return 'black';
     }
   }
   //select priority
-  selectedPriority: string = '.'; 
+  selectedPriority: string = '.';
   filterTasksByPriority(priority: string) {
     this.selectedPriority = priority;
   }
+
+  getData() {
+    this.tasksService.getActiveTaskByUserId().subscribe({
+      next: (tasks:any) => {
+        this.tasksList = tasks;
+        this.selectTask(this.tasksList[0]);
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
+    });
+  }
+
+  //Insert TASK
+  InsertTask(task: any) {
+    //Nada por ahora
+  }
+  //EDIT TASK
+  updateTask(task: any) {
+    //Nada por ahora
+  }
   
-  
+
 }
