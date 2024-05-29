@@ -29,13 +29,20 @@ export class UsersService {
   }
 
   /**
-   * !Arreglado
+   * *Arreglado
    */
   getHistoryById(idUser: number) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     return this.http.get<any>(`${this.apiUrl}/api/userProject/displayUserProjectByIdUser?idUser=${idUser}`, { headers });
+  }
+
+  getUsersByIdProject(idProject: number){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<any>(`${this.apiUrl}/api/userProject/displayActiveUserProjectByIdProject?idProject=${idProject}`, { headers });
   }
 }
 

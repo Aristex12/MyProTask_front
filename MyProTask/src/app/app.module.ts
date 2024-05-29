@@ -19,7 +19,7 @@ import { UserComponent } from './modules/user/user.component';
 import { NewUserComponent } from './modules/new-user/new-user.component';
 import { HomePmComponent } from './modules/home-pm/home-pm.component';
 import { RouterEvent, RouterModule, Routes } from '@angular/router';
-import { ProjectUsersPmComponent } from './project-users-pm/project-users-pm.component';
+import { ProjectUsersPmComponent } from './modules/project-users-pm/project-users-pm.component';
 
 
 
