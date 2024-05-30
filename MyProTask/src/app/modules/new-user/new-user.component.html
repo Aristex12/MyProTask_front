@@ -1,0 +1,28 @@
+<app-aside></app-aside>
+<app-header></app-header>
+<section>
+    <div class="container" *ngIf="rol=='developer'">
+        <div class="left ">
+            <img src="../../../assets/img/users_add.png" alt="">
+        </div>
+        <div class="right">
+            <h1>Register New User</h1>
+            <form >
+                <div class="form-group">
+                    <label for="username"><i class="bi bi-person"></i></label>
+                    <input type="text" name="username" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="lastname"><i class="bi bi-person-fill"></i></label>
+                    <input type="text" name="last_name" class="form-control" placeholder="Last name">
+                </div>
+                
+                <button type="submit" class="btn btn-primary button_regis">Register</button>
+            </form>
+        </div>
+             
+    </div>
+
+
+</section>
+

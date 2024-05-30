@@ -1,0 +1,125 @@
+<app-aside></app-aside>
+<app-header></app-header>
+<section>
+    <div id="section-calendar">
+        <div id="div-events">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewEvent">
+                <i class="bi bi-plus bi-lg"></i> New Event
+            </button> 
+            <div id="events">
+                <p>You are going to</p>
+                <div id="event-list">
+                    <ng-container *ngFor="let event of onlyEventList">
+                        <div class="grid-event" data-bs-toggle="modal" (click)="selectEvent(event)" data-bs-target="#eventDetails" >
+                            <i class="bi bi-calendar-event"></i>
+                            <div class="event">
+                              <b>{{ event.title }}</b>
+                              <p>Date: {{ formatTimestamp(event.finishDate)}}</p>
+                            </div>
+                          </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <full-calendar [options]="calendarOptions"></full-calendar>
+    </div>
+
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="NewEvent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add new Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario -->
+                <form  [formGroup]="eventoForm" (ngSubmit)="addEvent()">
+                    <!-- Título -->
+                    <div class="mb-3 text-start">
+                        <label for="title" class="form-label ">Title:</label>
+                        <input formControlName="title" type="text" class="form-control" id="title">
+                    </div>
+
+                    <!-- Fecha final -->
+                    <div class="mb-3 text-start">
+                        <label for="finalDate" class="form-label ">Finish Date:</label>
+                        <input formControlName="finishDate" type="date" class="form-control" id="finalDate">
+                    </div>
+                    <!-- Descripción de la tarea -->
+                    <div class="mb-3 text-start">
+                        <label for="taskDescription" class="form-label ">Description:</label>
+                        <textarea formControlName="description" class="form-control" id="taskDescription" rows="3"></textarea>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" (click)="addEvent()"  class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="EditEvent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario -->
+                <form *ngIf="selectedEvent != null" [formGroup]="eventoForm" (ngSubmit)="updateEvent()">
+                    <!-- Título -->
+                    <div class="mb-3 text-start">
+                        <label for="title" class="form-label ">Title:</label>
+                        <input type="text" class="form-control" id="title" formControlName="title"  value="{{selectedEvent.title}}">
+                    </div>
+
+                    <!-- Fecha final -->
+                    <div class="mb-3 text-start">
+                        <label for="finalDate" class="form-label ">Finish Date:</label>
+                        <input type="date" class="form-control" id="finalDate" formControlName="finishDate" [value]="selectedEvent.finishDate">
+                    </div>
+                    <!-- Descripción de la tarea -->
+                    <div class="mb-3 text-start">
+                        <label for="taskDescription" class="form-label ">Description:</label>
+                        <textarea class="form-control" id="taskDescription" formControlName="description" rows="3" value="{{selectedEvent.description}}"></textarea>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" (click)="updateEvent()" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="eventDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{selectedEvent.title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditEvent">Update</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteEvent(selectedEvent.idEvent)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
