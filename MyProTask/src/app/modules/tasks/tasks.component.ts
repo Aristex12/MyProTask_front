@@ -13,8 +13,6 @@ import { Tasks } from 'src/app/models/tasks';
 })
 export class TasksComponent implements OnInit {
 
-  
-
   selectedTask: any;
   tasksList: Tasks[] = [];
   rol:string = "manager";
@@ -28,6 +26,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    console.log(this.tasksList)
 
   }
 

@@ -1,4 +1,5 @@
 export interface Tasks {
+    idTask: number,
     name:string,
     description:string,
     startDate: Date,
