@@ -41,4 +41,11 @@ export class ProjectService {
     return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristics`, { headers });
   }
 
+  getVacanciesCount(idProject:number) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get(`http://localhost:8080/api/userProject/countUserProjectByIdProject?idProject=${idProject}`, { headers });
+  }
+
 }

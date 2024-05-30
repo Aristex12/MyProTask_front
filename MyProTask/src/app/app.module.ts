@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './modules/header/header.component';
@@ -19,7 +19,7 @@ import { UserComponent } from './modules/user/user.component';
 import { NewUserComponent } from './modules/new-user/new-user.component';
 import { HomePmComponent } from './modules/home-pm/home-pm.component';
 import { RouterEvent, RouterModule, Routes } from '@angular/router';
-import { ProjectUsersPmComponent } from './project-users-pm/project-users-pm.component';
+import { ProjectUsersPmComponent } from './modules/project-users-pm/project-users-pm.component';
 
 
 
