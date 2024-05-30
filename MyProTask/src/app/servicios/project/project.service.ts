@@ -57,12 +57,19 @@ export class ProjectService {
     return this.http.get<Project>(`http://localhost:8080/api/project/displayProjectById?idProject=${idProject}`, { headers });
   }
 
-  updateActiveProjectById(idProject: number){
+  updateActiveProjectById(idProject: number): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.get<Project>(`http://localhost:8080/api/project/updateActiveProjectById`, { headers });
-  }
+    const options = {
+        headers: headers,
+        responseType: 'text' as 'json'
+    };
+    return this.http.put(`http://localhost:8080/api/project/updateActiveProjectById?idProject=${idProject}`, {}, options);
+}
+
+
+  
 
   
 }

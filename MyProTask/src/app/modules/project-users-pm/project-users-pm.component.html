@@ -4,43 +4,55 @@
 <section class="overflow">
   <div class="delete-project">
     <h1>{{ project.name }}</h1>
-    <button class="delete-project" (click)="openModal3()">Eliminar proyecto</button>
+    <button class="delete-project" (click)="openModal3()">Delete Project</button>
     <div id="modal3" class="modal3">
       <div class="modal-content3">
         <span class="close3" (click)="closeModal3()">&times;</span>
-          <h1>¿Desea eliminar el Proyecto?</h1>
-        <button (click)="updateActiveProjectById(project.id)" >Eliminar</button>    
+        <h1>¿Desea eliminar el Proyecto?</h1>
+        <button (click)="updateActiveProjectById(project.idProject)">Eliminar</button>
       </div>
     </div>
   </div>
   <div class="template four">
-    <ng-container *ngFor="let user of userProjects; let i = index">
-      <div
-        class="user-div"
-        
-        [style.border]="getUserBorderStyle(user.role.name)"
-      >
-        
-          <div class="two ico-photo">
-            <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
-              <img src="../../assets/img/user.png" alt="" />
+    <ng-container *ngFor="let user of userProjects">
+      <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" *ngIf="user.role.name != 'manager'">
+        <div class="two ico-photo">
+          <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
+            <img src="../../assets/img/user.png" alt="" />
+          </div>
+          <i class="bi bi-trash" (click)="openModal2(user.user.idUser)"></i>
+          <div [id]="'modal2-' + user.user.idUser" class="modal2">
+            <div class="modal-content2">
+              <span class="close2" (click)="closeModal2(user.user.idUser)">&times;</span>
               
-            </div>
-            <i *ngIf="i !== 0" class="bi bi-trash" (click)="openModal2()"></i>
-            <div *ngIf="i !== 0" id="modal2" class="modal2">
-              <div class="modal-content2">
-                <span class="close2" (click)="closeModal2()">&times;</span>
-                <h1>¿Desea eliminar el usuario?</h1>
-                <button>Eliminar</button>    
-              </div>
+              <h1>¿Desea eliminar el usuario?</h1>
+              <p>{{ user.user.name }}</p>
+              <p>{{ user.user.email }}</p>
+              <p>{{ user.user.das }}</p>
+              <button (click)="updateActiveUserById(user.user.idUser, project.idProject)">Eliminar</button>
             </div>
           </div>
-        
+        </div>
+    
+        <p>{{ user.user.idUser }}</p>
+        <p>{{ user.user.name }}</p>
+        <p>{{ user.user.email }}</p>
+        <p>{{ user.user.das }}</p>
+      </div>
+    
+      <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" *ngIf="user.role.name == 'manager'">
+        <div class="two ico-photo">
+          <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
+            <img src="../../assets/img/user.png" alt="" />
+          </div>
+        </div>
+        <p>{{ user.user.idUser }}</p>
         <p>{{ user.user.name }}</p>
         <p>{{ user.user.email }}</p>
         <p>{{ user.user.das }}</p>
       </div>
     </ng-container>
+    
 
     <div class="add-user" *ngIf="activeMembers < vacancy" (click)="openModal()">
       <div class="circle-icon">
@@ -56,9 +68,22 @@
         <div class="white overflow">
           <div class="white">
             <div class="div-characteristics">
+              <button (click)="deselectAllCheckboxes()" (click)="search()">Reset All</button>
               <div class="characteristics">
-                <h3>Lenguaje</h3>
-                <label> </label>
+                <div *ngFor="let cat of categories">
+                  <h6>{{cat.name}}</h6>
+                  <label *ngFor="let charact of getFilteredCharacteristics(cat.idCategory)">
+                    <input #checkbox class="checkbox" type="checkbox" [value]="charact.idCharacteristic" name="characteristic"
+                           (change)="onChangeCharacteristic(charact.idCharacteristic, $event); applySelectedCharacteristics()" />
+                    {{charact.name}}
+                  </label>
+                  <a class="toggle" *ngIf="!isCategoryExpanded(cat.idCategory)" (click)="toggleCategoryExpansion(cat.idCategory)">
+                    Mostrar más
+                  </a>
+                  <a class="toggle" *ngIf="isCategoryExpanded(cat.idCategory)" (click)="toggleCategoryExpansion(cat.idCategory); search()">
+                    Mostrar menos
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -66,11 +91,7 @@
 
         <div class="div-container">
           <div id="searchbar">
-            <input
-              type="text"
-              [(ngModel)]="terminoBusqueda"
-              placeholder="Search for the user by name"
-            />
+            <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Search for the user by name" />
             <span class="input-group-text"><i class="fas fa-search"></i></span>
           </div>
           <div class="template three overflow">

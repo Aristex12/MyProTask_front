@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +45,19 @@ export class UsersService {
     });
     return this.http.get<any>(`${this.apiUrl}/api/userProject/displayActiveUserProjectByIdProject?idProject=${idProject}`, { headers });
   }
+
+  updateActiveUserById(idUser: number): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const options = {
+      headers: headers,
+      responseType: 'text' as 'json'
+  };
+    return this.http.put(`http://localhost:8080/api/user/updateActiveUser?idUser=${idUser}`, {}, options);
+
+  }
+
+  
 }
 
