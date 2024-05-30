@@ -24,35 +24,127 @@
           <div [id]="'modal2-' + user.user.idUser" class="modal2">
             <div class="modal-content2">
               <span class="close2" (click)="closeModal2(user.user.idUser)">&times;</span>
-              
-              <h1>¿Desea eliminar el usuario?</h1>
-              <p>{{ user.user.name }}</p>
-              <p>{{ user.user.email }}</p>
-              <p>{{ user.user.das }}</p>
-              <button (click)="updateActiveUserById(user.user.idUser, project.idProject)">Eliminar</button>
+
+              <h1>¿Desea eliminar a <span style="color: #FF6D43; font-weight: bold;">{{user.user.name}} {{user.user.lastName}}</span> del proyecto?</h1>
+              <button (click)="closeModal2(user.user.idUser); openModal4(user.user.idUser)">Eliminar</button>
             </div>
           </div>
         </div>
-    
-        <p>{{ user.user.idUser }}</p>
-        <p>{{ user.user.name }}</p>
+
+        <p>{{user.user.name}} {{user.user.lastName}}</p>
         <p>{{ user.user.email }}</p>
         <p>{{ user.user.das }}</p>
       </div>
-    
+
       <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" *ngIf="user.role.name == 'manager'">
         <div class="two ico-photo">
           <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
             <img src="../../assets/img/user.png" alt="" />
           </div>
         </div>
-        <p>{{ user.user.idUser }}</p>
-        <p>{{ user.user.name }}</p>
+        <p>{{user.user.name}} {{user.user.lastName}}</p>
         <p>{{ user.user.email }}</p>
         <p>{{ user.user.das }}</p>
       </div>
+
+      <div [id]="'modal4-' + user.user.idUser" class="modal4">
+        <div class="modal-content4">
+          <span class="close2" (click)="closeModal4(user.user.idUser)">&times;</span>
+
+          <div class="infoUser">
+            <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
+              <img src="../../assets/img/user.png" alt="" />
+            </div>
+
+            <p>{{ user.user.name }}</p>
+            <p>{{ user.user.das }}</p>
+            <p>{{ user.user.email }}</p>
+          </div>
+
+          <div class="evaluation-block">
+            <div class="evaluation-block">
+              <h4>Individual Work</h4>
+              <p>Por favor evalua al miembro del 1-6 en función a su trabajo individual</p>
+              <ul>
+                  <li><span style="font-weight: bold;">1-2</span> El miembro no cumple con sus tareas individuales</li>
+                  <li><span style="font-weight: bold;">3-4</span> Cumple con sus tareas pero podría mejorar</li>
+                  <li><span style="font-weight: bold;">5-6</span> Cumple con sus tareas de manera excelente</li>
+              </ul>
+              <div class="rating">
+                  <label><input type="radio" name="individual_work" value="1"><span>1</span></label>
+                  <label><input type="radio" name="individual_work" value="2"><span>2</span></label>
+                  <label><input type="radio" name="individual_work" value="3"><span>3</span></label>
+                  <label><input type="radio" name="individual_work" value="4"><span>4</span></label>
+                  <label><input type="radio" name="individual_work" value="5"><span>5</span></label>
+                  <label><input type="radio" name="individual_work" value="6"><span>6</span></label>
+              </div>
+          </div>
+
+          <div class="evaluation-block">
+              <h4>Initiative</h4>
+              <p>Por favor evalua al miembro del 1-6 en función a su iniciativa</p>
+              <ul>
+                  <li><span style="font-weight: bold;">1-2</span> No muestra iniciativa</li>
+                  <li><span style="font-weight: bold;">3-4</span> Muestra algo de iniciativa pero podría mejorar</li>
+                  <li><span style="font-weight: bold;">5-6</span> Muestra una gran iniciativa</li>
+              </ul>
+              <div class="rating">
+                  <label><input type="radio" name="initiative" value="1"><span>1</span></label>
+                  <label><input type="radio" name="initiative" value="2"><span>2</span></label>
+                  <label><input type="radio" name="initiative" value="3"><span>3</span></label>
+                  <label><input type="radio" name="initiative" value="4"><span>4</span></label>
+                  <label><input type="radio" name="initiative" value="5"><span>5</span></label>
+                  <label><input type="radio" name="initiative" value="6"><span>6</span></label>
+              </div>
+          </div>
+
+          <div class="evaluation-block">
+              <h4>Problem Resolution</h4>
+              <p>Por favor evalua al miembro del 1-6 en función a su capacidad para resolver problemas</p>
+              <ul>
+                  <li><span style="font-weight: bold;">1-2</span> Tiene dificultades para resolver problemas</li>
+                  <li><span style="font-weight: bold;">3-4</span> Resuelve problemas de manera adecuada pero podría mejorar</li>
+                  <li><span style="font-weight: bold;">5-6</span> Resuelve problemas de manera excelente</li>
+              </ul>
+              <div class="rating">
+                  <label><input type="radio" name="problem_resolution" value="1"><span>1</span></label>
+                  <label><input type="radio" name="problem_resolution" value="2"><span>2</span></label>
+                  <label><input type="radio" name="problem_resolution" value="3"><span>3</span></label>
+                  <label><input type="radio" name="problem_resolution" value="4"><span>4</span></label>
+                  <label><input type="radio" name="problem_resolution" value="5"><span>5</span></label>
+                  <label><input type="radio" name="problem_resolution" value="6"><span>6</span></label>
+              </div>
+          </div>
+
+          <div class="evaluation-block">
+              <h4>Team Work</h4>
+              <p>Por favor evalua al miembro del 1-6 en función a su trabajo en equipo</p>
+              <ul>
+                  <li><span style="font-weight: bold;">1-2</span> El miembro tiene una mala actitud en equipo, etc...</li>
+                  <li><span style="font-weight: bold;">3-4</span> Trabaja pero podría esforzarse más</li>
+                  <li><span style="font-weight: bold;">5-6</span> Trabaja muy bien</li>
+              </ul>
+              <div class="rating">
+                  <label><input type="radio" name="team_work" value="1"><span>1</span></label>
+                  <label><input type="radio" name="team_work" value="2"><span>2</span></label>
+                  <label><input type="radio" name="team_work" value="3"><span>3</span></label>
+                  <label><input type="radio" name="team_work" value="4"><span>4</span></label>
+                  <label><input type="radio" name="team_work" value="5"><span>5</span></label>
+                  <label><input type="radio" name="team_work" value="6"><span>6</span></label>
+              </div>
+          </div>
+
+          <div class="w-100 d-flex justify-content-center">
+            <button class="btn btn-primary w-50" (click)="getFormData()">Enviar</button>
+          </div>
+
+          </div>
+
+        </div>
+      </div>
+
     </ng-container>
-    
+
 
     <div class="add-user" *ngIf="activeMembers < vacancy" (click)="openModal()">
       <div class="circle-icon">

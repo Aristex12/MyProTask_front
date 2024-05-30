@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class UsersService {
 
   private idUser:any;
-  constructor(private http:HttpClient, private authService:AuthService) { 
+  constructor(private http:HttpClient, private authService:AuthService) {
     this.idUser = this.authService.getUserId();
   }
 
@@ -58,6 +58,5 @@ export class UsersService {
 
   }
 
-  
 }
 

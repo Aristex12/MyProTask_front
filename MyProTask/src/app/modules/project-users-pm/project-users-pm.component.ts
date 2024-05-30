@@ -16,13 +16,16 @@ export class ProjectUsersPmComponent implements OnInit {
   userProjects: any = [];
   vacancy: any;
   activeMembers: any;
-  
+
   terminoBusqueda: string = '';
-  
+
   projects: Project[] = [];
   projectsBackup: Project[] = [];
   characteristics: Characteristic[] = [];
   selectedCharacteristicIds: number[] = [];
+
+  user:User | undefined;
+
   expandedCategories: Set<number> = new Set<number>();
 
   categories = [
@@ -42,10 +45,10 @@ export class ProjectUsersPmComponent implements OnInit {
       const idProject = params['idProject'];
       this.loadProjectData(idProject);
       this.getUsersByIdProject(idProject);
-      
+
       this.getData();
       this.getCharacteristics();
-      
+
 
       this.projectService.getVacanciesCount(idProject).subscribe({
         next: (count) => {
@@ -58,6 +61,16 @@ export class ProjectUsersPmComponent implements OnInit {
       });
     });
 
+  }
+  loadUserData(idUser: number) {
+    this.userService.getUserById(idUser).subscribe(
+      (data: User) => {
+        this.user = data;
+      },
+      error => {
+        console.error('Error al cargar el usuario:', error);
+      }
+    );
   }
   getData() {
     this.projectService.getData().subscribe((data: Project[]) => {
@@ -79,19 +92,19 @@ export class ProjectUsersPmComponent implements OnInit {
   }
 
   getUsersByIdProject(idProject: number) {
-   
+
     this.userService.getUsersByIdProject(idProject).subscribe({
       next: (user: any) => {
         this.userProjects = user;
         console.log(user)
-        
+
         console.log( this.userProjects);
       },
-      
+
     });
   }
   /**
-   * !!! No hace el update 
+   * !!! No hace el update
    */
   updateActiveProjectById(idProject: number){
     this.projectService.updateActiveProjectById(idProject).subscribe({
@@ -100,7 +113,7 @@ export class ProjectUsersPmComponent implements OnInit {
         this.router.navigate(['/home-pm']);
       },
       error: (err) => {
-        
+
       },
 
     })
@@ -119,7 +132,7 @@ export class ProjectUsersPmComponent implements OnInit {
 
     })
   }
-  
+
   getUserBorderStyle(name: string): string {
     switch (name.toUpperCase()) {
       case 'MANAGER':
@@ -146,7 +159,7 @@ export class ProjectUsersPmComponent implements OnInit {
   openModal2(idUser: number) {
     const modal = document.getElementById(`modal2-${idUser}`);
     if (modal) {
-      modal.style.display = 'block';
+      modal.style.display = 'flex';
     }
   }
 
@@ -170,6 +183,21 @@ export class ProjectUsersPmComponent implements OnInit {
       modal.style.display = 'none';
     }
   }
+
+  openModal4(idUser: number) {
+    const modal = document.getElementById(`modal4-${idUser}`);
+    if (modal) {
+      modal.style.display = 'flex';
+    }
+  }
+
+  closeModal4(idUser: number) {
+    const modal = document.getElementById(`modal4-${idUser}`);
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+
   getCharacteristics() {
     this.projectService.getAllCharacteristics().subscribe((data: Characteristic[]) => {
       this.characteristics = data;
@@ -229,6 +257,29 @@ export class ProjectUsersPmComponent implements OnInit {
     } else {
       this.expandedCategories.add(categoryId);
     }
+  }
+
+  getFormData(){
+    const individualWorkValue = this.getSelectedValue('individual_work');
+    const initiativeValue = this.getSelectedValue('initiative');
+    const problemResolutionValue = this.getSelectedValue('problem_resolution');
+    const teamWorkValue = this.getSelectedValue('team_work');
+
+    console.log('Individual Work:', individualWorkValue);
+    console.log('Initiative:', initiativeValue);
+    console.log('Problem Resolution:', problemResolutionValue);
+    console.log('Team Work:', teamWorkValue);
+  }
+
+  getSelectedValue(name: string): string | null {
+    const radios = document.getElementsByName(name);
+    for (let i = 0; i < radios.length; i++) {
+      const radio = radios[i] as HTMLInputElement;
+      if (radio.checked) {
+        return radio.value;
+      }
+    }
+    return null;
   }
 
   @ViewChildren('checkbox') checkboxes: QueryList<ElementRef> = new QueryList<ElementRef>();
