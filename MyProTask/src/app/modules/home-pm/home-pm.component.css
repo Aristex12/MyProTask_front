@@ -35,7 +35,9 @@
   .projects-container::-webkit-scrollbar {
     display: none; /* Oculta la barra de desplazamiento */
   }
-   
+  img{
+    max-width: 250px; 
+    max-height: 250px;}
   .project {
     background-color: #f1f1f1;
     padding: 10px;

@@ -16,6 +16,8 @@ export class ProjectUsersPmComponent implements OnInit {
   userProjects: any = [];
   vacancy: any;
   activeMembers: any;
+  addUserProjects: any = [];
+  idCharacteristicsProject: any = [];
   
   terminoBusqueda: string = '';
   
@@ -45,6 +47,8 @@ export class ProjectUsersPmComponent implements OnInit {
       
       this.getData();
       this.getCharacteristics();
+
+      
       
 
       this.projectService.getVacanciesCount(idProject).subscribe({
@@ -78,6 +82,8 @@ export class ProjectUsersPmComponent implements OnInit {
     );
   }
 
+  
+
   getUsersByIdProject(idProject: number) {
    
     this.userService.getUsersByIdProject(idProject).subscribe({
@@ -91,7 +97,7 @@ export class ProjectUsersPmComponent implements OnInit {
     });
   }
   /**
-   * !!! No hace el update 
+   * *Ya va
    */
   updateActiveProjectById(idProject: number){
     this.projectService.updateActiveProjectById(idProject).subscribe({
@@ -102,7 +108,7 @@ export class ProjectUsersPmComponent implements OnInit {
       error: (err) => {
         
       },
-
+      
     })
   }
 
@@ -111,7 +117,7 @@ export class ProjectUsersPmComponent implements OnInit {
     this.userService.updateActiveUserById(idUser).subscribe({
       next: (response:any) => {
         console.log("response: " + response);
-        this.router.navigate(['/home-pm', idProject]);
+        window.location.reload();
       },
       error: (err:any) => {
 
@@ -129,10 +135,32 @@ export class ProjectUsersPmComponent implements OnInit {
     }
   }
 
+  getUsersByCharacteristics(characteristicsIds: number[]){
+    this.userService.getUsersByCharacteristics(characteristicsIds).subscribe({
+      next: (user:any) => {
+        this.addUserProjects = user;
+      },
+      error: (err:any) => {
+
+      },
+    });  
+  }
+
+ 
+
+ 
+
   openModal() {
     const modal = document.getElementById('modal');
     if (modal) {
       modal.style.display = 'block';
+
+      this.project.projectCharacteristics.forEach((characteristic: { idCharacteristic: any; }) => {
+        this.idCharacteristicsProject.push(characteristic.idCharacteristic);
+      });
+
+      console.log(this.idCharacteristicsProject);
+      this.getUsersByCharacteristics(this.idCharacteristicsProject)
     }
   }
 
@@ -140,6 +168,7 @@ export class ProjectUsersPmComponent implements OnInit {
     const modal = document.getElementById('modal');
     if (modal) {
       modal.style.display = 'none';
+      
     }
   }
 

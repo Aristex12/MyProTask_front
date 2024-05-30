@@ -8,7 +8,7 @@
     <div id="modal3" class="modal3">
       <div class="modal-content3">
         <span class="close3" (click)="closeModal3()">&times;</span>
-        <h1>¿Desea eliminar el Proyecto?</h1>
+        <h1>Do you want to delete the project?</h1>
         <button (click)="updateActiveProjectById(project.idProject)">Eliminar</button>
       </div>
     </div>
@@ -25,16 +25,23 @@
             <div class="modal-content2">
               <span class="close2" (click)="closeModal2(user.user.idUser)">&times;</span>
               
-              <h1>¿Desea eliminar el usuario?</h1>
+              <h1>Do you want to delete the user?</h1>
+              <div class="user-div">
+                <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
+                  <img src="../../assets/img/user.png" alt="" />
+                </div>
               <p>{{ user.user.name }}</p>
               <p>{{ user.user.email }}</p>
               <p>{{ user.user.das }}</p>
+            </div>
+              
               <button (click)="updateActiveUserById(user.user.idUser, project.idProject)">Eliminar</button>
+              
             </div>
           </div>
         </div>
     
-        <p>{{ user.user.idUser }}</p>
+      
         <p>{{ user.user.name }}</p>
         <p>{{ user.user.email }}</p>
         <p>{{ user.user.das }}</p>
@@ -46,7 +53,7 @@
             <img src="../../assets/img/user.png" alt="" />
           </div>
         </div>
-        <p>{{ user.user.idUser }}</p>
+       
         <p>{{ user.user.name }}</p>
         <p>{{ user.user.email }}</p>
         <p>{{ user.user.das }}</p>
@@ -65,7 +72,7 @@
     <div class="modal-content">
       <span class="close" (click)="closeModal()">&times;</span>
       <div class="template eight">
-        <div class="white overflow">
+        <div class="white ">
           <div class="white">
             <div class="div-characteristics">
               <button (click)="deselectAllCheckboxes()" (click)="search()">Reset All</button>
@@ -95,7 +102,7 @@
             <span class="input-group-text"><i class="fas fa-search"></i></span>
           </div>
           <div class="template three overflow">
-            <ng-container *ngFor="let user of project.users">
+            <ng-container *ngFor="let user of addUserProjects">
               <div class="user-div">
                 <a [routerLink]="['/user-profile', user.idUser]">
                   <div id="profile-pic">
