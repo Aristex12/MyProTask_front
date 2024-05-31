@@ -122,8 +122,8 @@ export class ProjectUsersPmComponent implements OnInit {
     }
   }
 
-  getUsersByCharacteristics(characteristicsIds: number[]) {
-    this.userService.getUsersByCharacteristics(characteristicsIds).subscribe({
+  getUsersByCharacteristics(characteristicsIds: number[], idProject: number) {
+    this.userService.getUsersByCharacteristics(characteristicsIds, idProject).subscribe({
       next: (users: User[]) => {
         this.addUserProjects = users;
       },
@@ -156,7 +156,7 @@ export class ProjectUsersPmComponent implements OnInit {
       this.project.projectCharacteristics.forEach((characteristic: { idCharacteristic: any; }) => {
         this.idCharacteristicsProject.push(characteristic.idCharacteristic);
       });
-      this.getUsersByCharacteristics(this.idCharacteristicsProject);
+      this.getUsersByCharacteristics(this.idCharacteristicsProject, this.project.idProject);
     }
   }
 

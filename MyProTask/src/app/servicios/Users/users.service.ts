@@ -47,14 +47,14 @@ export class UsersService {
     return this.http.get<any>(`${this.apiUrl}/api/userProject/displayActiveUserProjectByIdProject?idProject=${idProject}`, { headers });
   }
 
-  getUsersByCharacteristics(characteristicsIds: number[]): Observable<User[]> {
+  getUsersByCharacteristics(characteristicsIds: number[], idProject: number): Observable<User[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     const options = {
       headers: headers
   };
-    return this.http.post<User[]>(`http://localhost:8080/api/user/displayUsersByCharacteristics`, characteristicsIds, options);
+    return this.http.post<User[]>(`http://localhost:8080/api/user/displayUsersByCharacteristics?idProject=${idProject}`, characteristicsIds, options);
 
 
   }
