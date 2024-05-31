@@ -70,7 +70,7 @@ export class ProjectUsersPmComponent implements OnInit {
         this.project = data;
         this.vacancy = data.vacancies;
       },
-      (error) => {
+      (error:any) => {
         console.error('Error', error);
       }
     );
@@ -96,8 +96,8 @@ export class ProjectUsersPmComponent implements OnInit {
       next: (response: any) => {
         this.router.navigate(['/home-pm']);
       },
-      error: (err) => {
-        console.error('Error updating project:', err);
+      error: (error:any) => {
+        console.error('Error updating project:', error);
       },
     });
   }

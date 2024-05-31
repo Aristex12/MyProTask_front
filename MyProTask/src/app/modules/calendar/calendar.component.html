@@ -82,19 +82,19 @@
                     <!-- Título -->
                     <div class="mb-3 text-start">
                         <label for="title" class="form-label ">Title:</label>
-                        <input type="text" class="form-control" id="title" formControlName="title"  value="{{selectedEvent?.title}}">
+                        <input type="text" class="form-control" id="title" formControlName="title"  value="{{selectedEvent.title}}">
                     </div>
 
                     <!-- Fecha final -->
                 <div class="mb-3 text-start">
                     <label for="finalDate" class="form-label">Finish Date:</label>
-                    <input type="date" class="form-control" id="finalDate" formControlName="finishDate" [value]="selectedEvent?.finishDate | date:'yyyy-MM-dd'">
+                    <input type="date" class="form-control" id="finalDate" formControlName="finishDate" [value]="selectedEvent.finishDate | date:'yyyy-MM-dd'">
                 </div>
 
                     <!-- Descripción de la tarea -->
                     <div class="mb-3 text-start">
                         <label for="taskDescription" class="form-label ">Description:</label>
-                        <textarea class="form-control" id="taskDescription" formControlName="description" rows="3" value="{{selectedEvent?.description}}"></textarea>
+                        <textarea class="form-control" id="taskDescription" formControlName="description" rows="3" value="{{selectedEvent.description}}"></textarea>
                     </div>
 
                 </form>
