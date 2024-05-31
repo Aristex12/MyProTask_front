@@ -53,7 +53,7 @@ export class ProjectService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.get(`http://localhost:8080/api/userProject/countUserProjectByIdProject?idProject=${idProject}`, { headers });
+    return this.http.get(`http://localhost:8080/api/userProject/countActiveUserProjectByIdProject?idProject=${idProject}`, { headers });
   }
   
   updateActiveProjectById(idProject: number): Observable<any> {

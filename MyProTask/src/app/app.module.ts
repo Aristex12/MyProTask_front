@@ -42,7 +42,8 @@ import { RequestComponent } from './modules/request/request.component';
     NewUserComponent,
     HomePmComponent,
     ProjectUsersPmComponent,
-    RequestComponent
+    RequestComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
