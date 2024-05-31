@@ -2,6 +2,9 @@ import { Component, OnInit, QueryList, ViewChildren, ElementRef } from '@angular
 import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/servicios/project/project.service';
 import { Characteristic } from 'src/app/models/characteristic';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RequestService } from 'src/app/servicios/request/request.service';
+import { AuthService } from 'src/app/servicios/auth/auth.service';
 
 @Component({
   selector: 'app-projects',
@@ -15,6 +18,12 @@ export class ProjectsComponent implements OnInit {
   characteristics: Characteristic[] = [];
   selectedCharacteristicIds: number[] = [];
   expandedCategories: Set<number> = new Set<number>();
+  userRole:string = "";
+  requestForm!: FormGroup;
+  selectedProject:any= {
+    idProject: 0,
+    name: '',
+  }
 
   categories = [
     { idCategory: 1, name: "Programming Language" },
@@ -22,11 +31,17 @@ export class ProjectsComponent implements OnInit {
     { idCategory: 3, name: "Languages" },
   ]
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private formBuilder:FormBuilder, private requestService:RequestService, private authService:AuthService) {
+    this.requestForm = this.formBuilder.group({
+      message: ['', Validators.required],
+    });
+   }
 
   ngOnInit(): void {
     this.getData();
     this.getCharacteristics();
+    this.userRole = this.authService.getUserRole();
+    console.log(this.userRole)
   }
 
   getData() {
@@ -106,4 +121,27 @@ export class ProjectsComponent implements OnInit {
     this.selectedCharacteristicIds = [];
     this.applySelectedCharacteristics();
   }
+
+  selectProject(idProject:number, name:string){
+    this.selectedProject.idProject = idProject;
+    this.selectedProject.name = name;
+  }
+
+  makeRequest(){
+
+    const request = {
+      idProject: this.selectedProject.idProject,
+      message: this.requestForm.value.message
+    };
+
+    this.requestService.makeRequest(request).subscribe({
+      next: (request) =>{
+        console.log(request)
+      },
+      error: (error) =>{
+        console.error(error)
+      },
+    })
+  }
+
 }

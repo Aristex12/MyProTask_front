@@ -1,0 +1,21 @@
+<app-aside></app-aside>
+<app-header></app-header>
+<section>
+    <div id="projects">
+      <table >
+        <tr>
+          <th class="border-left">Project Name</th>
+          <th>Observations</th>
+          <th>Employee</th>
+          <th class="border-right">Options</th>
+        </tr>
+        <tr class="grey" *ngFor="let request of requestList">
+          <td class="border-left">{{ request.project.name }}</td>
+          <td>{{ request.message }}</td>
+          <td>{{ request.user.email }}</td>
+          <td class="border-right"><button (click)="deleteRequest(request.idRequest)">Delete</button></td>
+
+        </tr>          
+      </table>
+  </div>
+</section>
