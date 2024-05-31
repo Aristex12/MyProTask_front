@@ -143,7 +143,7 @@ export class CalendarComponent implements OnInit {
     console.log(event)
     this.selectedEvent.idEvent = event.idEvent;
     this.selectedEvent.title = event.title;
-    this.selectedEvent.finishDate = event.start;
+    this.selectedEvent.finishDate = event.finishDate;
     this.selectedEvent.description = event.description;
     console.log(this.selectedEvent)
   }
@@ -161,11 +161,18 @@ export class CalendarComponent implements OnInit {
   }
 
   updateEvent(){
+    let finishDate: Date;
+    if (this.eventoForm.value.finishDate) {
+        finishDate = new Date(this.eventoForm.value.finishDate);
+    } else {
+        finishDate = this.selectedEvent?.finishDate || new Date(); // Otra opción si no quieres que sea nulo
+    }
+
     const event = {
-      title: this.eventoForm.value.title,
-      finishDate: new Date(this.eventoForm.value.finishDate),
-      description: this.eventoForm.value.description
-    };
+      title: this.eventoForm.value.title||this.selectedEvent?.title,
+      finishDate: finishDate,
+      description: this.eventoForm.value.description||this.selectedEvent?.description
+  };
 
     this.eventService.updateEvent(this.selectedEvent.idEvent, event ).subscribe({
       next: (response: any) => {
