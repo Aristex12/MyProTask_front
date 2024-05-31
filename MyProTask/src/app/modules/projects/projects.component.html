@@ -1,0 +1,85 @@
+<app-aside></app-aside>
+<app-header></app-header>
+<section>
+  <div class="template-eight">
+    <div class="white overflow">
+      <div class="white">
+        <div class="div-characteristics">
+          <button (click)="deselectAllCheckboxes()" (click)="search()">Reset All</button>
+          <div class="characteristics">
+            <div *ngFor="let cat of categories">
+              <h6>{{cat.name}}</h6>
+              <label *ngFor="let charact of getFilteredCharacteristics(cat.idCategory)">
+                <input #checkbox class="checkbox" type="checkbox" [value]="charact.idCharacteristic" name="characteristic"
+                       (change)="onChangeCharacteristic(charact.idCharacteristic, $event); applySelectedCharacteristics()" />
+                {{charact.name}}
+              </label>
+              <a class="toggle" *ngIf="!isCategoryExpanded(cat.idCategory)" (click)="toggleCategoryExpansion(cat.idCategory)">
+                Mostrar más
+              </a>
+              <a class="toggle" *ngIf="isCategoryExpanded(cat.idCategory)" (click)="toggleCategoryExpansion(cat.idCategory); search()">
+                Mostrar menos
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-container">
+      <div id="searchbar">
+        <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Search for the project by name" (input)="search()"
+          (click)="search(); deselectAllCheckboxes()" />
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+      </div>
+      <div class="white overflow top" *ngIf="projects">
+        <div class="white">
+          <div *ngFor="let project of projects" class="template seven">
+            <div>
+              <h1>{{ project.name }}</h1>
+              <p>{{ project.description }}</p>
+            </div>
+            <div class="info-project">
+              <p>2d ago</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Request">
+                Request Project
+              </button>             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="modal fade" id="Request" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add new Task</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">                 
+        <!-- Formulario -->
+        <form>
+          <!-- Título -->
+          <div class="mb-3 text-start">
+            <h3 for="title">Backend Api Development</h3>
+          </div>                                                    
+        <!-- Descripción de la tarea -->
+         <div class="mb-3 text-start">
+           <label for="taskDescription" class="form-label ">Why should we choose you ?</label>
+          <textarea class="form-control" required id="taskDescription" rows="3"></textarea>
+         </div>
+
+        </form>
+      </div>
+                                      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
