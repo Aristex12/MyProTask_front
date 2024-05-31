@@ -15,6 +15,7 @@ export class UsersService {
 
 
   private apiUrl = 'http://localhost:8080';
+
   getData() {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project } from 'src/app/models/project'; 
+import { Project } from 'src/app/models/project';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class ProjectService {
 
   private idUser: any;
-  
+
   constructor(private http: HttpClient, private authService: AuthService) {
     this.idUser = this.authService.getUserId();
   }
@@ -67,11 +67,6 @@ export class ProjectService {
     };
     return this.http.put(`http://localhost:8080/api/project/updateActiveProjectById?idProject=${idProject}`, {}, options);
 }
-
-
-  
-
-  
 }
 
 

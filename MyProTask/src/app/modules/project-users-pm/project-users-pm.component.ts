@@ -1,8 +1,10 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Characteristic } from 'src/app/models/characteristic';
 import { Project } from 'src/app/models/project';
 import { User } from 'src/app/models/user';
+import { EvaluationService } from 'src/app/servicios/evaluation/evaluation.service';
 import { ProjectService } from 'src/app/servicios/project/project.service';
 import { UsersService } from 'src/app/servicios/Users/users.service';
 
@@ -24,6 +26,8 @@ export class ProjectUsersPmComponent implements OnInit {
   characteristics: Characteristic[] = [];
   selectedCharacteristicIds: number[] = [];
 
+  evaluationComment: string = '';
+
   user:User | undefined;
 
   expandedCategories: Set<number> = new Set<number>();
@@ -37,7 +41,8 @@ export class ProjectUsersPmComponent implements OnInit {
     private route: ActivatedRoute,
     private projectService: ProjectService,
     private userService: UsersService,
-    private router: Router
+    private router: Router,
+    private evaluationService:EvaluationService
   ) {}
 
   ngOnInit() {
@@ -52,7 +57,6 @@ export class ProjectUsersPmComponent implements OnInit {
 
       this.projectService.getVacanciesCount(idProject).subscribe({
         next: (count) => {
-          console.log(count);
           this.activeMembers = count;
         },
         error: (err) => {
@@ -83,7 +87,6 @@ export class ProjectUsersPmComponent implements OnInit {
       (data: Project) => {
         this.project = data;
         this.vacancy = data.vacancies;
-        console.log(this.vacancy);
       },
       (error) => {
         console.error('Error', error);
@@ -96,16 +99,11 @@ export class ProjectUsersPmComponent implements OnInit {
     this.userService.getUsersByIdProject(idProject).subscribe({
       next: (user: any) => {
         this.userProjects = user;
-        console.log(user)
-
-        console.log( this.userProjects);
       },
 
     });
   }
-  /**
-   * !!! No hace el update
-   */
+
   updateActiveProjectById(idProject: number){
     this.projectService.updateActiveProjectById(idProject).subscribe({
       next: (response:any) => {
@@ -119,18 +117,17 @@ export class ProjectUsersPmComponent implements OnInit {
     })
   }
 
-  updateActiveUserById(idUser: number, idProject: number){
-    console.log(idUser);
+  updateActiveUserById(idUser: number, idProject: number) {
     this.userService.updateActiveUserById(idUser).subscribe({
-      next: (response:any) => {
+      next: (response: any) => {
+
         console.log("response: " + response);
         this.router.navigate(['/home-pm', idProject]);
       },
-      error: (err:any) => {
-
-      },
-
-    })
+      error: (err: any) => {
+        console.error('Error:', err);
+      }
+    });
   }
 
   getUserBorderStyle(name: string): string {
@@ -259,16 +256,34 @@ export class ProjectUsersPmComponent implements OnInit {
     }
   }
 
-  getFormData(){
+  addEvaluationData(idUser:number){
     const individualWorkValue = this.getSelectedValue('individual_work');
     const initiativeValue = this.getSelectedValue('initiative');
     const problemResolutionValue = this.getSelectedValue('problem_resolution');
     const teamWorkValue = this.getSelectedValue('team_work');
+    const observationValue = (document.getElementById('comment') as HTMLTextAreaElement).value;
 
-    console.log('Individual Work:', individualWorkValue);
-    console.log('Initiative:', initiativeValue);
-    console.log('Problem Resolution:', problemResolutionValue);
-    console.log('Team Work:', teamWorkValue);
+    console.log(observationValue);
+
+    // Crea un objeto de evaluación con los datos del formulario
+    const evaluationData: any = {
+      teamWork: teamWorkValue,
+      individualWork: individualWorkValue,
+      initiative: initiativeValue,
+      problemResolution: problemResolutionValue,
+      observation: this.evaluationComment,
+    };
+
+    // Llama al método del servicio para enviar la evaluación
+    this.evaluationService.addUserEvaluation(evaluationData, idUser).subscribe({
+      next: (response: any) => {
+        console.log('Evaluation added successfully:', response);
+      },
+      error: (err: any) => {
+        console.error('Error adding evaluation:', err);
+      }
+    });
+
   }
 
   getSelectedValue(name: string): string | null {
