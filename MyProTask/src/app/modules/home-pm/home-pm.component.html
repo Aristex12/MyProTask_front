@@ -6,7 +6,7 @@
     <button class="arrow arrow-left" (click)="scrollLeft()">&#8249;</button>
     <div class="projects-container" #projectsContainer>
       <div class="project" *ngFor="let project of projects">
-        <img src="../../../assets/img/logo-eviden.png" alt="" style="max-width: 250px; max-height: 250px;">
+        <img src="../../../assets/img/logo-eviden.png" alt="" >
         <h3>{{project.name}}</h3>
         <div class="project-info">
           <ng-container *ngFor="let vacancies of vacanciesList">
@@ -14,7 +14,7 @@
           </ng-container>
           
           
-          <button [routerLink]="['/home-pm', 1]">Go to</button>
+          <button [routerLink]="['/home-pm', project.idProject]">Go to</button>
         </div>
       </div>
     </div>

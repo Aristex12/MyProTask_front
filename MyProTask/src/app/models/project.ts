@@ -6,5 +6,18 @@ export interface Project {
       finishDate: Date,
       vacancies: number,
       active: string,
+      projectCharacteristics: [
+        {
+          idCharacteristic: number,
+          name: string,
+          category: [
+            {
+              idCategory: number,
+              name: string,
+              technical: boolean
+            }
+          ]
+        }
+      ]
       //public manager_id: number
   }

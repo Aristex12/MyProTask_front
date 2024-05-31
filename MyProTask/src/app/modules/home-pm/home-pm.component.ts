@@ -45,14 +45,14 @@ export class HomePmComponent {
 
   scrollLeft(): void {
     this.projectsContainer.nativeElement.scrollBy({
-      left: -380,
+      left: -500,
       behavior: 'smooth',
     });
   }
 
   scrollRight(): void {
     this.projectsContainer.nativeElement.scrollBy({
-      left: 380,
+      left: 500,
       behavior: 'smooth',
     });
   }

@@ -1,84 +1,134 @@
 <app-aside></app-aside>
 <app-header></app-header>
- 
+
 <section class="overflow">
-  <div *ngFor="let project of projects" class="project-container">
+  <div class="delete-project">
     <h1>{{ project.name }}</h1>
-    <div class="template four">
-      <ng-container *ngFor="let user of project.users">
-        <div class="user-div">
-          <a [routerLink]="['/user-profile', user.idUser]">
-            <div class="two ico-photo">
-              <div id="profile-pic">
-                <img src="../../assets/img/user.png" alt="" />
-              </div>
-             
-                <i class="bi bi-trash "  onclick="projectUsers.openModal2()"></i>
-                <div id="modal2" class="modal2">
-                <div class="modal-content2">
-                  <span class="close2" onclick="projectUsers.closeModal2()">&times;</span>
-                  <h1>Desea eliminar el usuario?</h1>
-                  <button>Eliminar</button>    
-                </div>
-              </div>
-           
-            </div>
-          </a>
-          <p>{{ user.name }}</p>
-          <p>{{ user.email }}</p>
-          <p>{{ user.das }}</p>
-        </div>
-      </ng-container>
-      <div class="add-user" onclick="projectUsers.openModal()">
-        <div class="circle-icon">
-          <p class="plus">+</p>
-        </div>
+    <button class="delete-project" (click)="openModal3()">Delete Project</button>
+    <div id="modal3" class="modal3">
+      <div class="modal-content3">
+        <span class="close3" (click)="closeModal3()">&times;</span>
+        <h1>Do you want to delete the project?</h1>
+        <button (click)="updateActiveProjectById(project.idProject)">Eliminar</button>
       </div>
     </div>
   </div>
- 
+  <div class="template four">
+    <ng-container *ngFor="let user of userProjects">
+      <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" *ngIf="user.role.name != 'manager'">
+        <div class="two ico-photo">
+          <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
+            <img src="../../assets/img/user.png" alt="" />
+          </div>
+          <i class="bi bi-trash" (click)="openModal2(user.user.idUser)"></i>
+          <div [id]="'modal2-' + user.user.idUser" class="modal2">
+            <div class="modal-content2">
+              <span class="close2" (click)="closeModal2(user.user.idUser)">&times;</span>
+              
+              <h1>Do you want to delete the user?</h1>
+              <div class="user-div">
+                <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
+                  <img src="../../assets/img/user.png" alt="" />
+                </div>
+              <p>{{ user.user.name }}</p>
+              <p>{{ user.user.email }}</p>
+              <p>{{ user.user.das }}</p>
+            </div>
+              
+              <button (click)="updateActiveUserById(user.user.idUser, project.idProject)">Eliminar</button>
+              
+            </div>
+          </div>
+        </div>
+    
+      
+        <p>{{ user.user.name }}</p>
+        <p>{{ user.user.email }}</p>
+        <p>{{ user.user.das }}</p>
+      </div>
+    
+      <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" *ngIf="user.role.name == 'manager'">
+        <div class="two ico-photo">
+          <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
+            <img src="../../assets/img/user.png" alt="" />
+          </div>
+        </div>
+       
+        <p>{{ user.user.name }}</p>
+        <p>{{ user.user.email }}</p>
+        <p>{{ user.user.das }}</p>
+      </div>
+    </ng-container>
+    
+
+    <div class="add-user" *ngIf="activeMembers < vacancy" (click)="openModal()">
+      <div class="circle-icon">
+        <p class="plus">+</p>
+      </div>
+    </div>
+  </div>
+
   <div id="modal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="projectUsers.closeModal()">&times;</span>
- 
+      <span class="close" (click)="closeModal()">&times;</span>
       <div class="template eight">
-        <div class="white overflow">
+        <div class="white ">
           <div class="white">
             <div class="div-characteristics">
+              <button (click)="deselectAllCheckboxes()" (click)="search()">Reset All</button>
               <div class="characteristics">
-                <h3>Lenguaje</h3>
-                <label> </label>
+                <div *ngFor="let cat of categories">
+                  <h6>{{cat.name}}</h6>
+                  <label *ngFor="let charact of getFilteredCharacteristics(cat.idCategory)">
+                    <input #checkbox class="checkbox" type="checkbox" [value]="charact.idCharacteristic" name="characteristic"
+                           (change)="onChangeCharacteristic(charact.idCharacteristic, $event); applySelectedCharacteristics()" />
+                    {{charact.name}}
+                  </label>
+                  <a class="toggle" *ngIf="!isCategoryExpanded(cat.idCategory)" (click)="toggleCategoryExpansion(cat.idCategory)">
+                    Mostrar más
+                  </a>
+                  <a class="toggle" *ngIf="isCategoryExpanded(cat.idCategory)" (click)="toggleCategoryExpansion(cat.idCategory); search()">
+                    Mostrar menos
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
- 
+
         <div class="div-container">
-          <div *ngFor="let project of projects" class="project-container">
-            <div id="searchbar">
-              <input
-                type="text"
-                [(ngModel)]="terminoBusqueda"
-                placeholder="Search for the user by name"
-              />
-              <span class="input-group-text"
-                ><i class="fas fa-search"></i
-              ></span>
-            </div>
-            <div class="template three overflow">
-              <ng-container *ngFor="let user of project.users">
-                <div class="user-div">
-                  <a [routerLink]="['/user-profile', user.idUser]">
-                    <div id="profile-pic">
-                      <img src="../../assets/img/user.png" alt="" />
-                    </div>
-                  </a>
-                  <p>{{ user.name }}</p>
-                  <p>{{ user.email }}</p>
-                  <p>{{ user.das }}</p>
+          <div id="searchbar">
+            <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Search for the user by name" />
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+          </div>
+          <div class="template three overflow">
+            <ng-container *ngFor="let user of addUserProjects">
+              <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" *ngIf="user.role.name != 'manager'">
+                <div class="two ico-photo">
+                  <div id="profile-pic"[routerLink]="['/user', user.idUser]">
+                    <img src="../../assets/img/user.png" alt="" />
+                  </div>
+                  <i class="bi bi-plus" (click)="addMember( user.idUser, project.idProject)"></i>
+                  
                 </div>
-              </ng-container>
-            </div>
+            
+              
+                <p>{{ user.name }}</p>
+                <p>{{ user.email }}</p>
+                <p>{{ user.das }}</p>
+              </div>
+              <!-- <div class="user-div">
+                <a [routerLink]="['/user', user.idUser]">
+                  <div id="profile-pic">
+                    <img src="../../assets/img/user.png" alt="" />
+                  </div>
+                </a>
+                <p>{{ user.name }}</p>
+                <p>{{ user.email }}</p>
+                <p>{{ user.das }}</p>
+                <i class="bi bi-plus" (click)="addMember( user.idUser, project.idProject)"></i>
+              </div> -->
+            </ng-container>
           </div>
         </div>
       </div>
