@@ -40,8 +40,8 @@
               <p>{{ project.description }}</p>
             </div>
             <div class="info-project">
-              <p>2d ago</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Request">
+              <p></p>
+              <button type="button" *ngIf="userRole == 'employee'" (click)="selectProject(project.idProject, project.name)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Request">
                 Request Project
               </button>             
             </div>
@@ -62,15 +62,15 @@
       </div>
       <div class="modal-body">                 
         <!-- Formulario -->
-        <form>
+        <form [formGroup]="requestForm">
           <!-- Título -->
           <div class="mb-3 text-start">
-            <h3 for="title">Backend Api Development</h3>
+            <h3 for="title">{{selectedProject.name}}</h3>
           </div>                                                    
         <!-- Descripción de la tarea -->
          <div class="mb-3 text-start">
            <label for="taskDescription" class="form-label ">Why should we choose you ?</label>
-          <textarea class="form-control" required id="taskDescription" rows="3"></textarea>
+          <textarea formControlName="message" class="form-control" required id="taskDescription" rows="3"></textarea>
          </div>
 
         </form>
@@ -78,7 +78,7 @@
                                       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+        <button type="submit" (click)="makeRequest()" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
       </div>
     </div>
   </div>
