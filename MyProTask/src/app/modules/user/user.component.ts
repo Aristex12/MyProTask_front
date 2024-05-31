@@ -4,6 +4,7 @@ import { Project } from 'src/app/models/project';
 import { User } from 'src/app/models/user';
 import { UserView } from 'src/app/models/userView'; // Importa el modelo UserView
 import { UsersService } from 'src/app/servicios/Users/users.service';
+import { EvaluationService } from 'src/app/servicios/evaluation/evaluation.service';
 
 @Component({
   selector: 'app-user',
@@ -12,19 +13,39 @@ import { UsersService } from 'src/app/servicios/Users/users.service';
 })
 export class UserComponent implements OnInit {
   user: User | undefined;
-  userView: UserView []=[]; 
+  userView: UserView []=[];
   users: any = [];
   projects: Project[] = [];
 
-  constructor(private route: ActivatedRoute, private userService: UsersService) { }
+  evaluations: any = [];
+
+  //añadido
+  constructor(private route: ActivatedRoute, private userService: UsersService, private evaluationService:EvaluationService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const idUser = params['idUser'];
       this.loadUserData(idUser);
-      this.loadUserHistory(idUser); // Carga el historial al iniciar el componente
-    });    
+      this.loadUserHistory(idUser);
+      this.loadUserEvaluations(idUser); // Añadido
+    });
   }
+
+
+  // Añadido
+
+  loadUserEvaluations(idUser: number) {
+    this.evaluationService.getUserEvaluation(idUser).subscribe(
+      (data: any[]) => {
+        this.evaluations = data;
+        console.log('Evaluaciones:', this.evaluations);
+      },
+      error => {
+        console.error('Error al cargar las evaluaciones del usuario:', error);
+      }
+    );
+  }
+
 
   loadUserData(idUser: number) {
     this.userService.getUserById(idUser).subscribe(
@@ -56,21 +77,21 @@ export class UserComponent implements OnInit {
               Project: project,
               User: user,
               // Declarar como opcional o asignar un valor válido
-              joinDate: undefined, 
-              exitDate: undefined, 
+              joinDate: undefined,
+              exitDate: undefined,
               role: undefined,
               active:true
             };
-            
+
             this.userView.push(users_view);
           });
-          console.log('Usuarios:', this.users); 
-          console.log('Proyectos:', this.projects); 
-          console.log('Vista de usuarios:', this.userView); 
+          console.log('Usuarios:', this.users);
+          console.log('Proyectos:', this.projects);
+          console.log('Vista de usuarios:', this.userView);
         } else {
           console.log('No se encontraron usuarios.');
         }
-        
+
       },
       error => {
         console.error('Error al cargar el historial del usuario:', error);
