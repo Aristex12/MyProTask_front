@@ -103,8 +103,22 @@
           </div>
           <div class="template three overflow">
             <ng-container *ngFor="let user of addUserProjects">
-              <div class="user-div">
-                <a [routerLink]="['/user-profile', user.idUser]">
+              <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" *ngIf="user.role.name != 'manager'">
+                <div class="two ico-photo">
+                  <div id="profile-pic"[routerLink]="['/user', user.idUser]">
+                    <img src="../../assets/img/user.png" alt="" />
+                  </div>
+                  <i class="bi bi-plus" (click)="addMember( user.idUser, project.idProject)"></i>
+                  
+                </div>
+            
+              
+                <p>{{ user.name }}</p>
+                <p>{{ user.email }}</p>
+                <p>{{ user.das }}</p>
+              </div>
+              <!-- <div class="user-div">
+                <a [routerLink]="['/user', user.idUser]">
                   <div id="profile-pic">
                     <img src="../../assets/img/user.png" alt="" />
                   </div>
@@ -112,7 +126,8 @@
                 <p>{{ user.name }}</p>
                 <p>{{ user.email }}</p>
                 <p>{{ user.das }}</p>
-              </div>
+                <i class="bi bi-plus" (click)="addMember( user.idUser, project.idProject)"></i>
+              </div> -->
             </ng-container>
           </div>
         </div>

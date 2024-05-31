@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -46,15 +47,28 @@ export class UsersService {
     return this.http.get<any>(`${this.apiUrl}/api/userProject/displayActiveUserProjectByIdProject?idProject=${idProject}`, { headers });
   }
 
-  getUsersByCharacteristics(characteristicsIds: number[]): Observable<any> {
+  getUsersByCharacteristics(characteristicsIds: number[]): Observable<User[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     const options = {
+      headers: headers
+  };
+    return this.http.post<User[]>(`http://localhost:8080/api/user/displayUsersByCharacteristics`, characteristicsIds, options);
+
+
+  }
+
+  addMember(idUser: number, idProject: number){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+
+    const options = {
       headers: headers,
       responseType: 'text' as 'json'
   };
-    return this.http.post(`http://localhost:8080/api/user/displayUsersByCharacteristics`, characteristicsIds, options);
+    return this.http.post(`http://localhost:8080/api/userProject/addMember?idUser=${idUser}&idProject=${idProject}`, {}, options);
   }
 
 

@@ -298,11 +298,12 @@
       gap: 30px;
     }
     input[type="checkbox"] {
-      appearance: none;
+      
       -webkit-appearance: none;
       -moz-appearance: none;
       -ms-appearance: none;
       -o-appearance: none;
+      appearance: none;
       width: 20px;
       height: 20px;
       border: 2px solid #FF6D43; 
@@ -332,4 +333,12 @@
         display: flex;
         align-items: center;
         gap: 5px;
+      }
+      .bi-plus{
+        color: #FF6D43;
+        font-size: 70px;
+        position: relative;
+        left: 110px;
+        bottom: 80px;
+        
       }

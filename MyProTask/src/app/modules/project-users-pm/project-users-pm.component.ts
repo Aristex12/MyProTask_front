@@ -13,14 +13,13 @@ import { UsersService } from 'src/app/servicios/Users/users.service';
 })
 export class ProjectUsersPmComponent implements OnInit {
   project: any;
-  userProjects: any = [];
+  userProjects: any[] = [];
   vacancy: any;
   activeMembers: any;
-  addUserProjects: any = [];
-  idCharacteristicsProject: any = [];
-  
+  addUserProjects:any;
+  idCharacteristicsProject: any[] = [];
   terminoBusqueda: string = '';
-  
+
   projects: Project[] = [];
   projectsBackup: Project[] = [];
   characteristics: Characteristic[] = [];
@@ -31,7 +30,8 @@ export class ProjectUsersPmComponent implements OnInit {
     { idCategory: 1, name: "Programming Language" },
     { idCategory: 2, name: "Technologies" },
     { idCategory: 3, name: "Languages" },
-  ]
+  ];
+
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
@@ -44,16 +44,10 @@ export class ProjectUsersPmComponent implements OnInit {
       const idProject = params['idProject'];
       this.loadProjectData(idProject);
       this.getUsersByIdProject(idProject);
-      
       this.getData();
       this.getCharacteristics();
-
-      
-      
-
       this.projectService.getVacanciesCount(idProject).subscribe({
         next: (count) => {
-          console.log(count);
           this.activeMembers = count;
         },
         error: (err) => {
@@ -61,20 +55,20 @@ export class ProjectUsersPmComponent implements OnInit {
         },
       });
     });
-
   }
+
   getData() {
     this.projectService.getData().subscribe((data: Project[]) => {
       this.projects = data;
       this.projectsBackup = [...data];
     });
   }
+
   loadProjectData(idProject: number) {
     this.projectService.getProjectById(idProject).subscribe(
       (data: Project) => {
         this.project = data;
         this.vacancy = data.vacancies;
-        console.log(this.vacancy);
       },
       (error) => {
         console.error('Error', error);
@@ -82,50 +76,43 @@ export class ProjectUsersPmComponent implements OnInit {
     );
   }
 
-  
-
   getUsersByIdProject(idProject: number) {
-   
     this.userService.getUsersByIdProject(idProject).subscribe({
       next: (user: any) => {
-        this.userProjects = user;
-        console.log(user)
-        
-        console.log( this.userProjects);
+        if (Array.isArray(user)) {
+          this.userProjects = user;
+        } else {
+          console.error('Expected array but got', user);
+        }
       },
-      
+      error: (err: any) => {
+        console.error('Error fetching users by project:', err);
+      },
     });
   }
-  /**
-   * *Ya va
-   */
-  updateActiveProjectById(idProject: number){
+
+  updateActiveProjectById(idProject: number) {
     this.projectService.updateActiveProjectById(idProject).subscribe({
-      next: (response:any) => {
-        console.log("response: " + response);
+      next: (response: any) => {
         this.router.navigate(['/home-pm']);
       },
       error: (err) => {
-        
+        console.error('Error updating project:', err);
       },
-      
-    })
+    });
   }
 
-  updateActiveUserById(idUser: number, idProject: number){
-    console.log(idUser);
+  updateActiveUserById(idUser: number, idProject: number) {
     this.userService.updateActiveUserById(idUser).subscribe({
-      next: (response:any) => {
-        console.log("response: " + response);
+      next: (response: any) => {
         window.location.reload();
       },
-      error: (err:any) => {
-
+      error: (err: any) => {
+        console.error('Error updating user:', err);
       },
-
-    })
+    });
   }
-  
+
   getUserBorderStyle(name: string): string {
     switch (name.toUpperCase()) {
       case 'MANAGER':
@@ -135,32 +122,41 @@ export class ProjectUsersPmComponent implements OnInit {
     }
   }
 
-  getUsersByCharacteristics(characteristicsIds: number[]){
+  getUsersByCharacteristics(characteristicsIds: number[]) {
     this.userService.getUsersByCharacteristics(characteristicsIds).subscribe({
-      next: (user:any) => {
-        this.addUserProjects = user;
+      next: (users: User[]) => {
+        this.addUserProjects = users;
       },
-      error: (err:any) => {
-
+      error: (err: any) => {
+        console.error('Error fetching users by characteristics:', err);
       },
-    });  
+    });
   }
 
- 
+  addMember(idUser: number, idProject: number){
+    this.userService.addMember(idUser, idProject).subscribe({
+      next: (response: any) => {
 
- 
+      },
+      error: (err: any) => {
+        console.error('Error :', err);
+        
+      },
+      complete:()=>{
+        console.log("User added")
+        window.location.reload();
+      }
+    });
+  }
 
   openModal() {
     const modal = document.getElementById('modal');
     if (modal) {
       modal.style.display = 'block';
-
       this.project.projectCharacteristics.forEach((characteristic: { idCharacteristic: any; }) => {
         this.idCharacteristicsProject.push(characteristic.idCharacteristic);
       });
-
-      console.log(this.idCharacteristicsProject);
-      this.getUsersByCharacteristics(this.idCharacteristicsProject)
+      this.getUsersByCharacteristics(this.idCharacteristicsProject);
     }
   }
 
@@ -168,7 +164,6 @@ export class ProjectUsersPmComponent implements OnInit {
     const modal = document.getElementById('modal');
     if (modal) {
       modal.style.display = 'none';
-      
     }
   }
 
@@ -199,6 +194,7 @@ export class ProjectUsersPmComponent implements OnInit {
       modal.style.display = 'none';
     }
   }
+
   getCharacteristics() {
     this.projectService.getAllCharacteristics().subscribe((data: Characteristic[]) => {
       this.characteristics = data;
@@ -215,12 +211,10 @@ export class ProjectUsersPmComponent implements OnInit {
 
   search(): void {
     const searchTerm = this.terminoBusqueda.trim().toLowerCase();
-
     if (!searchTerm) {
       this.projects = [...this.projectsBackup];
       return;
     }
-
     this.projects = this.projectsBackup.filter(project =>
       project.name.toLowerCase().includes(searchTerm)
     );
