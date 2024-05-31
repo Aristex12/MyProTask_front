@@ -41,7 +41,7 @@
             </div>
             <div class="info-project">
               <p></p>
-              <button type="button" *ngIf="userRole == 'employee'" (click)="selectProject(project.idProject, project.name)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Request">
+              <button type="button" *ngIf="userRole !== 'manager'" (click)="selectProject(project.idProject, project.name)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Request">
                 Request Project
               </button>             
             </div>
