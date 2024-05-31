@@ -20,6 +20,7 @@ import { NewUserComponent } from './modules/new-user/new-user.component';
 import { HomePmComponent } from './modules/home-pm/home-pm.component';
 import { RouterEvent, RouterModule, Routes } from '@angular/router';
 import { ProjectUsersPmComponent } from './modules/project-users-pm/project-users-pm.component';
+import { RequestComponent } from './modules/request/request.component';
 
 
 
@@ -40,7 +41,8 @@ import { ProjectUsersPmComponent } from './modules/project-users-pm/project-user
     UserComponent,
     NewUserComponent,
     HomePmComponent,
-    ProjectUsersPmComponent
+    ProjectUsersPmComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
