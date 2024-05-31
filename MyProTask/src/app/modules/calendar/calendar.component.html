@@ -9,37 +9,17 @@
             <div id="events">
                 <p>You are going to</p>
                 <div id="event-list">
-                    <div class="grid-event" data-bs-toggle="modal" data-bs-target="#EditEvent">
-                        <i class="bi bi-calendar-event"></i>
-                        <div class="event">
-                            <b>Meeting with AI team</b>
-                            <p>Date: 17/07/2024</p>
-                        </div>
-                    </div>
-                    <div class="grid-event" data-bs-toggle="modal" data-bs-target="#EditEvent">
-                        <i class="bi bi-calendar-event"></i>
-                        <div class="event">
-                            <b>Start MyProTask project</b>
-                            <p>17 Junio 2024</p>
-                        </div>
-                    </div>
-                    <div class="grid-event" data-bs-toggle="modal" data-bs-target="#EditEvent">
-                        <i class="bi bi-calendar-event"></i>
-                        <div class="event">
-                            <b>Kick out Alex of MyProTask</b>
-                            <p>29 Mayo 2024</p>
-                        </div>
-                    </div>
-                    <div class="grid-event" data-bs-toggle="modal" data-bs-target="#EditEvent">
-                        <i class="bi bi-calendar-event"></i>
-                        <div class="event">
-                            <b>Negotiations with Eviden</b>
-                            <p>09 de Febrero 2025</p>
-                        </div>
-                    </div>
+                    <ng-container *ngFor="let event of onlyEventList">
+                        <div class="grid-event" data-bs-toggle="modal" (click)="selectEvent(event)" data-bs-target="#eventDetails" >
+                            <i class="bi bi-calendar-event"></i>
+                            <div class="event">
+                              <b>{{ event.title }}</b>
+                              <p>Date: {{ formatTimestamp(event.finishDate)}}</p>
+                            </div>
+                          </div>
+                    </ng-container>
                 </div>
             </div>
-            <button class="more-button">See more</button>
         </div>
         <full-calendar [options]="calendarOptions"></full-calendar>
     </div>
@@ -57,22 +37,22 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                <form>
+                <form  [formGroup]="eventoForm" (ngSubmit)="addEvent()">
                     <!-- Título -->
                     <div class="mb-3 text-start">
                         <label for="title" class="form-label ">Title:</label>
-                        <input type="text" class="form-control" id="title">
+                        <input formControlName="title" type="text" class="form-control" id="title">
                     </div>
 
                     <!-- Fecha final -->
                     <div class="mb-3 text-start">
                         <label for="finalDate" class="form-label ">Finish Date:</label>
-                        <input type="date" class="form-control" id="finalDate">
+                        <input formControlName="finishDate" type="date" class="form-control" id="finalDate">
                     </div>
                     <!-- Descripción de la tarea -->
                     <div class="mb-3 text-start">
                         <label for="taskDescription" class="form-label ">Description:</label>
-                        <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                        <textarea formControlName="description" class="form-control" id="taskDescription" rows="3"></textarea>
                     </div>
 
                 </form>
@@ -80,7 +60,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+                <button type="submit" (click)="addEvent()"  class="btn btn-primary" data-bs-dismiss="modal">Done</button>
             </div>
         </div>
     </div>
@@ -98,22 +78,22 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                <form>
+                <form *ngIf="selectedEvent != null" [formGroup]="eventoForm" (ngSubmit)="updateEvent()">
                     <!-- Título -->
                     <div class="mb-3 text-start">
                         <label for="title" class="form-label ">Title:</label>
-                        <input type="text" class="form-control" id="title">
+                        <input type="text" class="form-control" id="title" formControlName="title"  value="{{selectedEvent.title}}">
                     </div>
 
                     <!-- Fecha final -->
                     <div class="mb-3 text-start">
                         <label for="finalDate" class="form-label ">Finish Date:</label>
-                        <input type="date" class="form-control" id="finalDate">
+                        <input type="date" class="form-control" id="finalDate" formControlName="finishDate" [value]="selectedEvent.finishDate">
                     </div>
                     <!-- Descripción de la tarea -->
                     <div class="mb-3 text-start">
                         <label for="taskDescription" class="form-label ">Description:</label>
-                        <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                        <textarea class="form-control" id="taskDescription" formControlName="description" rows="3" value="{{selectedEvent.description}}"></textarea>
                     </div>
 
                 </form>
@@ -121,8 +101,25 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+                <button type="submit" (click)="updateEvent()" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="eventDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{selectedEvent.title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditEvent">Update</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteEvent(selectedEvent.idEvent)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,4 +1,4 @@
-full-calendar{
+full-calendar {
     width: 75%;
     height: 570px;
 }
@@ -11,26 +11,27 @@ full-calendar{
 }
 
 .fc-event {
-    background-color: #ff0000 !important; 
+    background-color: #ff0000 !important;
     border-color: #ff0000 !important;
     color: #ffffff !important;
     font-size: 14px !important;
     padding: 5px !important;
-  }
-  
-  .fc-event-title {
-    font-weight: bold !important; 
-  }
+}
 
-  
-#section-calendar{
+.fc-event-title {
+    font-weight: bold !important;
+}
+
+
+#section-calendar {
     width: 100%;
     height: 100%;
     display: flex;
     padding: 30px;
     gap: 30px;
 }
-#div-events{
+
+#div-events {
     width: 20%;
     height: 570px;
     background-color: #F5F5F5;
@@ -40,8 +41,10 @@ full-calendar{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
-.orange-button{
+
+.orange-button {
     width: 100%;
     border-radius: 10px;
     border: none;
@@ -50,7 +53,8 @@ full-calendar{
     color: white;
     border: 2px solid #FF6D43;
 }
-.more-button{
+
+.more-button {
     width: 50%;
     border-radius: 10px;
     border: none;
@@ -59,64 +63,89 @@ full-calendar{
     padding: 5px;
     color: white;
 }
-.orange-button:hover, .more-button:hover{
+
+.orange-button:hover,
+.more-button:hover {
     background-color: #F5F5F5;
     border: 2px solid #FF6D43;
     color: #FF6D43;
 }
+
 .grid-event {
     display: flex;
     cursor: pointer;
     padding: 10px;
 }
-.grid-event:hover{
+
+.grid-event:hover {
     background-color: white;
 }
 
-#events{
+#events {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#event-list {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-}
-#event-list{
-    width: 100%;
-    height: 100%;
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+  
+  .grid-event {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    gap: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+.event {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-}
-.event{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-left: 10px;
-
 }
 
 /*Prueba para el popup*/
 .modal-content .btn {
     background-color: #FF6D43;
     border: none;
-    color: white; 
-    }
-    .btn-primary {
+    color: white;
+}
+
+.btn-primary {
     background-color: #FF6D43;
     border: none;
-    color: white; 
+    color: white;
     width: 200px;
-    }
-    .modal-header{
+}
+
+.modal-header {
     background-color: #FF6D43;
-    color: white; 
-    }
-    .form-label{
+    color: white;
+}
+
+.form-label {
     font-weight: bold;
-    }
-    
-    /* .icon-style2 {
-    font-size: 1.5em; 
-    display: inline-flex; 
-    align-items: center; 
-    } */
+}
+
+.modal-body{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.modal-body button:hover{
+    background-color: #F5F5F5;
+    border: 2px solid #FF6D43;
+    color: #FF6D43;
+}
+
+
+  
