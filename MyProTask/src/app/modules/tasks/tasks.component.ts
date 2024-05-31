@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/servicios/Users/users.service';
 import { UserView } from 'src/app/models/userView';
+import { AuthService } from 'src/app/servicios/auth/auth.service';
 
 
 
@@ -24,10 +25,11 @@ export class TasksComponent implements OnInit {
   projects: Project[] = [];
   Users: any[] = [];
   taskForm!: FormGroup;
+  taskUpdateForm!:FormGroup;
   projectId: number | null = null;
   taskFormData: any = {}; // Cambio de nombre a taskFormData
 
-  rol:string = "manager";
+  role:string = "";
   
   selectTask(task: any) {
     this.selectedTask = task;
@@ -35,7 +37,7 @@ export class TasksComponent implements OnInit {
     this.selectedTaskId = task.idTask;
   }
 
-  constructor(private tasksService: TasksService,private projectService: ProjectService,private fb: FormBuilder,private userService:UsersService) { }
+  constructor(private tasksService: TasksService,private projectService: ProjectService,private fb: FormBuilder,private userService:UsersService,private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getData();
@@ -44,6 +46,15 @@ export class TasksComponent implements OnInit {
     /*if (this.projectId !== null) {
       this.getUsers(this.projectId);
     }*/
+    this.authService.getUserRole().subscribe({
+      next: (role: any) => {
+        this.role = role.name;
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
+    });
+    console.log(this.role);
   }
   initForm(): void {
     this.taskForm = this.fb.group({
@@ -54,6 +65,15 @@ export class TasksComponent implements OnInit {
       idUser: [''],
       taskDescription: ['', Validators.required]
     });
+  //Update Form
+  this.taskUpdateForm = this.fb.group({
+    idProject: [''],
+    taskName: ['' ],
+    finishDate: ['' ],
+    priority: [''],
+    idUser: [''],
+    taskDescription: ['']
+  });
   }
 //Dintinguish priority by color
   getColorByPriority(priority: string): string {
@@ -167,16 +187,17 @@ getIdProject(){
 
   //EDIT TASK
   updateTask() {    
-      if (this.taskForm.valid) {       
+      if (this.taskUpdateForm.valid) {       
         const task ={
-          name:this.taskForm.value.taskName,
-          description:this.taskForm.value.taskDescription,
-          finishDate: this.taskForm.value.finishDate,
-          priority: this.taskForm.value.priority,
-          
+          name: this.taskUpdateForm.value.taskName || this.selectedTask?.name,
+          description: this.taskUpdateForm.value.taskDescription || this.selectedTask?.description,
+          finishDate: this.taskUpdateForm.value.finishDate || this.selectedTask?.finishDate,
+          priority: this.taskUpdateForm.value.priority || this.selectedTask?.priority,
         }
+              
         const idTask=this.selectedTaskId;
         console.log(idTask);
+        console.log(task)
           this.tasksService.updateTask(task, idTask).subscribe({
             next: (response: any) => {
               // Manejar la respuesta según sea necesario
