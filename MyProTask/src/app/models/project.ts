@@ -19,5 +19,4 @@ export interface Project {
           ]
         }
       ]
-      //public manager_id: number
   }
