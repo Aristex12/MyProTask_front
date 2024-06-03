@@ -10,12 +10,13 @@ import { User } from 'src/app/models/user';
 export class UsersService {
 
   private idUser:any;
-  constructor(private http:HttpClient, private authService:AuthService) { 
+  constructor(private http:HttpClient, private authService:AuthService) {
     this.idUser = this.authService.getUserId();
   }
 
 
   private apiUrl = 'http://localhost:8080';
+
   getData() {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`

@@ -10,7 +10,7 @@ import { Project } from 'src/app/models/project';
 export class ProjectService {
 
   private idUser:any;
-  
+
   constructor(private http:HttpClient, private authService:AuthService) {
     this.idUser = this.authService.getUserId();
    }
@@ -55,7 +55,7 @@ export class ProjectService {
     });
     return this.http.get(`http://localhost:8080/api/userProject/countActiveUserProjectByIdProject?idProject=${idProject}`, { headers });
   }
-  
+
   updateActiveProjectById(idProject: number): Observable<any> {
     const headers = new HttpHeaders({
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -72,5 +72,5 @@ export class ProjectService {
       });
       return this.http.get<Project>(`http://localhost:8080/api/project/displayProjectById?idProject=${idProject}`, { headers });
     }
-  
+
 }

@@ -7,19 +7,19 @@
       <div class="white">
         <div class="white">
           <div class="template seven">
-          
+
             <div class="user-div">
               <div id="profile-pic" *ngIf="user">
                 <img src="../../../assets/img/{{user.profilePic }}" alt="" />
               </div>
               <p>{{ user?.name }}</p>
-             
+
               <p>{{ user?.email }}</p>
               <p><a href="">Descargar CV</a></p>
               <h2>Historial</h2>
               <div id="projects"class="overflow">
                 <table>
-                  <div *ngIf="userView">                   
+                  <div *ngIf="userView">
                     <table>
                       <thead>
                         <tr>
@@ -38,7 +38,7 @@
                         </tr>
                       </tbody>
                     </table>
-                  </div>  
+                  </div>
                   <!-- <tr class="grey" *ngFor="let historyItem of history">
                     <td class="border-left">{{ historyItem.Project.name }}</td>
                     <td>{{ historyItem.Project.description }}</td>
@@ -47,6 +47,23 @@
                   </tr> -->
                 </table>
               </div>
+            </div>
+            <!-- Añadir a partir de aqui -->
+            <div class="evaluation_container" *ngIf="evaluations.length > 0">
+              <div class="inner_evaluation_container">
+                <h2>Evaluaciones</h2>
+                <div class="evaluation" *ngFor="let evaluation of evaluations">
+                  <h4>Evaluación</h4>
+                  <p><strong>Trabajo en equipo:</strong> {{ evaluation.teamWork }}</p>
+                  <p><strong>Trabajo individual:</strong> {{ evaluation.individualWork }}</p>
+                  <p><strong>Iniciativa:</strong> {{ evaluation.initiative }}</p>
+                  <p><strong>Resolución de problemas:</strong> {{ evaluation.problemResolution }}</p>
+                  <p><strong>Observaciones:</strong> {{ evaluation.observation }}</p>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="evaluations.length === 0">
+              <p>No se encontraron evaluaciones para este usuario.</p>
             </div>
           </div>
         </div>
@@ -103,7 +120,7 @@
               </label>
 
           </div>
-          
+
         </div>
       </div>
     </div>

@@ -43,7 +43,7 @@
               <p></p>
               <button type="button" *ngIf="userRole !== 'manager'" (click)="selectProject(project.idProject, project.name)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Request">
                 Request Project
-              </button>             
+              </button>
             </div>
           </div>
         </div>
@@ -60,13 +60,13 @@
         <h5 class="modal-title" id="staticBackdropLabel">Request to join the project</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">                 
+      <div class="modal-body">
         <!-- Formulario -->
         <form [formGroup]="requestForm">
           <!-- Título -->
           <div class="mb-3 text-start">
             <h3 for="title">{{selectedProject.name}}</h3>
-          </div>                                                    
+          </div>
         <!-- Descripción de la tarea -->
          <div class="mb-3 text-start">
            <label for="taskDescription" class="form-label ">Why should we choose you ?</label>
@@ -75,7 +75,7 @@
 
         </form>
       </div>
-                                      
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="submit" (click)="makeRequest()" class="btn btn-primary" data-bs-dismiss="modal">Done</button>

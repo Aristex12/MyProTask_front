@@ -1,8 +1,10 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Characteristic } from 'src/app/models/characteristic';
 import { Project } from 'src/app/models/project';
 import { User } from 'src/app/models/user';
+import { EvaluationService } from 'src/app/servicios/evaluation/evaluation.service';
 import { ProjectService } from 'src/app/servicios/project/project.service';
 import { UsersService } from 'src/app/servicios/Users/users.service';
 
@@ -24,6 +26,11 @@ export class ProjectUsersPmComponent implements OnInit {
   projectsBackup: Project[] = [];
   characteristics: Characteristic[] = [];
   selectedCharacteristicIds: number[] = [];
+
+  evaluationComment: string = '';
+
+  user:User | undefined;
+
   expandedCategories: Set<number> = new Set<number>();
 
   categories = [
@@ -36,7 +43,8 @@ export class ProjectUsersPmComponent implements OnInit {
     private route: ActivatedRoute,
     private projectService: ProjectService,
     private userService: UsersService,
-    private router: Router
+    private router: Router,
+    private evaluationService:EvaluationService
   ) {}
 
   ngOnInit() {
@@ -56,7 +64,6 @@ export class ProjectUsersPmComponent implements OnInit {
       });
     });
   }
-
   getData() {
     this.projectService.getData().subscribe((data: Project[]) => {
       this.projects = data;
@@ -140,7 +147,7 @@ export class ProjectUsersPmComponent implements OnInit {
       },
       error: (err: any) => {
         console.error('Error :', err);
-        
+
       },
       complete:()=>{
         console.log("User added")
@@ -170,7 +177,7 @@ export class ProjectUsersPmComponent implements OnInit {
   openModal2(idUser: number) {
     const modal = document.getElementById(`modal2-${idUser}`);
     if (modal) {
-      modal.style.display = 'block';
+      modal.style.display = 'flex';
     }
   }
 
@@ -190,6 +197,20 @@ export class ProjectUsersPmComponent implements OnInit {
 
   closeModal3() {
     const modal = document.getElementById('modal3');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  openModal4(idUser: number) {
+    const modal = document.getElementById(`modal4-${idUser}`);
+    if (modal) {
+      modal.style.display = 'flex';
+    }
+  }
+
+  closeModal4(idUser: number) {
+    const modal = document.getElementById(`modal4-${idUser}`);
     if (modal) {
       modal.style.display = 'none';
     }
@@ -252,6 +273,46 @@ export class ProjectUsersPmComponent implements OnInit {
     } else {
       this.expandedCategories.add(categoryId);
     }
+  }
+
+  addEvaluationData(idUser:number){
+    const individualWorkValue = this.getSelectedValue('individual_work');
+    const initiativeValue = this.getSelectedValue('initiative');
+    const problemResolutionValue = this.getSelectedValue('problem_resolution');
+    const teamWorkValue = this.getSelectedValue('team_work');
+
+    console.log(this.evaluationComment);
+
+    // Crea un objeto de evaluación con los datos del formulario
+    const evaluationData: any = {
+      teamWork: teamWorkValue,
+      individualWork: individualWorkValue,
+      initiative: initiativeValue,
+      problemResolution: problemResolutionValue,
+      observation: this.evaluationComment
+    };
+
+    // Llama al método del servicio para enviar la evaluación
+    this.evaluationService.addUserEvaluation(evaluationData).subscribe({
+      next: (response: any) => {
+        console.log('Evaluation added successfully:', response);
+      },
+      error: (err: any) => {
+        console.error('Error adding evaluation:', err);
+      }
+    });
+
+  }
+
+  getSelectedValue(name: string): string | null {
+    const radios = document.getElementsByName(name);
+    for (let i = 0; i < radios.length; i++) {
+      const radio = radios[i] as HTMLInputElement;
+      if (radio.checked) {
+        return radio.value;
+      }
+    }
+    return null;
   }
 
   @ViewChildren('checkbox') checkboxes: QueryList<ElementRef> = new QueryList<ElementRef>();
