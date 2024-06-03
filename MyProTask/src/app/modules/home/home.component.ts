@@ -13,7 +13,8 @@ export class HomeComponent {
 
   projects: Project[] = [];
   tasksList: Tasks[] = [];
-
+   cont:number=0
+   reload:number=1
 
   constructor(private projectService: ProjectService, private tasksService: TasksService) { }
 
@@ -27,6 +28,8 @@ export class HomeComponent {
       }
     });
     this.getUserTasks();
+    
+    
   }
 
 
@@ -39,5 +42,6 @@ export class HomeComponent {
         console.error(error);
       }
     });
+    
   }
 }
