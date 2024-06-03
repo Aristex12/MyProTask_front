@@ -21,6 +21,7 @@ import { HomePmComponent } from './modules/home-pm/home-pm.component';
 import { RouterEvent, RouterModule, Routes } from '@angular/router';
 import { ProjectUsersPmComponent } from './modules/project-users-pm/project-users-pm.component';
 import { RequestComponent } from './modules/request/request.component';
+import { AllProjectsComponent } from './modules/all-projects/all-projects.component';
 
 
 
@@ -43,7 +44,8 @@ import { RequestComponent } from './modules/request/request.component';
     HomePmComponent,
     ProjectUsersPmComponent,
     RequestComponent,
-    UsersComponent
+    UsersComponent,
+    AllProjectsComponent
   ],
   imports: [
     BrowserModule,

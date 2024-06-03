@@ -45,10 +45,10 @@ export class LoginComponent implements OnInit {
           this.getrole();
           if (response && response.jwt) {
             if (this.role === 'admin') {
-              this.router.navigateByUrl('/home-pm');
+              this.router.navigateByUrl('/home-projects');
             } else if(this.authService.getUserRole() === 'employee') {
               this.router.navigateByUrl('/home');
-            }else if(this.authService.getUserRole()){
+            }else if(this.authService.getUserRole() === 'manager'){
               this.router.navigateByUrl('/home-pm');
             }
           } else {

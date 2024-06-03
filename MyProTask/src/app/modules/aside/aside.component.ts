@@ -11,7 +11,7 @@ export class AsideComponent implements OnInit {
   name:string = "";
   email:string = ""
   profile_pic="../../assets/img/user.png"
-  role:string = "";
+  role:any;
 
 
   constructor(private authService: AuthService, private router:Router) {
