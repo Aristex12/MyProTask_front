@@ -110,13 +110,23 @@ export class ProjectUsersPmComponent implements OnInit {
   }
 
   updateActiveUserById(idUser: number, idProject: number) {
-    this.userService.updateActiveUserById(idUser).subscribe({
+    this.evaluationService.getUserProjectId(idUser, idProject).subscribe({
       next: (response: any) => {
-        window.location.reload();
+        console.log("Respuesta del servidor: " + response);
+
+        this.userService.updateActiveUserProjectById(response).subscribe({
+          next: (response: any) => {
+            window.location.reload();
+          },
+          error: (err: any) => {
+            console.error('Error updating user:', err);
+          },
+        });
+
       },
       error: (err: any) => {
-        console.error('Error updating user:', err);
-      },
+        console.error('Error getting userProject id', err);
+      }
     });
   }
 
@@ -275,13 +285,11 @@ export class ProjectUsersPmComponent implements OnInit {
     }
   }
 
-  addEvaluationData(idUser:number){
+  addEvaluationData(idUser:number, idProject:number){
     const individualWorkValue = this.getSelectedValue('individual_work');
     const initiativeValue = this.getSelectedValue('initiative');
     const problemResolutionValue = this.getSelectedValue('problem_resolution');
     const teamWorkValue = this.getSelectedValue('team_work');
-
-    console.log(this.evaluationComment);
 
     // Crea un objeto de evaluación con los datos del formulario
     const evaluationData: any = {
@@ -292,13 +300,22 @@ export class ProjectUsersPmComponent implements OnInit {
       observation: this.evaluationComment
     };
 
-    // Llama al método del servicio para enviar la evaluación
-    this.evaluationService.addUserEvaluation(evaluationData).subscribe({
+    this.evaluationService.getUserProjectId(idUser, idProject).subscribe({
       next: (response: any) => {
-        console.log('Evaluation added successfully:', response);
+        console.log("Respuesta del servidor: " + response);
+
+        this.evaluationService.addUserEvaluation(evaluationData, response).subscribe({
+          next: (response: any) => {
+            console.log('Evaluation added successfully:', response);
+          },
+          error: (err: any) => {
+            console.error('Error adding evaluation:', err);
+          }
+        });
+
       },
       error: (err: any) => {
-        console.error('Error adding evaluation:', err);
+        console.error('Error getting userProject id', err);
       }
     });
 

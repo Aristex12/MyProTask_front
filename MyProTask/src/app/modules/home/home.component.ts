@@ -28,10 +28,18 @@ export class HomeComponent {
       }
     });
     this.getUserTasks();
-    
-    
+    this.checkAndReload();
   }
 
+  checkAndReload(): void {
+    const reloaded = localStorage.getItem('reloaded');
+    if (!reloaded) {
+      localStorage.setItem('reloaded', 'true');
+      window.location.reload();
+    } else {
+      localStorage.removeItem('reloaded');
+    }
+  }
 
   getUserTasks() {
     this.tasksService.getTaskByUserId().subscribe({
@@ -42,6 +50,6 @@ export class HomeComponent {
         console.error(error);
       }
     });
-    
+
   }
 }

@@ -79,7 +79,7 @@ export class UsersService {
   }
 
 
-  updateActiveUserById(idUser: number): Observable<any>{
+  updateActiveUserProjectById(idUserProject: number): Observable<any>{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
@@ -87,7 +87,7 @@ export class UsersService {
       headers: headers,
       responseType: 'text' as 'json'
   };
-    return this.http.put(`http://localhost:8080/api/user/updateActiveUser?idUser=${idUser}`, {}, options);
+    return this.http.put(`http://localhost:8080/api/userProject/updateActiveUserProjectById?idUserProject=${idUserProject}`, {}, options);
 
   }
 

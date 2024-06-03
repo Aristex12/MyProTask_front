@@ -40,7 +40,17 @@ export class HomePmComponent {
         console.error(error);
       },
     });
-   
+    this.checkAndReload();
+  }
+
+  checkAndReload(): void {
+    const reloaded = localStorage.getItem('reloaded');
+    if (!reloaded) {
+      localStorage.setItem('reloaded', 'true');
+      window.location.reload();
+    } else {
+      localStorage.removeItem('reloaded');
+    }
   }
 
   scrollLeft(): void {

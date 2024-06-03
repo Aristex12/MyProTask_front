@@ -16,21 +16,30 @@ export class EvaluationService {
 
   private apiUrl = 'http://localhost:8080';
 
-  addUserEvaluation(evaluationData: any) {
+  addUserEvaluation(evaluationData: any, idUserProject: number) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
+    const options = {
+      headers: headers,
+      responseType: 'text' as 'json'
+  };
     //No hay que pillar el idUser. Hay que pillar le idUserProject
-    return this.http.post<any>(`${this.apiUrl}/api/evaluation/addEvaluation?idUserProject=${this.idUser}`, evaluationData , {headers});
+    return this.http.post<any>(`${this.apiUrl}/api/evaluation/addEvaluation?idUserProject=${idUserProject}`, evaluationData , options);
   }
-
-
 
   getUserEvaluation(idUser: number){
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     return this.http.get<any>(`${this.apiUrl}/api/evaluation/displayEvaluationsByIdUser?idUser=${idUser}`, {headers});
+  }
+
+  getUserProjectId(idUser: number, idProject: number){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<any>(`${this.apiUrl}/api/userProject/displayIdUserProjectByIdUserIdProject?idUser=${idUser}&idProject=${idProject}`, {headers});
   }
 
 }
