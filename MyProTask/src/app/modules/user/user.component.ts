@@ -35,8 +35,10 @@ export class UserComponent implements OnInit {
   // Añadido
 
   loadUserEvaluations(idUser: number) {
+    console.log("id del usuario: " + idUser);
     this.evaluationService.getUserEvaluation(idUser).subscribe(
       (data: any[]) => {
+        console.log("datos del usuario: " + data);
         this.evaluations = data;
         console.log('Evaluaciones:', this.evaluations);
       },

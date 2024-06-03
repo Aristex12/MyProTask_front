@@ -26,7 +26,7 @@
               <span class="close2" (click)="closeModal2(user.user.idUser)">&times;</span>
 
               <h1>¿Desea eliminar a <span style="color: #FF6D43; font-weight: bold;">{{user.user.name}} {{user.user.lastName}}</span> del proyecto?</h1>
-              <button (click)="closeModal2(user.user.idUser); openModal4(user.user.idUser); updateActiveUserById(user.user.idUser, project.idProject)">Eliminar</button>
+              <button (click)="closeModal2(user.user.idUser); openModal4(user.user.idUser)">Eliminar</button>
             </div>
           </div>
         </div>
@@ -64,11 +64,11 @@
           <div class="evaluation-block">
             <div class="evaluation-block">
               <h4>Individual Work</h4>
-              <p>Por favor evalua al miembro del 1-6 en función a su trabajo individual</p>
+              <p>Please evaluate the member from 1-6 based on their individual work</p>
               <ul>
-                  <li><span style="font-weight: bold;">1-2</span> El miembro no cumple con sus tareas individuales</li>
-                  <li><span style="font-weight: bold;">3-4</span> Cumple con sus tareas pero podría mejorar</li>
-                  <li><span style="font-weight: bold;">5-6</span> Cumple con sus tareas de manera excelente</li>
+                  <li><span style="font-weight: bold;">1-2</span> The member does not fulfill their individual tasks</li>
+                  <li><span style="font-weight: bold;">3-4</span> Fulfills tasks but could improve</li>
+                  <li><span style="font-weight: bold;">5-6</span> Fulfills tasks excellently</li>
               </ul>
               <div class="rating">
                   <label><input type="radio" name="individual_work" value="1"><span>1</span></label>
@@ -82,11 +82,11 @@
 
           <div class="evaluation-block">
               <h4>Initiative</h4>
-              <p>Por favor evalua al miembro del 1-6 en función a su iniciativa</p>
+              <p>Please evaluate the member from 1-6 based on their initiative</p>
               <ul>
-                  <li><span style="font-weight: bold;">1-2</span> No muestra iniciativa</li>
-                  <li><span style="font-weight: bold;">3-4</span> Muestra algo de iniciativa pero podría mejorar</li>
-                  <li><span style="font-weight: bold;">5-6</span> Muestra una gran iniciativa</li>
+                  <li><span style="font-weight: bold;">1-2</span> Shows no initiative</li>
+                  <li><span style="font-weight: bold;">3-4</span> Shows some initiative but could improve</li>
+                  <li><span style="font-weight: bold;">5-6</span> Shows great initiative</li>
               </ul>
               <div class="rating">
                   <label><input type="radio" name="initiative" value="1"><span>1</span></label>
@@ -100,11 +100,11 @@
 
           <div class="evaluation-block">
               <h4>Problem Resolution</h4>
-              <p>Por favor evalua al miembro del 1-6 en función a su capacidad para resolver problemas</p>
+              <p>Please evaluate the member from 1-6 based on their problem-solving ability</p>
               <ul>
-                  <li><span style="font-weight: bold;">1-2</span> Tiene dificultades para resolver problemas</li>
-                  <li><span style="font-weight: bold;">3-4</span> Resuelve problemas de manera adecuada pero podría mejorar</li>
-                  <li><span style="font-weight: bold;">5-6</span> Resuelve problemas de manera excelente</li>
+                  <li><span style="font-weight: bold;">1-2</span> Has difficulty solving problems</li>
+                  <li><span style="font-weight: bold;">3-4</span> Solves problems adequately but could improve</li>
+                  <li><span style="font-weight: bold;">5-6</span> Solves problems excellently</li>
               </ul>
               <div class="rating">
                   <label><input type="radio" name="problem_resolution" value="1"><span>1</span></label>
@@ -118,11 +118,11 @@
 
           <div class="evaluation-block">
               <h4>Team Work</h4>
-              <p>Por favor evalua al miembro del 1-6 en función a su trabajo en equipo</p>
+              <p>Please evaluate the member from 1-6 based on their teamwork</p>
               <ul>
-                  <li><span style="font-weight: bold;">1-2</span> El miembro tiene una mala actitud en equipo, etc...</li>
-                  <li><span style="font-weight: bold;">3-4</span> Trabaja pero podría esforzarse más</li>
-                  <li><span style="font-weight: bold;">5-6</span> Trabaja muy bien</li>
+                  <li><span style="font-weight: bold;">1-2</span> The member has a poor team attitude, etc...</li>
+                  <li><span style="font-weight: bold;">3-4</span> Works but could put in more effort</li>
+                  <li><span style="font-weight: bold;">5-6</span> Works very well</li>
               </ul>
               <div class="rating">
                   <label><input type="radio" name="team_work" value="1"><span>1</span></label>
@@ -135,14 +135,15 @@
           </div>
 
           <div class="evaluation-block">
-            <h4>Comentario</h4>
-            <p>Deje un breve comentario al miembro</p>
-            <textarea name="comment" id="comment" rows="4" cols="50" [(ngModel)]="evaluationComment"></textarea>
+              <h4>Comment</h4>
+              <p>Leave a brief comment for the member</p>
+              <textarea name="comment" id="comment" rows="4" cols="50" [(ngModel)]="evaluationComment"></textarea>
           </div>
 
           <div class="w-100 d-flex justify-content-center">
-            <button class="btn btn-primary w-50" (click)="addEvaluationData(user.user.idUser)">Enviar</button>
+              <button class="btn btn-primary w-50" (click)="addEvaluationData(user.user.idUser); updateActiveUserById(user.user.idUser, project.idProject)">Submit</button>
           </div>
+
 
           </div>
 

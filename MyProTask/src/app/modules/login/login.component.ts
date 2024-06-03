@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
   }
- 
+
   ngOnInit(): void {
     // if(this.authService.isLoggedIn){
     //   this.router.navigateByUrl('/home');
@@ -45,11 +45,11 @@ export class LoginComponent implements OnInit {
         next: (response: any) => {
           this.getrole();
           if (response && response.jwt) {
-           
-         
+
+
           this.authService.getUserRole().subscribe({
-            next: (response: any) => { 
-              
+            next: (response: any) => {
+
               if (this.role === 'admin') {
                 this.router.navigateByUrl('/home-pm');
               } else if(response.name == 'manager') {
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
               }
              }
           })
-          
+
         } else {
           console.log('Error de login');
         }

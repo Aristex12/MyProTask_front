@@ -30,7 +30,7 @@ export class EvaluationService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.get<any>(`${this.apiUrl}/api/evaluation/displayEvaluationsByIdUser?idUser=${this.idUser}`, {headers});
+    return this.http.get<any>(`${this.apiUrl}/api/evaluation/displayEvaluationsByIdUser?idUser=${idUser}`, {headers});
   }
 
 }
