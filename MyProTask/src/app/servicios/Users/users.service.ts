@@ -44,5 +44,17 @@ export class UsersService {
     });
     return this.http.get<any>(`${this.apiUrl}/api/userProject/displayActiveUserProjectByIdProject?idProject=${idProject}`, { headers });
   }
+
+  addUser(username: string, lastname: string){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const options = {
+      headers: headers,
+      responseType: 'text' as 'json'
+  };
+    // Aquí hacemos la solicitud POST para añadir una tarea
+    return this.http.post(`http://localhost:8080/api/user/addUser?name=${username}&lastName=${lastname}`, {}, options);
+  }
 }
 
