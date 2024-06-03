@@ -19,7 +19,9 @@ export class UserComponent implements OnInit {
   users: any = [];
   projects: Project[] = [];
 
-  listCharacteristic: Characteristic[] = [];
+  characteristic: Characteristic | undefined;
+
+  listUserCharacteristic: Characteristic[] = [];
 
   project:any;
 
@@ -34,8 +36,38 @@ export class UserComponent implements OnInit {
       this.loadUserData(idUser);
       this.loadUserHistory(idUser);
       this.loadUserEvaluations(idUser); 
+      this.getUserCharacteristicsByIdUser(idUser);
+
+      this.listUserCharacteristic.forEach(element => {
+        
+      });
+      
     });
   }
+
+  getCharacteristicById(idCharacteristic:number){
+    this.projectService.getCharacteristicById(idCharacteristic).subscribe(
+      (data: any) => {
+        this.characteristic = data;
+      },
+      error => {
+        console.error('Error al cargar ', error);
+      }
+    );
+  }
+
+  getUserCharacteristicsByIdUser(idUser: number) {
+    this.projectService.getCharacteristicsByIdUser(idUser).subscribe(
+      (data: Characteristic[]) => {
+        this.listUserCharacteristic = data;
+        console.log('Characteristics:', this.listUserCharacteristic);
+      },
+      error => {
+        console.error('Error loading characteristics for user:', error);
+      }
+    );
+  }
+  
 
   getProject(idProject:number){
     this.project = this.projectService.getProjectById(idProject);

@@ -10,6 +10,7 @@ import { Project } from 'src/app/models/project';
 export class ProjectService {
 
   private idUser:any;
+  
 
   constructor(private http:HttpClient, private authService:AuthService) {
     this.idUser = this.authService.getUserId();
@@ -27,6 +28,14 @@ export class ProjectService {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     return this.http.get(`http://localhost:8080/api/project/displayProjectsByActiveUserProjectsByIdUser?idUser=${this.idUser}`, { headers });
+  }
+
+  getCharacteristicById(idCharacteristic:number){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+
+    return this.http.get(`http://localhost:8080/api/characteristic/displayCharacteristicById?idCharacteristic=${idCharacteristic}`, { headers });
   }
 
   getProjectsActiveByUserId(): Observable<any> {
@@ -73,11 +82,11 @@ export class ProjectService {
       return this.http.get<Project>(`http://localhost:8080/api/project/displayProjectById?idProject=${idProject}`, { headers });
     }
 
-    getCharacteristicsByIdUser(idUser:number){
+    getCharacteristicsByIdUser(idUser:number) : Observable<any>{
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       });
-      return this.http.get(`http://localhost:8080/api/characteristic/dispalyCharacteristicsByIdUser?idUser=${idUser}`, { headers })
+      return this.http.get(`http://localhost:8080/api/userCharacteristic/displayUserCharacteristicsByIdUser?idUser=${idUser}`, { headers })
     }
 
 }

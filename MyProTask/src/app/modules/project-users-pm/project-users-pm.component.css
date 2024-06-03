@@ -665,6 +665,10 @@
 #searchbar input[type="text"]:focus {
   outline: none;
 }
+span{
+  color: #FF6D43; 
+  font-weight: bold;
+}
 #searchbar .input-group-text {
   position: absolute;
   right: 10px;
@@ -742,11 +746,12 @@ button {
   gap: 30px;
 }
 input[type="checkbox"] {
-  appearance: none;
+  
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
   -o-appearance: none;
+  appearance: none;
   width: 20px;
   height: 20px;
   border: 2px solid #ff6d43;
