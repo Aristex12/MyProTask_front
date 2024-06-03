@@ -261,9 +261,8 @@ export class ProjectUsersPmComponent implements OnInit {
     const initiativeValue = this.getSelectedValue('initiative');
     const problemResolutionValue = this.getSelectedValue('problem_resolution');
     const teamWorkValue = this.getSelectedValue('team_work');
-    const observationValue = (document.getElementById('comment') as HTMLTextAreaElement).value;
 
-    console.log(observationValue);
+    console.log(this.evaluationComment);
 
     // Crea un objeto de evaluación con los datos del formulario
     const evaluationData: any = {
@@ -271,11 +270,11 @@ export class ProjectUsersPmComponent implements OnInit {
       individualWork: individualWorkValue,
       initiative: initiativeValue,
       problemResolution: problemResolutionValue,
-      observation: this.evaluationComment,
+      observation: this.evaluationComment
     };
 
     // Llama al método del servicio para enviar la evaluación
-    this.evaluationService.addUserEvaluation(evaluationData, idUser).subscribe({
+    this.evaluationService.addUserEvaluation(evaluationData).subscribe({
       next: (response: any) => {
         console.log('Evaluation added successfully:', response);
       },

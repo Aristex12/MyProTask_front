@@ -16,18 +16,21 @@ export class EvaluationService {
 
   private apiUrl = 'http://localhost:8080';
 
-  addUserEvaluation(evaluationData: any, idUser: number) {
+  addUserEvaluation(evaluationData: any) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.post<any>(`${this.apiUrl}/api/evaluation/addEvaluation?idUser=${idUser}`, evaluationData , {headers});
+    //No hay que pillar el idUser. Hay que pillar le idUserProject
+    return this.http.post<any>(`${this.apiUrl}/api/evaluation/addEvaluation?idUserProject=${this.idUser}`, evaluationData , {headers});
   }
+
+
 
   getUserEvaluation(idUser: number){
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.get<any>(`${this.apiUrl}/api/evaluation/displayEvaluationsByIdUser?idUser=${idUser}`, {headers});
+    return this.http.get<any>(`${this.apiUrl}/api/evaluation/displayEvaluationsByIdUser?idUser=${this.idUser}`, {headers});
   }
 
 }
