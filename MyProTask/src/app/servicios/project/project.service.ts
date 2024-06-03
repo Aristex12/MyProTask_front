@@ -73,4 +73,11 @@ export class ProjectService {
       return this.http.get<Project>(`http://localhost:8080/api/project/displayProjectById?idProject=${idProject}`, { headers });
     }
 
+    getCharacteristicsByIdUser(idUser:number){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      });
+      return this.http.get(`http://localhost:8080/api/characteristic/dispalyCharacteristicsByIdUser?idUser=${idUser}`, { headers })
+    }
+
 }

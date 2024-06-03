@@ -9,7 +9,7 @@
       <div class="modal-content3">
         <span class="close3" (click)="closeModal3()">&times;</span>
         <h1>Do you want to delete the project?</h1>
-        <button (click)="updateActiveProjectById(project.idProject)">Eliminar</button>
+        <button (click)="updateActiveProjectById(project.idProject)">Delete</button>
       </div>
     </div>
   </div>
@@ -25,8 +25,8 @@
             <div class="modal-content2">
               <span class="close2" (click)="closeModal2(user.user.idUser)">&times;</span>
 
-              <h1>¿Desea eliminar a <span style="color: #FF6D43; font-weight: bold;">{{user.user.name}} {{user.user.lastName}}</span> del proyecto?</h1>
-              <button (click)="closeModal2(user.user.idUser); openModal4(user.user.idUser)">Eliminar</button>
+              <h1>Do you want to remove <span style="color: #FF6D43; font-weight: bold;">{{user.user.name}} {{user.user.lastName}}</span> from the project?</h1>
+              <button (click)="closeModal2(user.user.idUser); openModal4(user.user.idUser)">Remove</button>
             </div>
           </div>
         </div>

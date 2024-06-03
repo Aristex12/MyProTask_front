@@ -671,6 +671,9 @@
   cursor: pointer;
   padding: 0px;
 }
+.btn-primary{
+  --bs-btn-hover-bg:#ff6d43;
+}
 .input-group-text {
   display: flex;
   align-items: center;

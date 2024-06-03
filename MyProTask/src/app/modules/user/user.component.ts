@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Characteristic } from 'src/app/models/characteristic';
 import { Project } from 'src/app/models/project';
 import { User } from 'src/app/models/user';
 import { UserView } from 'src/app/models/userView'; // Importa el modelo UserView
 import { UsersService } from 'src/app/servicios/Users/users.service';
 import { EvaluationService } from 'src/app/servicios/evaluation/evaluation.service';
+import { ProjectService } from 'src/app/servicios/project/project.service';
 
 @Component({
   selector: 'app-user',
@@ -17,22 +19,30 @@ export class UserComponent implements OnInit {
   users: any = [];
   projects: Project[] = [];
 
+  listCharacteristic: Characteristic[] = [];
+
+  project:any;
+
   evaluations: any = [];
 
-  //añadido
-  constructor(private route: ActivatedRoute, private userService: UsersService, private evaluationService:EvaluationService) { }
+  
+  constructor(private route: ActivatedRoute, private userService: UsersService, private projectService:ProjectService,  private evaluationService:EvaluationService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const idUser = params['idUser'];
       this.loadUserData(idUser);
       this.loadUserHistory(idUser);
-      this.loadUserEvaluations(idUser); // Añadido
+      this.loadUserEvaluations(idUser); 
     });
   }
 
+  getProject(idProject:number){
+    this.project = this.projectService.getProjectById(idProject);
+  }
 
-  // Añadido
+
+  
 
   loadUserEvaluations(idUser: number) {
     console.log("id del usuario: " + idUser);
