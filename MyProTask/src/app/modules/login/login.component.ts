@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   token: any;
   role: string = '';
+  userRole:any;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -44,16 +45,24 @@ export class LoginComponent implements OnInit {
         next: (response: any) => {
           this.getrole();
           if (response && response.jwt) {
-            if (this.role === 'admin') {
-              this.router.navigateByUrl('/home-projects');
-            } else if(this.authService.getUserRole() === 'employee') {
-              this.router.navigateByUrl('/home');
-            }else if(this.authService.getUserRole() === 'manager'){
-              this.router.navigateByUrl('/home-pm');
-            }
-          } else {
-            console.log('Error de login');
-          }
+
+
+          this.authService.getUserRole().subscribe({
+            next: (response: any) => {
+
+              if (this.role === 'admin') {
+                this.router.navigateByUrl('/home-pm');
+              } else if(response.name == 'manager') {
+                this.router.navigateByUrl('/home-pm');
+              }else{
+                this.router.navigateByUrl('/home');
+              }
+             }
+          })
+
+        } else {
+          console.log('Error de login');
+        }
         },
         error: (error: any) => {
           console.error(error);

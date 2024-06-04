@@ -14,7 +14,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePmComponent } from './modules/home-pm/home-pm.component';
 import { ProjectUsersPmComponent } from './modules/project-users-pm/project-users-pm.component';
 import { RequestComponent } from './modules/request/request.component';
-import { AllProjectsComponent } from './modules/all-projects/all-projects.component';
 
 
 
@@ -32,9 +31,7 @@ const routes: Routes = [
   {path:"user/:idUser", component:UserComponent, canActivate:[AuthGuard]},
   {path:"newUser", component:NewUserComponent, canActivate:[AuthGuard]},
   {path:"home-pm/:idProject", component:ProjectUsersPmComponent, canActivate:[AuthGuard]},
-  {path:"requests", component:RequestComponent, canActivate:[AuthGuard]},
-  {path:"home-admin", component:AllProjectsComponent, canActivate:[AuthGuard]}
-
+  {path:"requests", component:RequestComponent, canActivate:[AuthGuard]}
 
 
 ];
