@@ -3,6 +3,7 @@ export interface Characteristic {
     name: string,
     category: {
         idCategory:number,
-        name:string
+        name:string,
+        technical:boolean
     }
 }

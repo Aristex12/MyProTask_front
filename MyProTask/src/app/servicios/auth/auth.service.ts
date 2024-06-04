@@ -54,6 +54,7 @@ export class AuthService {
     try {
       this.userData = jwtDecode(token);
       console.log(this.userData);
+      localStorage.setItem("idUser",this.userData.userId)
     } catch (error) {
       console.error('Error decoding token', error);
     }

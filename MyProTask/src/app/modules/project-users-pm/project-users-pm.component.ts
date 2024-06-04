@@ -270,7 +270,7 @@ export class ProjectUsersPmComponent implements OnInit {
 
   applySelectedCharacteristics() {
     if (this.selectedCharacteristicIds.length > 0) {
-      this.userService.getUserCharacteristics(this.selectedCharacteristicIds)
+      this.userService.getUserCharacteristic(this.selectedCharacteristicIds)
         .subscribe(
           (data: any) => {
             this.addUserProjects = data;

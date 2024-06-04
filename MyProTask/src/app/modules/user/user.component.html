@@ -83,16 +83,60 @@
           <div class="characteristics" *ngFor="let category of categories">
             <h4>{{ category.name }}</h4>
             <div *ngIf="getFilteredCharacteristics(category.name).length === 0">
-              <p>No characteristics</p>
+              <p>No characteristics in this category.</p>
             </div>
             <div *ngFor="let characteristic of getFilteredCharacteristics(category.name)">
-              <ng-container>
-                <p>
-                  {{ characteristic.characteristic.name }} :
-                  {{ characteristic.experience / 12 | number: '1.0-0' }} years and {{ characteristic.experience % 12 }} months
-                </p>
+              <ng-container *ngIf="category.technical; else notechnic">
+                <ng-container *ngIf="characteristic.experience && +characteristic.experience > 12; else onlyMonths">
+                  <p>
+                    {{ characteristic.characteristic.name }}:
+                    <ng-container *ngIf="+characteristic.experience < 24; else multipleYears">
+                      1 year and
+                      <ng-container *ngIf="+characteristic.experience % 12 == 1; else multipleMonths">
+                        1 month
+                      </ng-container>
+                      <ng-template #multipleMonths>
+                        {{ +characteristic.experience % 12 }} months
+                      </ng-template>
+                    </ng-container>
+                    <ng-template #multipleYears>
+                      <ng-container *ngIf="+characteristic.experience % 12 == 0; else notExactYears">
+                        {{ +characteristic.experience / 12 | number: '1.0-0' }} year<span *ngIf="+characteristic.experience / 12 > 1">s</span>
+                      </ng-container>
+                      <ng-template #notExactYears>
+                        {{ +characteristic.experience / 12 | number: '1.0-0' }} year<span *ngIf="+characteristic.experience / 12 > 1">s</span>
+                        <ng-container *ngIf="+characteristic.experience % 12 !== 0 && +characteristic.experience !== 12">
+                          and
+                          <ng-container *ngIf="+characteristic.experience % 12 == 1; else multipleMonthsInYears">
+                            1 month
+                          </ng-container>
+                          <ng-template #multipleMonthsInYears>
+                            {{ +characteristic.experience % 12 }} month<span *ngIf="+characteristic.experience % 12 > 1">s</span>
+                          </ng-template>
+                        </ng-container>
+                      </ng-template>
+                    </ng-template>
+                  </p>
+                </ng-container>
+                <ng-template #onlyMonths>
+                  <p>
+                    {{ characteristic.characteristic.name }}:
+                    <ng-container *ngIf="+characteristic.experience == 1; else multipleMonthsOnly">
+                      1 month
+                    </ng-container>
+                    <ng-template #multipleMonthsOnly>
+                      {{ +characteristic.experience }} month<span *ngIf="+characteristic.experience > 1">s</span>
+                    </ng-template>
+                  </p>
+                </ng-template>
               </ng-container>
-            </div>            
+              <ng-template #notechnic>
+                <p>
+                  {{ characteristic.characteristic.name }}:
+                  {{ +characteristic.experience }}/10
+                </p>
+              </ng-template>
+            </div>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ export interface User {
     email:string,
     profilePic:string,
     cv:string,
+    description:string
     role: {
         idRole:number,
         name:string

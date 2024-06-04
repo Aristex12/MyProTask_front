@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/servicios/auth/auth.service';
+import { Characteristic } from 'src/app/models/characteristic';
+import { User } from 'src/app/models/user';
+import { UsersService } from 'src/app/servicios/Users/users.service';
+import { ProjectService } from 'src/app/servicios/project/project.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-editprofile',
@@ -8,59 +13,197 @@ import { AuthService } from 'src/app/servicios/auth/auth.service';
   styleUrls: ['./editprofile.component.css']
 })
 export class EditprofileComponent {
-  selectedCV: File | null = null;
-  selectedProfilePicture: File | null = null;
+  characteristics: Characteristic[] = [];
+  user: User | null = null;
+  userpfp:string=''
+  idUser: any;
+  Allcharacteristics: Characteristic[] = [];
+  uploadPercentCv: any;
+  uploadPercentPf: any;
+  downloadURL: any;
+  fileCV: File | null = null;
+  filePf: File | null = null;
 
-  name:string = "";
-  email:string = ""
-  profile_pic="../../assets/img/user.png"
-  role:string = "";
-
-
-  constructor(private authService: AuthService, private router:Router) {
-    this.name = this.authService.getUserName();
-    this.email = this.authService.getUserEmail();
-    this.role = this.authService.getUserRole();
-   }
-
-  onFileSelected(event: Event, type: string): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      if (type === 'cv') {
-        this.selectedCV = file;
-      } else if (type === 'profilePicture') {
-        this.selectedProfilePicture = file;
-        this.previewProfilePicture(file);
-      }
-    }
-  }
-
-  previewProfilePicture(file: File): void {
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.profile_pic = e.target.result;
-      // Guarda la imagen en LocalStorage para mantener la persistencia de la imagen en caso de recargar la página
-      localStorage.setItem('profile_pic', e.target.result);
-    };
-    reader.readAsDataURL(file);
-  }
-
+  constructor(
+    private userservice: UsersService,
+    private projectservice: ProjectService,
+    private storage: AngularFireStorage
+  ) {}
+ 
   ngOnInit(): void {
-    // Al inicializar el componente, cargar la imagen de perfil desde LocalStorage si existe
-    const savedProfilePic = localStorage.getItem('profile_pic');
-    if (savedProfilePic) {
-      this.profile_pic = savedProfilePic;
+    this.idUser = localStorage.getItem('idUser');
+    console.log(this.idUser)
+    this.fetchData();
+    console.log(this.userpfp)
+  }
+  
+getNewDesc(){
+  const newdesc = (document.getElementById("desc") as HTMLTextAreaElement).value;
+  console.log(newdesc);
+  this.userservice.updateDescription(newdesc).subscribe(
+    response => {
+      this.openDialog()
+      setTimeout(() => {
+        window.location.reload();
+      }, 400);
+    },
+    error => {
+      console.error('Error actualizando la descripcion', error);
+    }
+  );
+
+}
+addUserCharacteristicTec(){
+  let char:any = (document.getElementById("tecnologias") as HTMLSelectElement).value;
+  let exp:any = (document.getElementById("tecnologias-exp") as HTMLInputElement).value;
+  char= parseInt(char)
+  exp=parseInt(exp)
+  this.userservice.addUserCharacteristics(char,exp).subscribe(
+    response => {
+      this.openDialog()
+      setTimeout(() => {
+        window.location.reload();
+      }, 400);
+    },
+    error => {
+      console.error('Error', error);
+    }
+  );
+}
+addUserCharacteristicLang(){
+  let char:any = (document.getElementById("languages") as HTMLSelectElement).value;
+  let exp:any = (document.getElementById("languages-exp") as HTMLInputElement).value;
+  char= parseInt(char)
+  exp=parseInt(exp)
+  this.userservice.addUserCharacteristics(char,exp).subscribe(
+    response => {
+      this.openDialog()
+      setTimeout(() => {
+        window.location.reload();
+      }, 400);
+    },
+    error => {
+      console.error('Error', error);
+    }
+  );
+}
+  fetchData() {
+    this.userservice.getUserCharacteristics().subscribe(
+      (data: Characteristic[]) => {
+        this.characteristics = data;
+      },
+      (error) => {
+        console.error('Error fetching user characteristics:', error);
+      }
+    );
+
+    this.userservice.getUserById(this.idUser).subscribe(
+      (data: User) => {
+        this.user = data;
+        this.userpfp=this.user.profilePic
+        console.log(this.userpfp);
+      },
+      (error) => {
+        console.error('Error fetching user data:', error);
+      }
+    );
+
+    this.projectservice.getAllCharacteristics().subscribe(
+      (data: Characteristic[]) => {
+        this.Allcharacteristics = data;
+      },
+      (error) => {
+        console.error('Error fetching all characteristics:', error);
+      }
+    );
+  }
+
+  getPlaceholderText() {
+    return this.fileCV ? this.fileCV.name : "No seleccionado CV";
+  }
+
+  getPlaceholderText2() {
+    return this.filePf ? this.filePf.name : "No seleccionado CV";
+  }
+
+  uploadCv(event: any) {
+    this.fileCV = event.target.files[0];
+ 
+  }
+
+  uploadPf(event: any) {
+    this.filePf = event.target.files[0];
+  }
+
+  uploadFiles() {
+    if (this.fileCV) {
+      const newFileName='curriculum.pdf'
+      const cvFilePath = `user-profiles/${this.idUser}/${newFileName}`;
+      const cvFileRef = this.storage.ref(cvFilePath);
+      const cvTask = this.storage.upload(cvFilePath, this.fileCV);
+
+      cvTask.snapshotChanges().pipe(
+        finalize(() => {
+          
+          cvFileRef.getDownloadURL().subscribe((cvUrl: string) => {
+            if (cvUrl) {
+              console.log('CV File URL:', cvUrl);
+              console.log(this.fileCV?.name)
+              this.userservice.updateCV(this.fileCV?.name).subscribe(
+                response => {
+                  this.openDialog()
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 400);
+                },
+                error => {
+                  console.error('Error actualizando el CV', error);
+                }
+              );
+              // Aquí puedes hacer lo que necesites con la URL del CV
+            }
+          });
+        })
+      ).subscribe();
+    }
+
+    if (this.filePf) {
+      const newFileName2='pfp.png'
+      console.log(this.idUser)
+      const pfFilePath = `user-profiles/${this.idUser}/${newFileName2}`;
+      const pfFileRef = this.storage.ref(pfFilePath);
+      const pfTask = this.storage.upload(pfFilePath, this.filePf);
+
+      pfTask.snapshotChanges().pipe(
+        finalize(() => {
+          pfFileRef.getDownloadURL().subscribe((pfUrl: string) => {
+            if (pfUrl) {
+              console.log('Profile Picture URL:', pfUrl);
+              this.userservice.updateProfilePic(this.filePf?.name).subscribe(
+                response => {
+                  this.openDialog()
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 400);
+                },
+                error => {
+                  console.error('Error actualizando el CV', error);
+                }
+              );
+            }
+          });
+        })
+      ).subscribe();
     }
   }
 
-  onSubmit(): void {
-    if (this.selectedCV) {
-      console.log('Selected CV:', this.selectedCV.name);
-    }
-    if (this.selectedProfilePicture) {
-      console.log('Selected Profile Picture:', this.selectedProfilePicture.name);
-    }
-    // Aquí puedes añadir la lógica para procesar los archivos seleccionados
+  showDialog: boolean = false;
+
+  openDialog(): void {
+    this.showDialog = true;
+  }
+
+  closeDialog(): void {
+    this.showDialog = false;
   }
 }

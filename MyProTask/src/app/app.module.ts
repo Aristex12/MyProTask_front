@@ -22,7 +22,9 @@ import { RouterEvent, RouterModule, Routes } from '@angular/router';
 import { ProjectUsersPmComponent } from './modules/project-users-pm/project-users-pm.component';
 import { RequestComponent } from './modules/request/request.component';
 import { AllProjectsComponent } from './modules/all-projects/all-projects.component';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from '../environments/environment';
 
 
 
@@ -54,7 +56,8 @@ import { AllProjectsComponent } from './modules/all-projects/all-projects.compon
     ReactiveFormsModule,
     HttpClientModule,
     FullCalendarModule,
-    RouterModule
+    RouterModule,AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
