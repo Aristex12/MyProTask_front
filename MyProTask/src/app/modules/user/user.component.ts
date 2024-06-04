@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ActivatedRoute } from '@angular/router';
 import { Characteristic } from 'src/app/models/characteristic';
 import { Project } from 'src/app/models/project';
@@ -25,15 +26,19 @@ export class UserComponent implements OnInit {
   listUserCharacteristic: any[] = [];
   project: any;
   evaluations: any = [];
- 
+ iduser:any
+ profile_pic:any
   constructor(
     private route: ActivatedRoute,
     private userService: UsersService,
     private projectService: ProjectService,  
-    private evaluationService: EvaluationService
+    private evaluationService: EvaluationService,
+    private userservice:UsersService,
+    private storage:AngularFireStorage
   ) {}
  
   ngOnInit() {
+    this.iduser=localStorage.getItem("idUser")
     this.route.params.subscribe(params => {
       const idUser = params['idUser'];
       this.loadUserData(idUser);
@@ -43,7 +48,26 @@ export class UserComponent implements OnInit {
       this.getCategories();
     });
   }
- 
+  getUser(iduser:any){
+   
+    this.userservice.getUserById(iduser).subscribe(
+      (data: User) => {
+        this.user = data;
+        console.log(this.profile_pic);
+        const gsUrl = 'gs://myprotask.appspot.com/user-profiles/'+ iduser +'/pfp.png';
+        console.log(gsUrl)
+       
+        this.storage.refFromURL(gsUrl).getDownloadURL().subscribe(url => {
+          console.log(url)
+          this.profile_pic = url;
+          return this.profile_pic
+        });
+      },
+      (error) => {
+        console.error('Error fetching user data:', error);
+      }
+    );
+  }
   getCharacteristicById(idCharacteristic: number) {
     this.projectService.getCharacteristicById(idCharacteristic).subscribe(
       (data: any) => {
