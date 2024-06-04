@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   token: any;
   role: string = '';
-  userRole:any;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
