@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/servicios/auth/auth.service';
   styleUrls: ['./new-user.component.css']
 })
 export class NewUserComponent {
-  rol:string = "developer";
   userForm!: FormGroup;
   role:string = "";
   

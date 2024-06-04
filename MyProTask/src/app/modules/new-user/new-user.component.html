@@ -1,8 +1,8 @@
 <app-aside></app-aside>
 <app-header></app-header>
 <section>
-    <div class="container" *ngIf="rol=='admin'">
-        <div class="left ">
+    <div class="container" *ngIf="role=='admin'">
+        <div class="left">
             <img src="../../../assets/img/users_add.png" alt="">
         </div>
         <div class="right">
@@ -14,23 +14,17 @@
                   <div *ngIf="userForm.get('username')?.hasError('required') && userForm.get('username')?.touched" class="text-danger">
                     Username is required
                   </div>
-                  
                 </div>
                 <div class="form-group">
                   <label for="lastname"><i class="bi bi-person-fill"></i></label>
-                  <input type="text" name="last_name" class="form-control" formControlName="lastName"placeholder="Last name">
-                  <div *ngIf="userForm.get('lastName')?.hasError('required') && userForm.get('lastName')?.touched" class="text-danger">
-                    Last name is required
-                  </div>
+                  <input type="text" name="last_name" class="form-control" formControlName="lastName" placeholder="Last name">
                   
-                </div>               
+                </div>
+                <div *ngIf="userForm.get('lastName')?.hasError('required') && userForm.get('lastName')?.touched" class="text-danger">
+                  Last name is required
+                </div>                    
                 <button type="submit" class="btn btn-primary button_regis">Register</button>
-              </form>
-              
-        </div>
-             
+              </form>              
+        </div>             
     </div>
-
-
 </section>
-
