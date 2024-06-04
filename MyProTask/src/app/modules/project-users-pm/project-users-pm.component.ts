@@ -14,10 +14,12 @@ import { UsersService } from 'src/app/servicios/Users/users.service';
   styleUrls: ['./project-users-pm.component.css'],
 })
 export class ProjectUsersPmComponent implements OnInit {
+  infoProject:any;
   project: any;
   userProjects: any[] = [];
   vacancy: any;
   activeMembers: any;
+  addUserProjectsBackup: any[] = [];
   addUserProjects:any;
   idCharacteristicsProject: any[] = [];
   terminoBusqueda: string = '';
@@ -38,7 +40,7 @@ export class ProjectUsersPmComponent implements OnInit {
     { idCategory: 2, name: "Technologies" },
     { idCategory: 3, name: "Languages" },
   ];
-
+  idProject:any;
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
@@ -49,12 +51,12 @@ export class ProjectUsersPmComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      const idProject = params['idProject'];
-      this.loadProjectData(idProject);
-      this.getUsersByIdProject(idProject);
+       this.idProject = params['idProject'];
+      this.loadProjectData(  this.idProject);
+      this.getUsersByIdProject(  this.idProject);
       this.getData();
       this.getCharacteristics();
-      this.projectService.getVacanciesCount(idProject).subscribe({
+      this.projectService.getVacanciesCount(  this.idProject).subscribe({
         next: (count) => {
           this.activeMembers = count;
         },
@@ -143,6 +145,8 @@ export class ProjectUsersPmComponent implements OnInit {
     this.userService.getUsersByCharacteristics(characteristicsIds, idProject).subscribe({
       next: (users: User[]) => {
         this.addUserProjects = users;
+        this.addUserProjectsBackup=users;
+        
       },
       error: (err: any) => {
         console.error('Error fetching users by characteristics:', err);
@@ -227,9 +231,11 @@ export class ProjectUsersPmComponent implements OnInit {
   }
 
   getCharacteristics() {
-    this.projectService.getAllCharacteristics().subscribe((data: Characteristic[]) => {
-      this.characteristics = data;
+    this.projectService.getProjectById(this.idProject).subscribe((data: any) => {
+      this.infoProject=data
+      this.characteristics = data.projectCharacteristics;
     });
+   
   }
 
   getFilteredCharacteristics(catId: number): Characteristic[] {
@@ -243,10 +249,10 @@ export class ProjectUsersPmComponent implements OnInit {
   search(): void {
     const searchTerm = this.terminoBusqueda.trim().toLowerCase();
     if (!searchTerm) {
-      this.projects = [...this.projectsBackup];
+      this.addUserProjects = [...this.addUserProjectsBackup];
       return;
     }
-    this.projects = this.projectsBackup.filter(project =>
+    this.addUserProjects = this.addUserProjectsBackup.filter(project =>
       project.name.toLowerCase().includes(searchTerm)
     );
   }
@@ -264,14 +270,26 @@ export class ProjectUsersPmComponent implements OnInit {
 
   applySelectedCharacteristics() {
     if (this.selectedCharacteristicIds.length > 0) {
-      this.projectService.getProjectsByCharacteristics(this.selectedCharacteristicIds)
-        .subscribe((data: Project[]) => {
-          this.projects = data;
-        });
+      this.userService.getUserCharacteristics(this.selectedCharacteristicIds)
+        .subscribe(
+          (data: any) => {
+            this.addUserProjects = data;
+            console.log(data);
+          },
+          (error: any) => {
+            if (error.status === 404) {
+              this.addUserProjects = []; 
+              console.error("No se encontraron usuarios")
+            } else {
+              // Maneja otros errores aquí si es necesario
+            }
+          }
+        );
     } else {
-      this.projects = [...this.projectsBackup];
+      this.addUserProjects = [...this.addUserProjectsBackup];
     }
   }
+  
 
   isCategoryExpanded(categoryId: number): boolean {
     return this.expandedCategories.has(categoryId);

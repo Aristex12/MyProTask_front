@@ -190,7 +190,7 @@
 
         <div class="div-container">
           <div id="searchbar">
-            <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Search for the user by name" />
+            <input type="text" [(ngModel)]="terminoBusqueda" (input)="search()" placeholder="Search for the user by name" />
             <span class="input-group-text"><i class="fas fa-search"></i></span>
           </div>
           <div class="template three overflow">
@@ -226,4 +226,5 @@
       </div>
     </div>
   </div>
+  
 </section>

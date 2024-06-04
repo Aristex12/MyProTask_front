@@ -18,10 +18,10 @@ export class UserComponent implements OnInit {
   userView: UserView []=[];
   users: any = [];
   projects: Project[] = [];
-
+  contador: number=0;
   characteristic: Characteristic | undefined;
-
-  listUserCharacteristic: Characteristic[] = [];
+  categories:any[]=[];
+  listUserCharacteristic: any[] = [];
 
   project:any;
 
@@ -37,7 +37,7 @@ export class UserComponent implements OnInit {
       this.loadUserHistory(idUser);
       this.loadUserEvaluations(idUser); 
       this.getUserCharacteristicsByIdUser(idUser);
-
+      this.getCategories()
       this.listUserCharacteristic.forEach(element => {
         
       });
@@ -57,18 +57,36 @@ export class UserComponent implements OnInit {
   }
 
   getUserCharacteristicsByIdUser(idUser: number) {
-    this.projectService.getCharacteristicsByIdUser(idUser).subscribe(
-      (data: Characteristic[]) => {
+    console.log("ENTRADA FUNCION getUserCharacteristicsByIdUser")
+    this.userService.getCharacteristicsByIdUser(idUser).subscribe(
+      (data: any[]) => {
+
         this.listUserCharacteristic = data;
-        console.log('Characteristics:', this.listUserCharacteristic);
+        console.log('Characteristics:', data);
       },
       error => {
         console.error('Error loading characteristics for user:', error);
       }
     );
   }
-  
+  sumarContador(){
+   
+    this.contador++
+    console.log(this.contador)
+  }
+  reiniciarContador(){
+    this.contador=0
+  }
+  getCategories(){
+    this.userService.getCategories().subscribe(
+      (data:any)=> {
 
+        this.categories=data
+        console.log("Categorias: ",this.categories)
+      }
+    )
+  }
+ 
   getProject(idProject:number){
     this.project = this.projectService.getProjectById(idProject);
   }

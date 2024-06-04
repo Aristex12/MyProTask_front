@@ -33,6 +33,7 @@ export class RequestComponent {
     this.requestService.deleteRequest(idRequest).subscribe({
       next: (response:any)=>{
         this.getRequestByIdUser();
+        window.location.reload();
       },
       error: (error:any)=>{
       }

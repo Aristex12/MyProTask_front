@@ -1,24 +1,22 @@
 <app-aside></app-aside>
 <app-header></app-header>
 <section>
-
   <div class="template eight">
     <div>
       <div class="white">
         <div class="white">
           <div class="template seven">
-
             <div class="user-div">
               <div id="profile-pic" *ngIf="user">
-                <img src="../../../assets/img/{{user.profilePic }}" alt="" />
+                <img src="../../../assets/img/{{ user.profilePic }}" alt="" />
               </div>
               <p>{{ user?.name }}</p>
 
               <p>{{ user?.email }}</p>
               <p><a href="">Download CV</a></p>
               <h2>History</h2>
-              <div id="projects"class="overflow">
-                <table>
+              <div id="projects" class="overflow">
+                
                   <div *ngIf="userView">
                     <table>
                       <thead>
@@ -33,26 +31,40 @@
                         <tr *ngFor="let historyItem of userView">
                           <td>{{ historyItem.Project.name }}</td>
                           <td>{{ historyItem.Project.description }}</td>
-                          <td>{{ historyItem.Project.startDate | date }} - {{ historyItem.Project.finishDate | date }}</td>
+                          <td>
+                            {{ historyItem.Project.startDate | date }} -
+                            {{ historyItem.Project.finishDate | date }}
+                          </td>
                           <td>{{ historyItem.User.role.name }}</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
-                  
-                </table>
+               
               </div>
             </div>
             <div class="evaluation_container" *ngIf="evaluations.length > 0">
               <div class="inner_evaluation_container">
                 <h2>Evaluations</h2>
                 <div class="evaluation" *ngFor="let evaluation of evaluations">
-                  <h1>Project name: {{evaluation.userProject.project.name}}</h1>
+                  <h1>
+                    Project name: {{ evaluation.userProject.project.name }}
+                  </h1>
                   <p><strong>Team Work:</strong> {{ evaluation.teamWork }}/6</p>
-                  <p><strong>Individual Work:</strong> {{ evaluation.individualWork }}/6</p>
-                  <p><strong>Initiative:</strong> {{ evaluation.initiative }}/6</p>
-                  <p><strong>Problem Resolution:</strong> {{ evaluation.problemResolution }}/6</p>
-                  <p><strong>Observations:</strong> {{ evaluation.observation }}</p>
+                  <p>
+                    <strong>Individual Work:</strong>
+                    {{ evaluation.individualWork }}/6
+                  </p>
+                  <p>
+                    <strong>Initiative:</strong> {{ evaluation.initiative }}/6
+                  </p>
+                  <p>
+                    <strong>Problem Resolution:</strong>
+                    {{ evaluation.problemResolution }}/6
+                  </p>
+                  <p>
+                    <strong>Observations:</strong> {{ evaluation.observation }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -66,14 +78,56 @@
     <div class="white">
       <div class="white">
         <div class="div-characteristics">
-          <h3>Characteristics:</h3>
-          <div class="characteristics" *ngFor="let userCharacteristic of listUserCharacteristic">
-            
-            
+          <h2>Characteristics:</h2>
+
+          <div class="characteristics" *ngFor="let category of categories">
+            <h4>{{category.name}}</h4>
+            <div *ngFor="let characteristics of listUserCharacteristic">
+              <ng-container *ngIf="characteristics.characteristic.category.name === category.name;">
+                <div>
+                  <!-- {{sumarContador()}}
+                  <p>{{contador}}</p> -->
+                </div>
+                <p *ngIf="listUserCharacteristic.length !== 0">
+                  {{ characteristics.characteristic.name }} :
+                  {{ characteristics.experience / 12 | number : "1.0-0" }}
+                  años y {{ characteristics.experience % 12 }} meses
+                </p>
+              </ng-container>
+            </div>
+          
+            <!-- Reiniciar contador -->
+            {{reiniciarContador()}}
           </div>
+          
+          <!-- Mostrar mensaje si no hay características -->
+          <ng-template [ngIf]="listUserCharacteristic.length === 0">
+            <p>No info</p>
+          </ng-template>
+          
+          
+          
+          
+
+
 
         </div>
       </div>
     </div>
   </div>
 </section>
+
+  <!-- <ng-container *ngIf="
+                userCharacteristic.characteristic.category.name ==
+                  'Programming Language';
+                else noLanguage
+              ">
+              <p>
+                {{ userCharacteristic.characteristic.name }} :
+                {{ userCharacteristic.experience / 12 | number : "1.0-0" }}
+                years and {{ userCharacteristic.experience % 12 }} months
+              </p>
+            </ng-container>
+            <ng-template #noLanguage>
+              <p>No hay características de Language</p>
+            </ng-template>     -->
