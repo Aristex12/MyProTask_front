@@ -33,7 +33,7 @@ const routes: Routes = [
   {path:"newUser", component:NewUserComponent, canActivate:[AuthGuard]},
   {path:"home-pm/:idProject", component:ProjectUsersPmComponent, canActivate:[AuthGuard]},
   {path:"requests", component:RequestComponent, canActivate:[AuthGuard]},
-  {path:"home-admin", component:AllProjectsComponent, canActivate:[AuthGuard]}
+  {path:"home-projects", component:AllProjectsComponent, canActivate:[AuthGuard]}
 
 
 

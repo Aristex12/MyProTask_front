@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
             next: (response: any) => {
 
               if (this.role === 'admin') {
-                this.router.navigateByUrl('/home-pm');
+                this.router.navigateByUrl('/home-projects');
               } else if(response.name == 'manager') {
                 this.router.navigateByUrl('/home-pm');
               }else{
