@@ -8,7 +8,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class TasksService {
   private role:string = "";
-  private role:string = "";
+  
   private idUser:any;
   constructor(private http:HttpClient, private authService:AuthService) {
     this.idUser = this.authService.getUserId();
