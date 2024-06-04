@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Characteristic } from 'src/app/models/characteristic';
@@ -7,7 +8,7 @@ import { UserView } from 'src/app/models/userView'; // Importa el modelo UserVie
 import { UsersService } from 'src/app/servicios/Users/users.service';
 import { EvaluationService } from 'src/app/servicios/evaluation/evaluation.service';
 import { ProjectService } from 'src/app/servicios/project/project.service';
-
+ 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -18,34 +19,32 @@ export class UserComponent implements OnInit {
   userView: UserView []=[];
   users: any = [];
   projects: Project[] = [];
-  contador: number=0;
+  contador: number = 0;
   characteristic: Characteristic | undefined;
-  categories:any[]=[];
+  categories: any[] = [];
   listUserCharacteristic: any[] = [];
-
-  project:any;
-
+  project: any;
   evaluations: any = [];
-
-  
-  constructor(private route: ActivatedRoute, private userService: UsersService, private projectService:ProjectService,  private evaluationService:EvaluationService) { }
-
+ 
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UsersService,
+    private projectService: ProjectService,  
+    private evaluationService: EvaluationService
+  ) {}
+ 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const idUser = params['idUser'];
       this.loadUserData(idUser);
       this.loadUserHistory(idUser);
-      this.loadUserEvaluations(idUser); 
+      this.loadUserEvaluations(idUser);
       this.getUserCharacteristicsByIdUser(idUser);
-      this.getCategories()
-      this.listUserCharacteristic.forEach(element => {
-        
-      });
-      
+      this.getCategories();
     });
   }
-
-  getCharacteristicById(idCharacteristic:number){
+ 
+  getCharacteristicById(idCharacteristic: number) {
     this.projectService.getCharacteristicById(idCharacteristic).subscribe(
       (data: any) => {
         this.characteristic = data;
@@ -55,12 +54,11 @@ export class UserComponent implements OnInit {
       }
     );
   }
-
+ 
   getUserCharacteristicsByIdUser(idUser: number) {
     console.log("ENTRADA FUNCION getUserCharacteristicsByIdUser")
     this.userService.getCharacteristicsByIdUser(idUser).subscribe(
       (data: any[]) => {
-
         this.listUserCharacteristic = data;
         console.log('Characteristics:', data);
       },
@@ -69,31 +67,29 @@ export class UserComponent implements OnInit {
       }
     );
   }
-  sumarContador(){
-   
-    this.contador++
-    console.log(this.contador)
-  }
-  reiniciarContador(){
-    this.contador=0
-  }
-  getCategories(){
-    this.userService.getCategories().subscribe(
-      (data:any)=> {
-
-        this.categories=data
-        console.log("Categorias: ",this.categories)
-      }
-    )
+ 
+  sumarContador() {
+    this.contador++;
+    console.log(this.contador);
   }
  
-  getProject(idProject:number){
+  reiniciarContador() {
+    this.contador = 0;
+  }
+ 
+  getCategories() {
+    this.userService.getCategories().subscribe(
+      (data: any) => {
+        this.categories = data;
+        console.log("Categorias: ", this.categories);
+      }
+    );
+  }
+ 
+  getProject(idProject: number) {
     this.project = this.projectService.getProjectById(idProject);
   }
-
-
-  
-
+ 
   loadUserEvaluations(idUser: number) {
     console.log("id del usuario: " + idUser);
     this.evaluationService.getUserEvaluation(idUser).subscribe(
@@ -107,8 +103,7 @@ export class UserComponent implements OnInit {
       }
     );
   }
-
-
+ 
   loadUserData(idUser: number) {
     this.userService.getUserById(idUser).subscribe(
       (data: User) => {
@@ -119,7 +114,7 @@ export class UserComponent implements OnInit {
       }
     );
   }
-
+ 
   loadUserHistory(idUser: number) {
     this.userService.getHistoryById(idUser).subscribe(
       (data: any[]) => { // Espera un objeto de tipo UserView
@@ -138,13 +133,12 @@ export class UserComponent implements OnInit {
               idUserProject: item.idUserProject,
               Project: project,
               User: user,
-              // Declarar como opcional o asignar un valor válido
               joinDate: undefined,
               exitDate: undefined,
               role: undefined,
-              active:true
+              active: true
             };
-
+ 
             this.userView.push(users_view);
           });
           console.log('Usuarios:', this.users);
@@ -153,12 +147,17 @@ export class UserComponent implements OnInit {
         } else {
           console.log('No se encontraron usuarios.');
         }
-
       },
       error => {
         console.error('Error al cargar el historial del usuario:', error);
       }
     );
   }
-
+ 
+  getFilteredCharacteristics(categoryName: string): any[] {
+    return this.listUserCharacteristic.filter(characteristic =>
+      characteristic.characteristic.category.name === categoryName
+    );
+  }
 }
+ 

@@ -11,12 +11,12 @@
                 <img src="../../../assets/img/{{ user.profilePic }}" alt="" />
               </div>
               <p>{{ user?.name }}</p>
-
+ 
               <p>{{ user?.email }}</p>
               <p><a href="">Download CV</a></p>
               <h2>History</h2>
               <div id="projects" class="overflow">
-                
+               
                   <div *ngIf="userView">
                     <table>
                       <thead>
@@ -79,44 +79,27 @@
       <div class="white">
         <div class="div-characteristics">
           <h2>Characteristics:</h2>
-
+ 
           <div class="characteristics" *ngFor="let category of categories">
-            <h4>{{category.name}}</h4>
-            <div *ngFor="let characteristics of listUserCharacteristic">
-              <ng-container *ngIf="characteristics.characteristic.category.name === category.name;">
-                <div>
-                  <!-- {{sumarContador()}}
-                  <p>{{contador}}</p> -->
-                </div>
-                <p *ngIf="listUserCharacteristic.length !== 0">
-                  {{ characteristics.characteristic.name }} :
-                  {{ characteristics.experience / 12 | number : "1.0-0" }}
-                  años y {{ characteristics.experience % 12 }} meses
+            <h4>{{ category.name }}</h4>
+            <div *ngIf="getFilteredCharacteristics(category.name).length === 0">
+              <p>No characteristics</p>
+            </div>
+            <div *ngFor="let characteristic of getFilteredCharacteristics(category.name)">
+              <ng-container>
+                <p>
+                  {{ characteristic.characteristic.name }} :
+                  {{ characteristic.experience / 12 | number: '1.0-0' }} years and {{ characteristic.experience % 12 }} months
                 </p>
               </ng-container>
-            </div>
-          
-            <!-- Reiniciar contador -->
-            {{reiniciarContador()}}
+            </div>            
           </div>
-          
-          <!-- Mostrar mensaje si no hay características -->
-          <ng-template [ngIf]="listUserCharacteristic.length === 0">
-            <p>No info</p>
-          </ng-template>
-          
-          
-          
-          
-
-
-
         </div>
       </div>
     </div>
   </div>
 </section>
-
+ 
   <!-- <ng-container *ngIf="
                 userCharacteristic.characteristic.category.name ==
                   'Programming Language';
