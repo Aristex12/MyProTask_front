@@ -8,9 +8,11 @@ import { AuthService } from '../auth/auth.service';
 })
 export class TasksService {
   private role:string = "";
+  private role:string = "";
   private idUser:any;
   constructor(private http:HttpClient, private authService:AuthService) {
     this.idUser = this.authService.getUserId();
+
 
    }
 
@@ -24,9 +26,26 @@ export class TasksService {
         console.error(error);
       }
     });
+    this.authService.getUserRole().subscribe({
+      next: (role: any) => {
+        this.role = role.name;
+
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
+    });
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
+    if(this.role=='manager'){
+    return this.http.get(`http://localhost:8080/api/task/displayTasksByProjectsByIdUser?idUser=${this.idUser}`, {headers})
+    }else if(this.authService.getUserRole()=='employee'){
+      return this.http.get(`http://localhost:8080/api/task/displayActiveTasksByIdUser?idUser=${this.idUser}`, {headers})
+    }
+    else{
+      return this.http.get(`http://localhost:8080/api/task/displayTasksByProjectsByIdUser?idUser=${this.idUser}`, {headers})
+    }
     if(this.role=='manager'){
     return this.http.get(`http://localhost:8080/api/task/displayTasksByProjectsByIdUser?idUser=${this.idUser}`, {headers})
     }else if(this.authService.getUserRole()=='employee'){
