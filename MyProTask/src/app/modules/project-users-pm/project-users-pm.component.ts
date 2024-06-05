@@ -31,6 +31,12 @@ export class ProjectUsersPmComponent implements OnInit {
 
   evaluationComment: string = '';
 
+  flag1 = false;
+  flag2 = false;
+  flag3 = false;
+  flag4 = false;
+  isValid = false;
+
   user:User | undefined;
 
   expandedCategories: Set<number> = new Set<number>();
@@ -112,6 +118,9 @@ export class ProjectUsersPmComponent implements OnInit {
   }
 
   updateActiveUserById(idUser: number, idProject: number) {
+    if(this.isValid){
+      return;
+    }
     this.evaluationService.getUserProjectId(idUser, idProject).subscribe({
       next: (response: any) => {
         console.log("Respuesta del servidor: " + response);
@@ -146,7 +155,7 @@ export class ProjectUsersPmComponent implements OnInit {
       next: (users: User[]) => {
         this.addUserProjects = users;
         this.addUserProjectsBackup=users;
-        
+
       },
       error: (err: any) => {
         console.error('Error fetching users by characteristics:', err);
@@ -235,7 +244,7 @@ export class ProjectUsersPmComponent implements OnInit {
       this.infoProject=data
       this.characteristics = data.projectCharacteristics;
     });
-   
+
   }
 
   getFilteredCharacteristics(catId: number): Characteristic[] {
@@ -278,7 +287,7 @@ export class ProjectUsersPmComponent implements OnInit {
           },
           (error: any) => {
             if (error.status === 404) {
-              this.addUserProjects = []; 
+              this.addUserProjects = [];
               console.error("No se encontraron usuarios")
             } else {
               // Maneja otros errores aquí si es necesario
@@ -289,7 +298,7 @@ export class ProjectUsersPmComponent implements OnInit {
       this.addUserProjects = [...this.addUserProjectsBackup];
     }
   }
-  
+
 
   isCategoryExpanded(categoryId: number): boolean {
     return this.expandedCategories.has(categoryId);
@@ -303,7 +312,35 @@ export class ProjectUsersPmComponent implements OnInit {
     }
   }
 
+  formValidation(): boolean {
+    // Obtener los valores seleccionados
+    let individualWorkValue = this.getSelectedValue('individual_work');
+    let initiativeValue = this.getSelectedValue('initiative');
+    let problemResolutionValue = this.getSelectedValue('problem_resolution');
+    let teamWorkValue = this.getSelectedValue('team_work');
+
+    // Validar y establecer flags
+    this.flag1 = !individualWorkValue;
+    this.flag2 = !initiativeValue;
+    this.flag3 = !problemResolutionValue;
+    this.flag4 = !teamWorkValue;
+
+    // Establecer isValid según los flags
+    this.isValid = this.flag1 || this.flag2 || this.flag3 || this.flag4;
+
+    // Asignar valores a las variables del componente
+    individualWorkValue = individualWorkValue;
+    initiativeValue = initiativeValue;
+    problemResolutionValue = problemResolutionValue;
+    teamWorkValue = teamWorkValue;
+
+    return !this.isValid;
+  }
+
   addEvaluationData(idUser:number, idProject:number){
+    if (!this.formValidation()) {
+      return;
+    }
     const individualWorkValue = this.getSelectedValue('individual_work');
     const initiativeValue = this.getSelectedValue('initiative');
     const problemResolutionValue = this.getSelectedValue('problem_resolution');

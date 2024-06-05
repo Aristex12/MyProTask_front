@@ -14,10 +14,11 @@
               <p>{{ user?.name }}</p>
               <p>{{ user?.email }}</p>
               <p>{{ user?.description }}</p>
+              <p>{{user?.awg}}</p>
               <p><a href="https://firebasestorage.googleapis.com/v0/b/myprotask.appspot.com/o/user-profiles%2F{{ user?.idUser }}%2Fcurriculum.pdf?alt=media&token=71e4361c-7814-4858-896e-cedcaf90980c">Download CV</a></p>
               <h2>History</h2>
               <div id="projects" class="overflow">
-               
+
                   <div *ngIf="userView">
                     <table>
                       <thead>
@@ -41,7 +42,7 @@
                       </tbody>
                     </table>
                   </div>
-               
+
               </div>
             </div>
             <div class="evaluation_container" *ngIf="evaluations.length > 0">
@@ -80,7 +81,7 @@
       <div class="white">
         <div class="div-characteristics">
           <h2>Characteristics:</h2>
- 
+
           <div class="characteristics" *ngFor="let category of categories">
             <h4>{{ category.name }}</h4>
             <div *ngIf="getFilteredCharacteristics(category.name).length === 0">
@@ -144,7 +145,7 @@
     </div>
   </div>
 </section>
- 
+
   <!-- <ng-container *ngIf="
                 userCharacteristic.characteristic.category.name ==
                   'Programming Language';
