@@ -26,6 +26,7 @@ th{
 }
 td{
     text-align: center;
+    border: 1px solid lightgray;
 }
 .border-left{
     border-top-left-radius:  10px;

@@ -12,12 +12,7 @@
                 <tr class="grey"  *ngFor="let project of projects">
                     <td class="border-left">{{project.name}}</td>
                     <td>{{project.description}}</td>
-                    <td>
-                        <!-- <relative-time
-                            lang="es"
-                            datetime="{{projects.finishDate}}">
-                        </relative-time> -->
-                    </td>
+                    
                     <td>{{project.finishDate}}</td>
                     <td style="color: #FF6D43;" class="border-right">{{project.vacancies}} tasks</td>
                 </tr>
@@ -47,12 +42,12 @@
             <tr>
                 <th>Up to end tasks</th>
                 <th>Project Name</th>
-                <th>Days left</th>
+                <th>Final Date</th>
             </tr>
             <tr class="grey" *ngFor="let task of tasksList | slice:0:4; let i = index">
                 <td class="border-left">{{task.name}}</td>
                 <td>{{task.project.name}} days</td>
-                <td style="color: #FF6D43;" class="border-right">{{task.finishDate}} days</td>
+                <td style="color: #FF6D43;" class="border-right">{{task.finishDate}} </td>
             </tr>
         </table>
     </div>
