@@ -1,3 +1,4 @@
+//AUTHORS: Anas Rami, Sergio ramos, Kevin Reyes
 import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';

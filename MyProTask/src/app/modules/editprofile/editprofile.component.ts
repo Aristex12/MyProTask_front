@@ -1,3 +1,4 @@
+//AUTHORS: Anas Rami
 import { Component } from '@angular/core';
 import { Characteristic } from 'src/app/models/characteristic';
 import { User } from 'src/app/models/user';

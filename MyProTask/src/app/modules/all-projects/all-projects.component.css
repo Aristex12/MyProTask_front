@@ -1,37 +1,33 @@
-
 .table-container {
   width: 95%;
-  height: 85%; 
-overflow: auto; 
+  height: 85%;
+  overflow: auto;
   margin-top: 60px;
   margin-left: 25px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  position: relative; 
-
+  position: relative;
 }
 .table-container::-webkit-scrollbar {
-    display: none; 
-  }
+  display: none;
+}
 
-
-  .table-container table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .table-container thead {
-    position: sticky; 
-    top: 0; 
-    background-color: #f0f0f0; 
-    z-index: 1; 
-  }
-
-table {
-
+.table-container table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9em; 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.table-container thead {
+  position: sticky;
+  top: 0;
+  background-color: #f0f0f0;
+  z-index: 1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 thead th:first-of-type {
@@ -49,20 +45,21 @@ thead tr {
   font-weight: bold;
 }
 
-th, td {
-  padding: 23px 35px; 
+th,
+td {
+  padding: 23px 35px;
 }
 
 tbody tr {
   border-bottom: 1px solid #dddddd;
-  height: 30px; 
+  height: 30px;
 }
 
 tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
 }
 
-i{
+i {
   color: #ff6600;
 }
 tbody tr:hover {
@@ -70,17 +67,15 @@ tbody tr:hover {
   cursor: pointer;
 }
 
-
 td img {
   border-radius: 5px;
   width: 40px;
   height: auto;
 }
 
-
 button {
   border: none;
-  padding: 3px 8px; 
+  padding: 3px 8px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -100,28 +95,29 @@ button {
   background-color: #cc5200;
 }
 
-.edit-btn, .delete-btn {
+.edit-btn,
+.delete-btn {
   background-color: #2b2b2b;
   color: white;
 }
 
-.edit-btn:hover, .delete-btn:hover {
+.edit-btn:hover,
+.delete-btn:hover {
   background-color: #1a1a1a;
 }
 
-.edit-btn i, .delete-btn i {
+.edit-btn i,
+.delete-btn i {
   font-size: 1em;
 }
 
-
 select {
-  padding: 3px; 
-  font-size: 0.9em; 
+  padding: 3px;
+  font-size: 0.9em;
   border-radius: 5px;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
 }
-
 
 .color-dot {
   height: 12px;
@@ -132,39 +128,38 @@ select {
 }
 
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
   padding-top: 60px;
 }
-.modal h4{
+.modal h4 {
   color: #ff6600;
-
 }
 
 .listChar {
-  list-style-type: none; 
-  padding: 0; 
+  list-style-type: none;
+  padding: 0;
 }
 
 .listChar li::before {
-  content: "<>"; 
-  color: #ff6600; 
-  margin-right: 8px; 
-  font-weight: bold; 
+  content: "<>";
+  color: #ff6600;
+  margin-right: 8px;
+  font-weight: bold;
 }
 
-.buttonCharacteristics{
+.buttonCharacteristics {
   color: #ff6600;
 }
-.buttonCharacteristics:hover{
+.buttonCharacteristics:hover {
   color: #c34e00;
 }
 .modal.show {
@@ -173,10 +168,10 @@ select {
 
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto; 
+  margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 30%; 
+  width: 30%;
 }
 
 .close {

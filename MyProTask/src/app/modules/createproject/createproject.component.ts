@@ -1,3 +1,4 @@
+//AUTHORS: Anas Rami y Sergio Ramos
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { window } from 'rxjs';

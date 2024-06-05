@@ -1,3 +1,4 @@
+//AUTHORS: Kevin Reyes
 import { Component } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { User } from 'src/app/models/user';
@@ -31,7 +32,6 @@ export class HistoryComponent {
             this.users.push(user);
             const project = item.project;
             this.projects.push(project);
-            // Crear un objeto History con user y project
             const history: History = {
               Project: project,
               User: user

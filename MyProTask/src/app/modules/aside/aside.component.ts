@@ -1,3 +1,4 @@
+//AUTHORS: Sergio Ramos , Anas Rami, Kevin Reyes, Hugo Crespo
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';

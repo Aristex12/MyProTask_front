@@ -1,3 +1,4 @@
+//AUTHORS: Anas Rami
 import { Component } from '@angular/core';
 
 @Component({
