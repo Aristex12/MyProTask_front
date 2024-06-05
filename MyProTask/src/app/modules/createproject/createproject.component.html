@@ -1,0 +1,52 @@
+<app-aside></app-aside>
+<app-header></app-header>
+
+<div class="cont">
+   
+    
+    <div class="abc">
+         <div class="upper">
+            <div class="formupper">
+                <label for="">Project's name</label>
+                <input required type="text" id="name">
+                <label for="">Vacancies</label>
+                <input type="number" required id="vacancies"><br>
+                <label for="characteristics">Characteristics</label>
+                <div class="char">
+                
+                    <div class="input-group">
+                        <ng-container *ngFor="let char of characteristics">
+                            <div class="checkbox-item">
+                                <label for="{{char.name}}">{{char.name}}</label>
+                                <input type="checkbox" (change)="onCheckboxChange($event)" name="{{char.name}}"  value=" {{char.idCharacteristic}}" id="{{char.name}}">
+                              
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                
+            </div>
+    </div>
+    <div class="lower">
+        <div class="formlower">
+            <label for="">Project Manager</label>
+            <select required name="pm" id="pm">
+                <ng-container *ngFor="let employee of employees">
+                    <option value="{{employee.idUser}}"> {{employee.email}} - {{employee.das}} </option>
+                </ng-container>
+         
+            </select>
+            <label for="">Finish Date</label>
+            <input required type="date" id="finishDate" class="custom-date-input"><br>
+            <label for="">Description</label>
+            <textarea id="description"></textarea>
+        </div>
+    </div>
+</div>
+<div class="butt">
+  <button  (click)="validateFields()">Add Now</button>
+
+
+</div>
+   
+</div>

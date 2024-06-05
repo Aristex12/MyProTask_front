@@ -81,6 +81,7 @@ label {
 #profile-pic img {
   height: 80px;
   width: 80px;
+  border-radius: 100%;
 }
 #projects table {
   width: 90%; /* O establece un ancho fijo, por ejemplo: width: 600px; */

@@ -18,7 +18,8 @@
       <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" *ngIf="user.role.name != 'manager'">
         <div class="two ico-photo">
           <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
-            <img src="../../assets/img/user.png" alt="" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/myprotask.appspot.com/o/user-profiles%2F{{ user.user.idUser }}%2Fpfp.png?alt=media&token=71e4361c-7814-4858-896e-cedcaf90980c"
+            onerror="this.onerror=null; this.src='../../../assets/img/profile_pic.png';" alt="" />
           </div>
           <i class="bi bi-trash" (click)="openModal2(user.user.idUser)"></i>
           <div [id]="'modal2-' + user.user.idUser" class="modal2">
@@ -39,7 +40,8 @@
       <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" *ngIf="user.role.name == 'manager'">
         <div class="two ico-photo">
           <div id="profile-pic" [routerLink]="['/user', user.user.idUser]">
-            <img src="../../assets/img/user.png" alt="" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/myprotask.appspot.com/o/user-profiles%2F{{ user.user.idUser }}%2Fpfp.png?alt=media&token=71e4361c-7814-4858-896e-cedcaf90980c"
+            onerror="this.onerror=null; this.src='../../../assets/img/profile_pic.png';" alt="" />
           </div>
         </div>
         <p>{{user.user.name}} {{user.user.lastName}}</p>

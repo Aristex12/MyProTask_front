@@ -24,6 +24,13 @@ export class UsersService {
     return this.http.get<any>(`${this.apiUrl}/api/userProject/displayUserProjectByActiveProjectByIdUser?idUser=${this.idUser}`, {headers});
   }
 
+  getAllUsers() {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<any>(`${this.apiUrl}/api/user/displayActiveEmployees`, {headers});
+  }
+
   getUserById(idUser: number) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -176,5 +183,17 @@ const options = {
 };
 return this.http.put(`${this.apiUrl}/api/user/updateCvProfilePicDescriptionUserById?idUser=${this.idUser}&description=${desc}`, {}, options);
 }
+displayActiveEmployees(): Observable<User[]> {
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
+  return this.http.get<User[]>(`${this.apiUrl}/api/user/displayActiveEmployees`, { headers });
+}
 
+deleteCharacteristicbyIdUser(idchar:any) {
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
+  return this.http.delete<User[]>(`${this.apiUrl}/api/userCharacteristic/deleteUserCharacteristicByIdUser?idUser=${this.idUser}&idCharacteristic=${idchar}`, { headers });
+}
 }

@@ -11,9 +11,10 @@
 -->
     <div class="plantilla-four" >
       <ng-container  *ngFor="let user of users"  >
-        <div class="user-div" *ngIf="user.project.idProject== project.idProject" [style.border]="getUserBorderStyle(user.role.name)" [routerLink]="['/user', user.user.idUser]">
+        <div class="user-div" *ngIf="user.project.idProject== project.idProject " [style.border]="getUserBorderStyle(user.role.name)" [style.background-color]="getUserActivity(user.active)" [routerLink]="['/user', user.user.idUser]">
           <div id="profile-pic">
-            <img src="../../../assets/img/{{user.user.profilePic}}" alt="" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/myprotask.appspot.com/o/user-profiles%2F{{ user.user.idUser }}%2Fpfp.png?alt=media&token=71e4361c-7814-4858-896e-cedcaf90980c"
+            onerror="this.onerror=null; this.src='../../../assets/img/profile_pic.png';" alt="" />
           </div>
           <p>{{user.user.name}}</p>
           <p>{{user.user.email}}</p>

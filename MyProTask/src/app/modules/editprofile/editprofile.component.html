@@ -58,7 +58,7 @@
  
         <input
           type="number"
-          placeholder="Experiencia(Años)"
+          placeholder="Meses"
           id="tecnologias-exp"
           min="1"
           max="10"
@@ -94,8 +94,8 @@
     <div class="features">
       <h4>My Characteristics</h4>
       <div class="checkbox" *ngFor="let characteristic of characteristics">
-        <label class="delete-icon" for="features1"
-          ><i class="bi bi-trash"></i>{{ characteristic.name }}</label
+        <label class="delete-icon" for="features1" 
+          ><i  class="bi bi-trash" (click)="deleteCharacteristic(characteristic.idCharacteristic)" ></i>{{ characteristic.name }}</label
         ><br />
       </div>
     </div>

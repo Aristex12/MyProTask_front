@@ -82,5 +82,24 @@ export class ProjectService {
       return this.http.get<Project>(`http://localhost:8080/api/project/displayProjectById?idProject=${idProject}`, { headers });
     }
 
+    
+  
+    createProject(name: string, description: string, vacancies: number, finishDate: Date, characteristicsIds: number[]) {
+      const headers = new HttpHeaders({
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+      });
+      const options = { headers: headers };
+      return this.http.post(`http://localhost:8080/api/project/addProject?name=${name}&description=${description}&finishDate=${finishDate}&vacancies=${vacancies}`, characteristicsIds, options);
+  }
+  
 
+    adPM(idManager:number,idProject:Number){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const options = {
+        headers: headers
+    };
+    return this.http.post(`http://localhost:8080/api/userProject/addManager?idUser=${idManager}&idProject=${idProject}`, {} , options);
+    }
 }

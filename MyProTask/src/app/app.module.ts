@@ -25,6 +25,9 @@ import { AllProjectsComponent } from './modules/all-projects/all-projects.compon
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment';
+import { UserAdminComponent } from './modules/usersadmin/usersadmin.component';
+
+import { CreateprojectComponent } from './modules/createproject/createproject.component';
 
 
 
@@ -47,7 +50,9 @@ import { environment } from '../environments/environment';
     ProjectUsersPmComponent,
     RequestComponent,
     UsersComponent,
-    AllProjectsComponent
+    AllProjectsComponent,
+    UserAdminComponent,
+    CreateprojectComponent
   ],
   imports: [
     BrowserModule,

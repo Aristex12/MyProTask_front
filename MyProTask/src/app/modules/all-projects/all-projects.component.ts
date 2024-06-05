@@ -21,6 +21,7 @@ export class AllProjectsComponent  {
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
+   
     this.getData();
     this.getCharacteristics();
     this.search();
@@ -32,6 +33,7 @@ export class AllProjectsComponent  {
       console.log(this.projects)
       this.projectsBackup = [...data];
     });
+
   }
 
   getCharacteristics() {
@@ -42,6 +44,7 @@ export class AllProjectsComponent  {
   }
 
   search(): void {
+    
     const searchTerm = this.terminoBusqueda.trim().toLowerCase();
 
     if (!searchTerm) {

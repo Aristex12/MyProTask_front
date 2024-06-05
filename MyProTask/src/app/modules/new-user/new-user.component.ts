@@ -46,6 +46,7 @@ export class NewUserComponent {
           
         },
         complete:()=>{
+          window.location.reload()
           console.log('USUARIO AÑADIDO!')         
         }
       });

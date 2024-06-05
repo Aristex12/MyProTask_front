@@ -117,6 +117,25 @@ addUserCharacteristicLang(){
       }
     );
   }
+  deleteCharacteristic(idchar:any){
+
+    this.userservice.deleteCharacteristicbyIdUser(idchar).subscribe(
+      response => {
+        this.openDialog()
+        setTimeout(() => {
+          window.location.reload();
+        }, 400);
+      },
+      error => {
+        this.openDialog()
+        setTimeout(() => {
+          window.location.reload();
+        }, 400);
+      },
+      
+
+    );
+  }
 
   getPlaceholderText() {
     return this.fileCV ? this.fileCV.name : "No seleccionado CV";

@@ -1,0 +1,28 @@
+<app-aside></app-aside>
+<app-header></app-header>
+
+<section class="overflow">
+  <div  class="project-container">
+
+<!--
+  /**
+  *!Importante: Enlazar cada usuario mediante el id par su vista: [routerLink]="['/user-profile', user.user.idUser]"(EN proceso) 
+  **/
+-->
+    <div class="plantilla-four" >
+      <ng-container  *ngFor="let user of allusers"  >
+        <div class="user-div" [style.border]="getUserBorderStyle(user.role.name)" [routerLink]="['/user', user.idUser]">
+          <div id="profile-pic">
+            <img src="https://firebasestorage.googleapis.com/v0/b/myprotask.appspot.com/o/user-profiles%2F{{ user.idUser }}%2Fpfp.png?alt=media&token=71e4361c-7814-4858-896e-cedcaf90980c"
+            onerror="this.onerror=null; this.src='../../../assets/img/profile_pic.png';" alt="" />
+          </div>
+          <p>{{user.name}}</p>
+          <p>{{user.email}}</p>
+          <p>{{user.das}}</p>
+          
+        </div>
+        
+      </ng-container>
+    </div>
+  </div>
+</section>

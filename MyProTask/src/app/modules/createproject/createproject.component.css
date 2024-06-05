@@ -1,0 +1,177 @@
+.cont {
+  background-color: white;
+  margin-left: 15px;
+  margin-top: 90px;
+  height: 75vh; /* Cambiado a altura automática */
+  max-height: calc(100vh - 80px); /* Altura máxima */
+  width: 95%; 
+  border-radius: 10px;
+  display: flex; /* Cambiado a flex */
+  flex-direction: column; /* Cambiado a columna */
+  align-items: center; /* Alinea los elementos al centro */
+  overflow-y: auto; /* Habilidad de desplazamiento vertical */
+}
+
+.pic {
+  margin-top: 10px;
+  padding-top: 5px;
+  border-radius: 100%;
+  width: 6.75%;
+  cursor: pointer; 
+  background-color: #ECECEE;
+  align-self: center;
+}
+
+.pic p {
+  margin-top: 0;
+  margin-left: 4px;
+  text-align: center;
+  font-size: 6pt;
+  margin-bottom: 15px;
+}
+
+.bi.bi-camera2 {
+  margin: 0;
+  margin-left: 25px;
+  font-size: 20pt;
+}
+
+.upper, .lower {
+  border-radius: 10px;
+  flex: 1;
+  padding: 20px;
+  width: 100%; 
+}
+
+.formupper, .formlower {
+  width: 90%;
+  margin: 0 auto; /* Centra el formulario horizontalmente */
+  margin-right: 200px;
+}
+
+.formupper button, .formlower button {
+  margin-top: 15px; /* Espaciado entre los botones y otros elementos */
+  background-color: #FF6D43;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.formupper input, .formlower input, .formlower select, .formlower textarea {
+  margin-top: 15px; /* Espaciado entre los campos de entrada y otros elementos */
+  background-color: #F5F6FA;
+  width: 100%;
+  padding: 10px;         
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.formupper label, .formlower label {
+  align-self: flex-start; 
+}
+
+.char {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  gap: 10px; 
+  max-height: 20vh; /* Altura máxima para el contenedor de características */
+  overflow-y: auto; /* Habilidad de desplazamiento vertical */
+  margin-bottom: 10px;
+}
+
+
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-item label {
+  margin-bottom: 0; /* Asegura que no haya espacio extra debajo de la etiqueta */
+}
+
+.checkbox-item input[type="checkbox"] {
+  margin-top: 0;
+  margin-left: auto;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px; /* Ancho deseado */
+  height: 16px; /* Alto deseado */
+  background-color: white;
+  border: 1px solid #FF6D43;
+  cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+  background-color: #FF6D43;
+  border: 1px solid #FF6D43;
+}
+
+.checkbox-item input[type="checkbox"]:not(:checked) {
+  background-color: white;
+  border: 1px solid #FF6D43;
+}
+
+.char label {
+  margin-bottom: 5px;
+  align-self: center; /* Alinea los labels con los checkboxes */
+}
+
+.char input[type="checkbox"] {
+  white-space: nowrap; /* Evita que los textos se dividan en varias líneas */
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinear al inicio del contenedor */
+}
+
+
+.char button {
+  margin-top: 15px; /* Espaciado entre los botones y otros elementos */
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #FF6D43;
+  color: white;
+  cursor: pointer;
+}
+
+.char button:hover {
+  background-color: #8e280c;
+  border: none;
+}
+
+.abc {
+  display: flex;
+  height: 70%;
+}
+
+.butt {
+  margin-top: 10px;
+  padding-top: 5px;
+  width: 200px;
+  height: 100%;
+  align-self: center;
+}
+
+.butt button {
+  margin-top: 50px;
+  width: 100%;
+  height: 30%;
+  border: none;
+  background-color: #FF6D43;
+  color: white;
+  border-radius: 10px;
+}
+
+.butt button:hover {
+  background-color: #8e280c;
+}

@@ -8,12 +8,13 @@
           <div class="template seven">
             <div class="user-div">
               <div id="profile-pic" *ngIf="user">
-                <img src="a" alt="" />
+                <img src="https://firebasestorage.googleapis.com/v0/b/myprotask.appspot.com/o/user-profiles%2F{{ user.idUser }}%2Fpfp.png?alt=media&token=71e4361c-7814-4858-896e-cedcaf90980c"
+            onerror="this.onerror=null; this.src='../../../assets/img/profile_pic.png';" alt="" />
               </div>
               <p>{{ user?.name }}</p>
- 
               <p>{{ user?.email }}</p>
-              <p><a href="">Download CV</a></p>
+              <p>{{ user?.description }}</p>
+              <p><a href="https://firebasestorage.googleapis.com/v0/b/myprotask.appspot.com/o/user-profiles%2F{{ user?.idUser }}%2Fcurriculum.pdf?alt=media&token=71e4361c-7814-4858-896e-cedcaf90980c">Download CV</a></p>
               <h2>History</h2>
               <div id="projects" class="overflow">
                

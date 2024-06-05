@@ -74,5 +74,14 @@ getUserBorderStyle(name: string): string {
   }
 }
 
+getUserActivity(isactive: any): string {
+  switch (isactive) {
+    case false:
+      return 'darkgray'; 
+    default:
+      return 'none'; 
+  }
+}
+
 
 }

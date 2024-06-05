@@ -26,9 +26,6 @@
         <td>{{ project.finishDate | date:'shortDate' }}</td>
         <td>{{ project.vacancies }}</td>
         <td> 
-          <button >
-            <i class="fas fa-edit"></i> 
-          </button>
           <button *ngIf="project.active" (click)="deleteProject(project.idProject)">
             <i class="fas fa-trash-alt"></i> 
           </button>
