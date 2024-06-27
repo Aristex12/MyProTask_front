@@ -65,6 +65,12 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Aristex12](https://github.com/Aristex12)
 - [ManuelSanzRomero](https://github.com/ManuelSanzRomero)
 - [AlejandroCuestaExternal](https://github.com/AlejandroCuestaExternal)
+- [AnasRamiEviden](https://github.com/AnasRamiEviden)
+- [Sergioramos-eviden](https://github.com/AlejandroCuestaExternal)
+- [Huguito999](https://github.com/Huguito999)
+- [KevinBayasMC](https://github.com/KevinBayasMC)
+- [Laurajim4](https://github.com/laurajim4)
+- [IvanGarciaSanchez](https://github.com/IvanGarciaSanchez)
 
 ## Acknowledgments
 
