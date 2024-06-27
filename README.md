@@ -1,6 +1,6 @@
 # MyProTask_front
 
-MyProTask_front is a comprehensive solution for efficient management of employees and projects within an organization. This platform enables project managers to assign tasks to employees, track project progress, manage personnel, and much more.
+MyProTask_front is a comprehensive and intuitive platform designed to streamline the management of employees and projects within an organization. It allows project managers to efficiently assign tasks to employees, track the progress of various projects, and manage personnel details. The front-end application offers a user-friendly interface that enhances productivity and simplifies project oversight.
 
 ## Features
 
