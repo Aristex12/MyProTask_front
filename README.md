@@ -4,10 +4,12 @@ MyProTask_front is a comprehensive solution for efficient management of employee
 
 ## Features
 
-- Task assignment to employees
-- Project progress tracking
-- Personnel management
-- Comprehensive dashboard
+- **Task Assignment:** Easily assign tasks to employees and set deadlines.
+- **Project Tracking:** Monitor the progress of ongoing projects with real-time updates.
+- **Personnel Management:** Manage employee details, including roles and responsibilities.
+- **Dashboard:** Get an overview of all projects and tasks in a comprehensive dashboard.
+- **Notifications:** Receive notifications about task updates and project milestones.
+- **Reports:** Generate detailed reports on project status and employee performance.
 
 ## Installation
 
